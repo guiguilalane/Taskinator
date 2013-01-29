@@ -13,9 +13,17 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        UI/mainwindow.cpp
+        UI/mainwindow.cpp\
+        Model/component.cpp\
+        Model/list.cpp\
+        Model/sortedList.cpp\
+        Model/task.cpp
 
 HEADERS  += UI/mainwindow.h
+            Model/component.h\
+            Model/list.h\
+            Model/sortedList.h\
+            Model/task.h
 
 FORMS    += UI/mainwindow.ui
 
