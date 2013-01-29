@@ -19,6 +19,8 @@ public:
 	SortedList();
 	SortedList(const int id, const std::string& name, struct tm date);
 	~SortedList();
+
+    virtual bool checkedPreviousTask();
 	
 	void addComponent(Component * c);
 	

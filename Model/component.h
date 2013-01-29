@@ -11,25 +11,40 @@
 
 #include <iostream>
 #include <ctime>
+#include <map>
+class List;
 
 class Component
 {
 	
 public:
 	
-	Component();
-	Component(const int id, const std::string& name, struct tm date);
-	vitual ~Component()=0;
-	bool checkedPreviousTask();
+    Component(Component * parent = 0);
+    Component(const std::string& name, time_t date, Component * parent);
+    virtual ~Component()=0;
+
+    // Ajouter getters et setters
+    std::string getName_();
+    time_t getDate_();
+    bool getState_();
+    Component * getParent_();
+
+    // Permet de savoir si une case est cochable ou non
+    virtual bool checkedPreviousTask();
+    void upComponent();
+    void downComponent();
 
 protected:
 	
-	int id_;
 	std::string name_;
-	struct tm date_;
-	
+    time_t date_;
+    bool state_;
+    Component * parent_;
 };
 
-bool operator<(Component* c1, Component* c2);
-
 #endif
+
+// Questions:
+// - Le parent doit-il etre un Component ou une List
+// - Faut-il implémenter le virtual ?
+// - Est-ce qu'il faut mettre checkedPreviousTask en virtual --> Selon Guillaume OUI

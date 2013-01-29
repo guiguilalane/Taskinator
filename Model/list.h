@@ -10,24 +10,28 @@
 #define LIST_H
 
 #include <iostream>
-#include <vector>
+#include <map>
 
 class List : public Component
 {
-	
+
 public:
 	
 	List();
-	List(const int id, const std::string& name, struct tm date);
+    List(const std::string& name, struct tm date);
 	~List();
-	
-	void addComponent(Component * c);
+
+    std::map<int, Component *>& getTabComponent_();
+    int getId_();
+
+    virtual bool checkedPreviousTask();
+    void addComponent(Component * c);
 	
 		// Ajouter une fonction permettant l'échange de deux component ou juste l'affichage
 	
 private:
-	std::vector<Component *> tabComponent_;
-	
+    int id_;
+    std::map<int, Component *> tabComponent_;
 	
 };
 
