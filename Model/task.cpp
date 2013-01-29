@@ -11,7 +11,7 @@
 Task::Task()
 {}
 
-Task::Task(const int id, const std::string& name, struct tm date): Component(id,name,date)
+Task::Task(const std::string& name, time_t date, List *parent): Component(name,date, parent)
 {}
 
 Task::~Task()

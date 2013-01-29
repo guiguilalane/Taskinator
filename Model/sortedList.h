@@ -9,6 +9,8 @@
 #ifndef SORTEDLIST_H
 #define SORTEDLIST_H
 
+#include "list.h"
+
 #include <iostream>
 
 class SortedList : public List
@@ -17,12 +19,12 @@ class SortedList : public List
 public:
 	
 	SortedList();
-	SortedList(const int id, const std::string& name, struct tm date);
+    SortedList(const std::string& name, time_t date, List* parent);
 	~SortedList();
 
     virtual bool checkedPreviousTask();
 	
-	void addComponent(Component * c);
+    virtual void addComponent(Component * c);
 	
 	// Ajouter une fonction permettant l'échange de deux component
 	

@@ -9,6 +9,8 @@
 #ifndef TASK_H
 #define TASK_H
 
+#include "component.h"
+
 #include <iostream>
 
 class Task : public Component
@@ -16,7 +18,7 @@ class Task : public Component
 
 public:
 	Task();
-	Task(const int id, const std::string& name, struct tm date);
+    Task(const std::string& name, time_t date, List* parent);
 	~Task();
 	
 private:

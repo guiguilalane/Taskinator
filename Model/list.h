@@ -9,6 +9,8 @@
 #ifndef LIST_H
 #define LIST_H
 
+#include "component.h"
+
 #include <iostream>
 #include <map>
 
@@ -18,18 +20,18 @@ class List : public Component
 public:
 	
 	List();
-    List(const std::string& name, struct tm date);
+    List(const std::string& name, time_t date, List* parent);
 	~List();
 
-    std::map<int, Component *>& getTabComponent_();
+    std::map<int, Component*> getTabComponent_();
     int getId_();
 
     virtual bool checkedPreviousTask();
-    void addComponent(Component * c);
+    virtual void addComponent(Component * c);
 	
 		// Ajouter une fonction permettant l'échange de deux component ou juste l'affichage
 	
-private:
+protected:
     int id_;
     std::map<int, Component *> tabComponent_;
 	

@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <ctime>
-#include <map>
+
 class List;
 
 class Component
@@ -19,27 +19,29 @@ class Component
 	
 public:
 	
-    Component(Component * parent = 0);
-    Component(const std::string& name, time_t date, Component * parent);
+    Component(List * parent = 0);
+    Component(const std::string& name, time_t date, List * parent);
     virtual ~Component()=0;
 
     // Ajouter getters et setters
     std::string getName_();
     time_t getDate_();
     bool getState_();
-    Component * getParent_();
+    List * getParent_();
 
     // Permet de savoir si une case est cochable ou non
     virtual bool checkedPreviousTask();
     void upComponent();
     void downComponent();
 
+    int getIdFromMap();
+
 protected:
 	
 	std::string name_;
     time_t date_;
     bool state_;
-    Component * parent_;
+    List * parent_;
 };
 
 #endif
