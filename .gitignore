@@ -20,3 +20,6 @@ Makefile
 *-build-*
 
 .DS_Store
+
+#save file
+*~
