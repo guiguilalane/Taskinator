@@ -19,7 +19,7 @@ SOURCES += main.cpp\
         Model/sortedList.cpp\
         Model/task.cpp
 
-HEADERS  += UI/mainwindow.h
+HEADERS  += UI/mainwindow.h\
             Model/component.h\
             Model/list.h\
             Model/sortedList.h\
