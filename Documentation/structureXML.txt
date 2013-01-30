@@ -1,0 +1,26 @@
+#Structure du XML
+
+Une seule balise: <component> qui représente un composant. Elle possède un attribut type prenant pour valeur {"list", "sortedList", "task"}, un attribut name qui contient le nom du composant et date qui contient la date limite de réalisation du composant.
+--> Question comment représenter la date dans la balise ?????????????????????????????????????
+
+La structure du XML sera une succession de balise <component>
+ex:
+<component type="list" name="Cours IHM1" date="23/05/2013">
+	<component type="sortedList" name="Préparer les CC" date="14/04/2013">
+		<component type="task" name="Sujet" date="10/04/2013"/>
+		<component type="task" name="Tirage" date="11/04/2013"/>
+	</component>
+	<component type="task" name="Preparer les slides" date="05/01/2013"/>
+</component>
+
+Dans le cas d'un template:
+	- le name du premier composant est vide --> Question ou stocke t-on le name du template ???????????????????????
+	- toutes les dates de tous les composants sont vides
+ex:
+<component type="list" name="Cours IHM1" date="">
+	<component type="sortedList" name="Préparer les CC" date="">
+		<component type="task" name="Sujet" date=""/>
+		<component type="task" name="Tirage" date=""/>
+	</component>
+	<component type="task" name="Preparer les slides" date=""/>
+</component>
