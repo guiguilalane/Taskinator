@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Pictures/Taskinator.png</file>
+        <file>Pictures/arrow_down.png</file>
+        <file>Pictures/arrow_up.png</file>
+        <file>Pictures/file_add.png</file>
+        <file>Pictures/file_outline.png</file>
+        <file>Pictures/filesave.png</file>
+        <file>Pictures/folder_download.png</file>
+        <file>Pictures/gnome-system.png</file>
+        <file>Pictures/printer.png</file>
+        <file>Pictures/settings.png</file>
+        <file>Pictures/trash_empty.png</file>
+        <file>Pictures/list_ordered.png</file>
+        <file>Pictures/list.png</file>
+        <file>Pictures/task.png</file>
+        <file>Pictures/arrow_redo.png</file>
+        <file>Pictures/arrow_undo.png</file>
+    </qresource>
+</RCC>
