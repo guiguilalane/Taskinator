@@ -166,7 +166,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -246,10 +246,17 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuASUP">
+    <property name="title">
+     <string>ASUP</string>
+    </property>
+    <addaction name="actionPlop"/>
+   </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuEdition"/>
    <addaction name="menuOutils"/>
    <addaction name="menuAide"/>
+   <addaction name="menuASUP"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNouveau">
@@ -349,6 +356,11 @@
    </property>
    <property name="text">
     <string>Option</string>
+   </property>
+  </action>
+  <action name="actionPlop">
+   <property name="text">
+    <string>plop</string>
    </property>
   </action>
  </widget>
