@@ -23,6 +23,9 @@
     <height>32</height>
    </size>
   </property>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
   <property name="documentMode">
    <bool>false</bool>
   </property>
@@ -203,7 +206,7 @@
     <bool>false</bool>
    </property>
    <property name="nativeMenuBar">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <widget class="QMenu" name="menuFichier">
     <property name="sizePolicy">
@@ -246,17 +249,10 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menuASUP">
-    <property name="title">
-     <string>ASUP</string>
-    </property>
-    <addaction name="actionPlop"/>
-   </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuEdition"/>
    <addaction name="menuOutils"/>
    <addaction name="menuAide"/>
-   <addaction name="menuASUP"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNouveau">
