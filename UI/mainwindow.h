@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <UI/newlist.h>
 
 namespace Ui {
 class MainWindow;
@@ -15,8 +16,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     
+private slots:
+    void on_actionNouveau_triggered();
+
 private:
     Ui::MainWindow *ui;
+    NewList * newList_;
 };
 
 #endif // MAINWINDOW_H

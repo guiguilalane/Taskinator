@@ -12,3 +12,9 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_actionNouveau_triggered()
+{
+    newList_ = new NewList();
+    newList_->show();
+}

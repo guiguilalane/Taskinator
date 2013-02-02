@@ -166,13 +166,15 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QTreeView" name="treeView">
-         <property name="mouseTracking">
-          <bool>false</bool>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
+        <widget class="QTreeWidget" name="treeWidget">
+         <attribute name="headerVisible">
+          <bool>true</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>
@@ -186,7 +188,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -309,11 +311,6 @@
     <string>&amp;Enregistrer</string>
    </property>
   </action>
-  <action name="actionAper_u">
-   <property name="text">
-    <string>Aperçu</string>
-   </property>
-  </action>
   <action name="actionEnregistrer_sous">
    <property name="text">
     <string>Enregistrer sous ...</string>
@@ -349,16 +346,6 @@
    </property>
    <property name="text">
     <string>Retablir</string>
-   </property>
-  </action>
-  <action name="actionCouper">
-   <property name="text">
-    <string>Couper</string>
-   </property>
-  </action>
-  <action name="actionCopier">
-   <property name="text">
-    <string>Copier</string>
    </property>
   </action>
   <action name="actionEnregistrer_template">

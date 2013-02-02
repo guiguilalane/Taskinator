@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = taskinator
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         UI/mainwindow.cpp\
         Model/component.cpp\
@@ -33,3 +32,4 @@ FORMS += UI/mainwindow.ui \
 RESOURCES += \
     Resources.qrc
 
+ICON = Pictures/taskinator.icns
