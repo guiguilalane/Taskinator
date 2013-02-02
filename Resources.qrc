@@ -16,5 +16,6 @@
         <file>Pictures/task.png</file>
         <file>Pictures/arrow_redo.png</file>
         <file>Pictures/arrow_undo.png</file>
+        <file>Pictures/exit.png</file>
     </qresource>
 </RCC>

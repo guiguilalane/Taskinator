@@ -17,15 +17,18 @@ SOURCES += main.cpp\
         Model/component.cpp\
         Model/list.cpp\
         Model/sortedList.cpp\
-        Model/task.cpp
+        Model/task.cpp \
+    UI/newlist.cpp
 
 HEADERS += UI/mainwindow.h\
            Model/component.h\
            Model/list.h\
            Model/sortedList.h\
-           Model/task.h
+           Model/task.h \
+    UI/newlist.h
 
-FORMS += UI/mainwindow.ui
+FORMS += UI/mainwindow.ui \
+    UI/newlist.ui
 
 RESOURCES += \
     Resources.qrc

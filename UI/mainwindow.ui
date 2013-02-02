@@ -89,6 +89,23 @@
         </widget>
        </item>
        <item>
+        <widget class="QToolButton" name="toolButton_7">
+         <property name="text">
+          <string>Parameter</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../Resources.qrc">
+           <normaloff>:/Pictures/gnome-system.png</normaloff>:/Pictures/gnome-system.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="toolButton_4">
          <property name="text">
           <string>Up</string>
@@ -206,7 +223,7 @@
     <bool>false</bool>
    </property>
    <property name="nativeMenuBar">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <widget class="QMenu" name="menuFichier">
     <property name="sizePolicy">
@@ -308,6 +325,10 @@
    </property>
   </action>
   <action name="actionQuitter">
+   <property name="icon">
+    <iconset resource="../Resources.qrc">
+     <normaloff>:/Pictures/exit.png</normaloff>:/Pictures/exit.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Quitter</string>
    </property>
@@ -352,11 +373,6 @@
    </property>
    <property name="text">
     <string>Option</string>
-   </property>
-  </action>
-  <action name="actionPlop">
-   <property name="text">
-    <string>plop</string>
    </property>
   </action>
  </widget>
