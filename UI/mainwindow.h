@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFileDialog>
 #include <UI/newlist.h>
 
 namespace Ui {
@@ -18,6 +19,8 @@ public:
     
 private slots:
     void on_actionNouveau_triggered();
+
+    void on_actionOuvrir_triggered();
 
 private:
     Ui::MainWindow *ui;

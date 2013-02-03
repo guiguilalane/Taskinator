@@ -18,3 +18,9 @@ void MainWindow::on_actionNouveau_triggered()
     newList_ = new NewList();
     newList_->show();
 }
+
+void MainWindow::on_actionOuvrir_triggered()
+{
+    QFileDialog * filediag = new QFileDialog();
+    filediag->getOpenFileNames();
+}
