@@ -18,7 +18,7 @@ History::History(List * l)
 History::~History()
 {}
 
-History::autoSave(List * l)
+void History::autoSave(List * l)
 {
 
 }
