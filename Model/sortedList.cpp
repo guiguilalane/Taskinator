@@ -44,24 +44,12 @@ bool SortedList::checkedPreviousTask()
     return res;
 }
 
-//void SortedList::addComponent(Component * c)
-//{
-//    std::map<int, Component *> it = c->tabComponent_.begin();
-//	for (it; it != tabComponent_.end(); ++it)
-//	{
-//		if (c < *it)
-//		{
-//			tabComponent_->pushback(c);
-//		}
-//	}
-//}
 void SortedList::addComponent(Component *c)
 {
     c->setParent_(this);
     tabComponent_.insert(std::pair<int,Component*>(id_,c));
     ++id_;
 }
-
 
 std::ostream& SortedList::affichage(std::ostream& os)
 {

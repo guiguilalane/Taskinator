@@ -30,8 +30,6 @@ public:
     virtual bool checkedPreviousTask();
     virtual void addComponent(Component * c);
 	
-    // Ajouter une fonction permettant l'échange de deux component ou juste l'affichage
-	
     virtual std::ostream& affichage(std::ostream& os);
 
 protected:

@@ -1,0 +1,233 @@
+%% Classe du document
+\documentclass[a4paper,10pt]{article}
+
+%% Francisation
+\usepackage[francais]{babel} % Indique que l'on utilise le francais
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % Indique que l'on utilise tout le clavier
+%\usepackage[latin1]{inputenc}
+
+%% Réglages généraux
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry} % Taille de la feuille
+\usepackage{lastpage}
+
+%% Package pour le texte
+\usepackage{soul} % Souligner
+\usepackage{color} % Utilisation de couleurs
+\usepackage{hyperref} % Créer des liens et des signets
+\usepackage{eurosym}% Pour le symbole euro
+\usepackage{fancyhdr}% Entête et pied de page
+
+%% Package pour les tableaux
+\usepackage{multirow} % Colonnes multiples
+\usepackage{cellspace}
+\usepackage{array}
+
+%% Package pour les dessins
+\usepackage{pstricks}
+\usepackage{graphicx} % Importer des images
+\usepackage{pdftricks} % Pour utiliser avec pdfTex
+\usepackage{pst-pdf} % Pour utiliser avec pdfTex
+\usepackage{pst-node} % Pose de noeuds
+\usepackage{subfig}
+\usepackage{float}
+
+%% Package pour les maths
+\usepackage{amsmath} % Commandes essentielles
+\usepackage{amssymb} % Principaux symboles
+
+%% Package pour le code
+\usepackage{listings} % Utilisation de la couleur syntaxique des langages
+\usepackage{url}
+
+
+\usepackage[babel=true]{csquotes} % Permet les quotations (guillemets)
+\usepackage{tocvsec2}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+\usepackage{tikz}
+\usepackage{pdfpages}
+
+\usetikzlibrary{shapes} % A revoir
+
+%--------------------- Autres définitions ---------------------%
+
+% Propriété des liens
+\hypersetup{
+colorlinks = true, % Colorise les liens
+urlcolor = blue, % Couleur des hyperliens
+linkcolor = black, % Couleur des liens internes
+}
+
+\definecolor{grey}{rgb}{0.95,0.95,0.95}
+
+% Language Definitions for Turtle
+%TODO: a revoir avec les couleur de gedit
+\definecolor{olivegreen}{rgb}{0.2,0.8,0.5}
+\definecolor{grey2}{rgb}{0.5,0.5,0.5}
+\lstdefinelanguage{ttl}{
+sensitive=true,
+morecomment=[s][\color{grey2}]{@}{:},
+morecomment=[l][\color{olivegreen}]{\#},
+morecomment=[s][\color{red}]{<}{/>},
+morestring=[s][\color{olivegreen}]{<http://w}{\#>},
+morestring=[b][\color{blue}]{\"},
+}
+
+\lstset{
+frame=single,
+breaklines=true,
+basicstyle=\ttfamily,
+backgroundcolor=\color{grey},
+basicstyle=\scriptsize,
+keywordstyle=\color{blue},
+commentstyle=\color{green},
+stringstyle=\color{red},
+identifierstyle=\color{blue}
+}
+
+%Definition de la commande pour retirer l'espace devant les ':'
+\makeatletter
+\@ifpackageloaded{babel}%
+        {\newcommand{\nospace}[1]{{\NoAutoSpaceBeforeFDP{}#1}}}%  % !! double {{}} pour cantonner l'effet à l'argument #1 !!
+        {\newcommand{\nospace}[1]{#1}}
+\makeatother
+
+\setcounter{tocdepth}{3}
+%\maxsecnumdepth{subsubsection} % Dernière section numérotée
+
+% Corps du document :
+\begin{document}
+
+% Définition des entêtes et pieds de page
+\fancyhead[LE,CE,RE,LO,CO,RO]{}
+\fancyfoot[LE,CE,RE,LO,CO,RO]{}
+\fancyhead[LO, LE]{Interface Homme-Machine 1}
+\fancyhead[RO,RE]{2012/2013}
+\fancyfoot[LO,LE]{Université de \scshape{Nantes}}
+\fancyfoot[RO,RE]{Page \thepage \ sur \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%\maketitle
+\begin{titlepage}
+
+\vspace*{\fill}~
+\begin{center}
+{\large \textsc{Rapport de Projet}} \\
+\vspace{1cm}
+{\LARGE Projet : Gestionnaire de listes de tâches} \\
+\vspace{1cm}
+COUTABLE Guillaume, RULLIER Noémie \\
+\today
+\end{center}
+\vspace*{\fill}
+
+\vspace{\stretch{1}}
+\begin{center}
+\noindent 
+\includegraphics[height=2.5cm]{Images/universite.png}
+\end{center}
+\pagebreak
+\end{titlepage}
+
+\newpage
+\tableofcontents  
+
+% Introduction
+\newpage
+\pagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Introduction générale
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+L'objectif de ce projet fut de développer un gestionnaire avancé de tâches. Celui-ci devait permettre de créer des listes de tâches et de suivre l'avancement de celles-ci.
+
+Afin de créer cette application que nous avons appelé \textit{Taskinator}, nous avons du établir plusieurs étapes d'avancement du projet. Ce rapport présentera ces étapes les unes après les autres (même si lors de ce projet certaines étapes se sont croisées).
+
+% - Fonctionnalités
+% - StoryBoard + PaperPrototype + Scénario d'utilisation
+% - Model
+% - Limites de l'application
+% - Structure de IHM --> Menu widget ...
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Etape 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Les fonctionnalités}
+La première étape fut d'analyser l'ensemble des fonctionnalités que notre application devait proposer. 
+
+Nous avons ainsi lister l'ensemble de ces fonctionnalités. Certaines d'entre-elles ne sont pas principales mais elles sont utiles pour l'utilisateur.
+\begin{itemize}
+\item{Créer une liste: cette fonctionnalité permet à l'utilisateur de créer une liste}
+\item{Créer une liste ordonnée: cette fonctionnalité permet à l'utilisateur de créer une liste ordonnée, l'ensemble des éléments de cette liste doivent être effectué dans un ordre précis}
+\item{Créer une tâche: cette fonctionnalité permet à l'utilisateur de créer une tâche}
+\item{Supprimer un élément: cette fonctionnalité permet de supprimer une tâche ou une liste (ordonnée ou non), dans le cas de la liste cela implique que la liste est supprimée ainsi que toutes ses sous-listes ou tâches}
+\item{Enregistrer: cette fonctionnalité permet à l'utilisateur d'enregistrer sa liste dans un document sur son disque dur}
+\item{Enregistrer un template: cette fonctionnalité permet à l'utilisateur d'enregistrer la liste qu'il vient de créer comme un template afin que la structure de celle-ci soit réutilisable}
+%%%%%%% A mettre qu'on veut seulement ajouter les date et le nom de la liste
+\item{Paramètre: cette fonctionnalité permet à l'utilisateur de modifier le ?}
+%%%%%%%%%%%%%%%%%%%%% A revoir avec le doc de Guillaume
+\item{Monter / Descendre: cette fonctionnalité permet de monter ou descendre un élément dans l'arborescence de la liste. Dans le cas d'une liste, tous ces éléments sont aussi monté/descendu d'un rang. Si le changement se fait au sein d'une liste ordonnée l'ordre des éléments est aussi changé.}
+%%%%%%% A revoir si bien formulé
+\item{Historique: cette fonctionnalité permet d'annuler ou rétablir des actions faites par l'utilisateur}
+\item{Gérer ses templates: cette fonctionnalité permet à l'utilisateur de supprimer les templates qu'il a enregistrer}
+%%%%%%% A voir si on laisse ça !!!
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Etape 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Etape 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Utiliser des ontologies RDFS ou OWL}
+\subsection{Objectif}
+L’objectif de cette sous-partie du projet consista à utiliser des ontologies RDFS ou OWL afin de lire des inférences. Nous devions ainsi comparer les résultats de nos requêtes créés lors des étapes précédentes avec les résultats obtenus à partir de nos données en plus de celles générées avec les inférences.
+
+\subsection{Redéfinition du vocabulaire}
+Afin que nos données soient mieux définies, nous avons décidé de déterminer à nouveau le vocabulaire utilisé. Pour cela, nous nous sommes basés sur le site \url{http://schema.org} qui présente de nombreux schémas déjà existants. Trois schémas nous ont particulièrement intéressés, en effet nous avions trouvé le schéma \textbf{Place}, \textbf{PostalAddress} et \textbf{GeoCoordinates}. Ces trois schémas possédaient déjà les propriétés dont nous avions besoin et correspondaient exactement à ce que l'on voulait. Nous avons seulement ajouté trois propriétés que nous n'avons pas trouvé dans ces schémas. Nous avons donc recréé notre \emph{.ttl} en suivant la démarche suivante:
+\begin{enumerate}
+    \item{Chaque ligne présente dans le .csv représente un lieu de type Place.}
+    \item{Chaque lieu par la propriété \textbf{\nospace{place:address}} possède une adresse postale (représenté par un blank node).}
+    \item{Chaque adresse postale est définie à l'aide de différentes propriétés comme \textbf{\nospace{address:addressLocality}}, \textbf{\nospace{address:postalCode}}.}
+    \item{Chaque lieu par la propriété \textbf{\nospace{place:geo}} possède des coordonnées (représenté par un blank node).}
+    \item{Chaque coordonnée est définie à l'aide des propriétés suivantes \textbf{\nospace{geo:longitude}}, \textbf{\nospace{geo:latitude}}.}
+\end{enumerate}
+
+
+
+\subsection{Conclusion}
+Cette partie du projet nous a permis de voir que les inférences permettent d'avoir de nombreuses informations supplémentaires si l'on utilise beaucoup d'ontologies. En ce qui nous concerne, les ontologies que nous avons choisi nous permettent d'ajouter des informations sur les types qui ne se répercutent pas sur nos requêtes des étapes précédentes. Cependant, grâce à la requête bonus, nous pouvons constater que certaines requêtes peuvent effectivement voir leur résultat changer si nous avons des données avec inférences.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Etape 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  CONCLUSION GENERALE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Conclusion générale}
+Ce projet nous a permis de contribuer au Web Sémantique en apportant notre propre lot de données ouvertes prêtes à être utilisées.
+Ce travail nous a montré que chacun pouvait contribuer au Cloud of Linked Data et participer de façon à obtenir une base de données géante et présente sur le web.
+\end{document}
+
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=15cm]{Images/Csv.png}
+    \caption{Extrait des données récupérées concernant les adresses postales de Nantes Métropole}
+\end{figure}

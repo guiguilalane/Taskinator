@@ -57,8 +57,6 @@ bool Component::checkedPreviousTask()
         res = parent_->checkedPreviousTask();
     }
     return res;
-    // TODO : a réimplémenter dans sortedList -->
-//    True si toutes les case précédentes sont cochées
 }
 
 int Component::getIdFromMap()

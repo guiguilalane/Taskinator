@@ -28,7 +28,6 @@ public:
     time_t getDate_();
     bool getState_();
     List * getParent_();
-
     virtual void setParent_(List * p);
 
     // Permet de savoir si une case est cochable ou non
@@ -49,8 +48,3 @@ protected:
 };
 
 #endif
-
-// Questions:
-// - Le parent doit-il etre un Component ou une List
-// - Faut-il implémenter le virtual ?
-// - Est-ce qu'il faut mettre checkedPreviousTask en virtual --> Selon Guillaume OUI

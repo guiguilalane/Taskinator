@@ -28,7 +28,6 @@ public:
 	
     virtual void addComponent(Component * c);
 	
-	// Ajouter une fonction permettant l'échange de deux component
     virtual std::ostream& affichage(std::ostream& os);
 
 private:
