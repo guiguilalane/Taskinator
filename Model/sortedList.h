@@ -19,17 +19,20 @@ class SortedList : public List
 public:
 	
 	SortedList();
-    SortedList(const std::string& name, time_t date, List* parent);
+    SortedList(const std::string& name, time_t date);
 	~SortedList();
+
+    virtual void setParent_(List * p);
 
     virtual bool checkedPreviousTask();
 	
     virtual void addComponent(Component * c);
 	
-	// Ajouter une fonction permettant l'échange de deux component
-	
+    virtual std::ostream& affichage(std::ostream& os);
+
 private:
 	
 };
+
 
 #endif

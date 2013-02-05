@@ -18,8 +18,12 @@ class Task : public Component
 
 public:
 	Task();
-    Task(const std::string& name, time_t date, List* parent);
+    Task(const std::string& name, time_t date);
 	~Task();
+
+    virtual void setParent_(List * p);
+
+    virtual std::ostream& affichage(std::ostream& os);
 	
 private:
 	

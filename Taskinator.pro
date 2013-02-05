@@ -17,14 +17,16 @@ SOURCES += main.cpp\
         Model/list.cpp\
         Model/sortedList.cpp\
         Model/task.cpp \
-    UI/newlist.cpp
+    UI/newlist.cpp \
+    Model/history.cpp
 
 HEADERS += UI/mainwindow.h\
            Model/component.h\
            Model/list.h\
            Model/sortedList.h\
            Model/task.h \
-    UI/newlist.h
+    UI/newlist.h \
+    Model/history.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui

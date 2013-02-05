@@ -20,7 +20,7 @@ class Component
 public:
 	
     Component(List * parent = 0);
-    Component(const std::string& name, time_t date, List * parent);
+    Component(const std::string& name, time_t date);
     virtual ~Component()=0;
 
     // Ajouter getters et setters
@@ -28,6 +28,7 @@ public:
     time_t getDate_();
     bool getState_();
     List * getParent_();
+    virtual void setParent_(List * p);
 
     // Permet de savoir si une case est cochable ou non
     virtual bool checkedPreviousTask();
@@ -35,6 +36,8 @@ public:
     void downComponent();
 
     int getIdFromMap();
+
+    virtual std::ostream& affichage(std::ostream& os) = 0;
 
 protected:
 	
@@ -45,8 +48,3 @@ protected:
 };
 
 #endif
-
-// Questions:
-// - Le parent doit-il etre un Component ou une List
-// - Faut-il implémenter le virtual ?
-// - Est-ce qu'il faut mettre checkedPreviousTask en virtual --> Selon Guillaume OUI

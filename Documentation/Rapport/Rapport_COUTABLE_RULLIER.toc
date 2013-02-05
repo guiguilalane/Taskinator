@@ -1,0 +1,10 @@
+
+\select@language {french}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}Les fonctionnalit\IeC {\'e}s}{3}{section.2}
+\contentsline {section}{\numberline {3}}{4}{section.3}
+\contentsline {section}{\numberline {4}Utiliser des ontologies RDFS ou OWL}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Objectif}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Red\IeC {\'e}finition du vocabulaire}{5}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Conclusion}{5}{subsection.4.3}
+\contentsline {section}{\numberline {5}Conclusion g\IeC {\'e}n\IeC {\'e}rale}{6}{section.5}

@@ -20,17 +20,18 @@ class List : public Component
 public:
 	
 	List();
-    List(const std::string& name, time_t date, List* parent);
+    List(const std::string& name, time_t date);
 	~List();
 
-    std::map<int, Component*> getTabComponent_();
+    std::map<int, Component*>& getTabComponent_();
     int getId_();
+    virtual void setParent_(List * p);
 
     virtual bool checkedPreviousTask();
     virtual void addComponent(Component * c);
 	
-		// Ajouter une fonction permettant l'échange de deux component ou juste l'affichage
-	
+    virtual std::ostream& affichage(std::ostream& os);
+
 protected:
     int id_;
     std::map<int, Component *> tabComponent_;
