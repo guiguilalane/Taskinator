@@ -11,8 +11,10 @@
 Component::Component(List *parent) : parent_(parent)
 {}
 
-Component::Component(const std::string& name, time_t date, List *parent): name_(name), date_(date), parent_(parent)
-{}
+Component::Component(const std::string& name, time_t date): name_(name), date_(date)
+{
+    parent_ = 0;
+}
 
 Component::~Component()
 {}
@@ -35,6 +37,11 @@ bool Component::getState_()
 List *Component::getParent_()
 {
     return parent_;
+}
+
+void Component::setParent_(List * p)
+{
+    parent_ = p;
 }
 
 // Retourne un booléan indiquant si la liste est cochable ou non

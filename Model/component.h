@@ -20,7 +20,7 @@ class Component
 public:
 	
     Component(List * parent = 0);
-    Component(const std::string& name, time_t date, List * parent);
+    Component(const std::string& name, time_t date);
     virtual ~Component()=0;
 
     // Ajouter getters et setters
@@ -29,12 +29,16 @@ public:
     bool getState_();
     List * getParent_();
 
+    virtual void setParent_(List * p);
+
     // Permet de savoir si une case est cochable ou non
     virtual bool checkedPreviousTask();
     void upComponent();
     void downComponent();
 
     int getIdFromMap();
+
+    virtual std::ostream& affichage(std::ostream& os) = 0;
 
 protected:
 	

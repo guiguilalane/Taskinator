@@ -11,11 +11,16 @@
 SortedList::SortedList()
 {}
 
-SortedList::SortedList(const std::string& name, time_t date, List* parent) : List(name,date, parent)
+SortedList::SortedList(const std::string& name, time_t date) : List(name, date)
 {}
 
 SortedList::~SortedList()
 {}
+
+void SortedList::setParent_(List * p)
+{
+    parent_ = p;
+}
 
 // Retourne un booléan indiquant si la liste est cochable ou non
 // et si toutes les cases précédentes sont cochées.
@@ -52,5 +57,18 @@ bool SortedList::checkedPreviousTask()
 //}
 void SortedList::addComponent(Component *c)
 {
-    ((List*) this)->addComponent(c);
+    c->setParent_(this);
+    tabComponent_.insert(std::pair<int,Component*>(id_,c));
+    ++id_;
+}
+
+
+std::ostream& SortedList::affichage(std::ostream& os)
+{
+    os << this->getName_() << std::endl;
+    for (int i = 1; i <= this->getTabComponent_().size() ; i++){
+        os << i << "- ";
+        tabComponent_[i]->affichage(os);
+    }
+    return os;
 }
