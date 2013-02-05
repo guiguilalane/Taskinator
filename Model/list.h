@@ -23,7 +23,7 @@ public:
     List(const std::string& name, time_t date);
 	~List();
 
-    std::map<int, Component*> getTabComponent_();
+    std::map<int, Component*>& getTabComponent_();
     int getId_();
     virtual void setParent_(List * p);
 

@@ -24,7 +24,7 @@ List::~List()
     tabComponent_.erase(tabComponent_.begin(), tabComponent_.end());
 }
 
-std::map<int, Component *> List::getTabComponent_()
+std::map<int, Component *>& List::getTabComponent_()
 {
     return tabComponent_;
 }

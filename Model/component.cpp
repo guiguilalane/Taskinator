@@ -5,7 +5,7 @@
 //  Created by Noémie RULLIER on 27/01/13.
 //
 //
-//#include "component.h"
+
 #include "list.h"
 
 Component::Component(List *parent) : parent_(parent)
@@ -63,36 +63,37 @@ bool Component::checkedPreviousTask()
 
 int Component::getIdFromMap()
 {
-    std::map<int, Component*>::iterator it = parent_->getTabComponent_().begin();
     bool res = false;
     int toreturn = 0;
-    while(it != parent_->getTabComponent_().begin() && !res)
+    int i = 1;
+    int size = parent_->getTabComponent_().size();
+    while(i <= size && !res)
     {
-        if(this == it->second)
+        if(this == parent_->getTabComponent_()[i])
         {
             res = true;
-            toreturn = it->first;
+            toreturn = i;
         }
-        ++it;
+        ++i;
     }
     return toreturn;
 }
 
 void Component::upComponent()
 {
-    int cleC = parent_->getTabComponent_().find(getIdFromMap())->first;
+    int cleC = getIdFromMap();
     // We cannot select the root list
     if (cleC > 1)
     {
         Component * tmp = parent_->getTabComponent_()[cleC];
-        parent_->getTabComponent_()[cleC] = parent_->getTabComponent_()[cleC-1] ;
+        parent_->getTabComponent_()[cleC] = parent_->getTabComponent_()[cleC-1];
         parent_->getTabComponent_()[cleC - 1] = tmp;
     }
 }
 
 void Component::downComponent()
 {
-    int cleC = parent_->getTabComponent_().find(getIdFromMap())->first;
+    int cleC = getIdFromMap();
     // We cannot select the root list
     if (cleC < parent_->getTabComponent_().size())
     {
