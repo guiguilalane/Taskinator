@@ -1,8 +1,12 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Les fonctionnalit\351s}{}% 2
-\BOOKMARK [1][-]{section.3}{}{}% 3
-\BOOKMARK [1][-]{section.4}{Utiliser des ontologies RDFS ou OWL}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Objectif}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Red\351finition du vocabulaire}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.3}{Conclusion}{section.4}% 7
-\BOOKMARK [1][-]{section.5}{Conclusion g\351n\351rale}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{Fonctionnalit\351s principales}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Fonctionnalit\351s secondaires}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{StoryBoard, Sc\351narios, PaperPrototype}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{StoryBoard}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{PaperPrototype}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Sc\351narios}{section.3}% 8
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Sc\351nario 1 - Cr\351ation/Utilisation/Suppression des listes}{subsection.3.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Sc\351narion 2 - Utilisation des templates}{subsection.3.3}% 10
+\BOOKMARK [1][-]{section.4}{}{}% 11
+\BOOKMARK [1][-]{section.5}{Conclusion g\351n\351rale}{}% 12

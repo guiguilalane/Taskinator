@@ -162,54 +162,70 @@ Afin de créer cette application que nous avons appelé \textit{Taskinator}, nou
 \section{Les fonctionnalités}
 La première étape fut d'analyser l'ensemble des fonctionnalités que notre application devait proposer. 
 
-Nous avons ainsi lister l'ensemble de ces fonctionnalités. Certaines d'entre-elles ne sont pas principales mais elles sont utiles pour l'utilisateur.
-\begin{itemize}
-\item{Créer une liste: cette fonctionnalité permet à l'utilisateur de créer une liste}
-\item{Créer une liste ordonnée: cette fonctionnalité permet à l'utilisateur de créer une liste ordonnée, l'ensemble des éléments de cette liste doivent être effectué dans un ordre précis}
-\item{Créer une tâche: cette fonctionnalité permet à l'utilisateur de créer une tâche}
-\item{Supprimer un élément: cette fonctionnalité permet de supprimer une tâche ou une liste (ordonnée ou non), dans le cas de la liste cela implique que la liste est supprimée ainsi que toutes ses sous-listes ou tâches}
-\item{Enregistrer: cette fonctionnalité permet à l'utilisateur d'enregistrer sa liste dans un document sur son disque dur}
-\item{Enregistrer un template: cette fonctionnalité permet à l'utilisateur d'enregistrer la liste qu'il vient de créer comme un template afin que la structure de celle-ci soit réutilisable}
-%%%%%%% A mettre qu'on veut seulement ajouter les date et le nom de la liste
-\item{Paramètre: cette fonctionnalité permet à l'utilisateur de modifier le ?}
-%%%%%%%%%%%%%%%%%%%%% A revoir avec le doc de Guillaume
-\item{Monter / Descendre: cette fonctionnalité permet de monter ou descendre un élément dans l'arborescence de la liste. Dans le cas d'une liste, tous ces éléments sont aussi monté/descendu d'un rang. Si le changement se fait au sein d'une liste ordonnée l'ordre des éléments est aussi changé.}
-%%%%%%% A revoir si bien formulé
-\item{Historique: cette fonctionnalité permet d'annuler ou rétablir des actions faites par l'utilisateur}
-\item{Gérer ses templates: cette fonctionnalité permet à l'utilisateur de supprimer les templates qu'il a enregistrer}
-%%%%%%% A voir si on laisse ça !!!
-\end{itemize}
+\subsection{Fonctionnalités principales}
+Voici dans un premier temps les fonctionnalités principales:
+\paragraph{Créer une liste:} cette fonctionnalité permet à l'utilisateur de créer une liste vide.
+\paragraph{Créer une liste ordonnée:} cette fonctionnalité permet à l'utilisateur de créer une liste ordonnée vide. L'ensemble des éléments de cette liste doivent être effectué dans un ordre précis.
+\paragraph{Créer une tâche:} cette fonctionnalité permet à l'utilisateur de créer une tâche.
+\paragraph{Supprimer un élément:} cette fonctionnalité permet de supprimer une tâche ou une liste (ordonnée ou non). Cette fonctionnalité est à manipuler avec précaution,, en effet dans le cas d'une liste, la suppression de celle-ci implique aussi la suppression de tous ses éléments (listes ou tâches).
+\paragraph{Enregistrer:} cette fonctionnalité permet à l'utilisateur d'enregistrer sa liste dans un document sur son disque dur.
+\paragraph{Enregistrer un template:} cette fonctionnalité permet à l'utilisateur d'enregistrer la liste qu'il vient de créer comme un template afin que la structure de celle-ci soit réutilisable.
+\paragraph{Ouvrir un template:} cette fonctionnalité permet à l'utilisateur de créer une liste à partir d'un template enregistré. Il devra cependant renseigné le nom de cette liste ainsi que toutes les dates de tous les éléments. Il peut ensuite continuer à modifier cette liste.
 
+\subsection{Fonctionnalités secondaires}
+Voici les fonctionnalités secondaires:
+\paragraph{Paramètre:} cette fonctionnalité permet à l'utilisateur de modifier le type de l'élément sélectionné. Il pourra par exemple choisir de modifier une liste en liste ordonnée ou en une tâche. Cette fonctionnalité est à manipuler avec précaution, en effet si l'utilisateur décide de transformer une liste en tâche l'ensemble des éléments de la liste seront supprimés.
+\paragraph{Monter / Descendre:} cette fonctionnalité permet de monter ou descendre un élément dans l'arborescence de la liste. Dans le cas d'une liste, tous ces éléments sont aussi monté/descendu d'un rang. Si le changement se fait au sein d'une liste ordonnée l'ordre des éléments est aussi changé. A chaque déplacement, une vérification de la cohérence des dates est effectuée et l'utilisateur en est informé.
+\paragraph{Historique:} cette fonctionnalité permet d'annuler ou rétablir des actions faites par l'utilisateur.
+\paragraph{Gérer ses templates:} cette fonctionnalité permet à l'utilisateur de supprimer les templates qu'il a enregistré.
+
+%IHM --> Mettre couleur des dates et mettre que c'est la plus récente
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{}
+\section{StoryBoard, Scénarios, PaperPrototype}
 
+\subsection{StoryBoard}
+
+\subsection{PaperPrototype}
+
+\subsection{Scénarios}
+Afin de créer et tester notre PaperPrototype, nous avons créer plusieurs scénarios.
+\subsubsection{Scénario 1 - Création/Utilisation/Suppression des listes}
+Ce premier scénario a été utilisé pour tester le paperPrototype. Il permet de créer une liste non ordonnée et d'y ajouter une liste ordonnée avec ses propres tâches et des tâches.
+\begin{enumerate}
+\item{L'utilisateur choisit quel type de liste il souhaite créer, il choisit ici une liste non ordonnée. Il lui donne un nom et une date de fin. (Pour notre scénario cette liste sera appelée la liste mère)}
+\item{Il créé ensuite une liste ordonnée (qui est le premier élément de la liste mère). Il lui donne un nom et une date. (Pour notre scénario cette liste sera appelée la liste 1)}
+\item{Il créer ensuite une tâche qui sera le premier élément de la liste 1. Il lui donne un nom et une date. (Pour notre scénario cette tâche sera appelée la tâche 1.1)}
+\item{Il créer ensuite une tâche qui sera le deuxième élément de la liste 1. Il lui donne un nom et une date. (Pour notre scénario cette tâche sera appelée la tâche 1.2)}
+\item{Il souhaite maintenant échanger les tâches 1.1 et 1.2, il sélectionne donc la tâche 1.1 et la place au dessous de la tâche 1.2}
+\item{Une popup peut apparaître et informe l'utilisateur que l'action qu'il vient d'effectuer provoque un conflit de date. Le champs date concerné par le conflit prend une couleur orange d'avertissement.}
+\item{L'utilisateur change le type de la liste 1 en une liste non ordonnée.}
+%%%%%%%% A revoir
+%%%%%%%%% Est-ce que je donne des valeurs au dates --> Pour l'affichage de la popup
+\item{L'utilisateur supprime la tâche 1.2}
+\item{L'utilisateur supprime la tâche 1. Une popup apparaît pour l'avertir que cette suppression supprimera aussi tous les éléments de la liste.}
+\end{enumerate}
+
+\subsubsection{Scénarion 2 - Utilisation des templates}
+Ce scénario permet de créer une liste à partir d'un template. De modifier cette liste et de la réenregistrer comme un nouveau template.
+\begin{enumerate}
+\item{L'utilisateur choisit de créer une liste à partir d'un template. Il choisit ici le template qui correspond à la préparation d'un cours, puis donne un nom et une date à sa liste.}
+\item{Il va ensuite pour tous les éléments de ce template donner une date.}
+\item{L'utilisateur va ensuite modifier cette liste en y ajoutant une tâche à la liste mère (il lui donne un nom et une date).}
+\item{Il va ensuite vouloir enregistrer cette nouvelle liste comme un nouveau template.}
+%% Est-ce que quand il charge une liste à partir d'un template quand il va enregister --> creéer une nouvelle liste comme normalement
+% mais s'il fait enregister un template est-ce que ça lui propose de modifier le template qu'il a charger ou d'en créer un nouveau ou est-ce qu'il peut l'écraser tout simplement en lui donnant le même nom ?
+\end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Utiliser des ontologies RDFS ou OWL}
-\subsection{Objectif}
-L’objectif de cette sous-partie du projet consista à utiliser des ontologies RDFS ou OWL afin de lire des inférences. Nous devions ainsi comparer les résultats de nos requêtes créés lors des étapes précédentes avec les résultats obtenus à partir de nos données en plus de celles générées avec les inférences.
+\section{}
 
-\subsection{Redéfinition du vocabulaire}
-Afin que nos données soient mieux définies, nous avons décidé de déterminer à nouveau le vocabulaire utilisé. Pour cela, nous nous sommes basés sur le site \url{http://schema.org} qui présente de nombreux schémas déjà existants. Trois schémas nous ont particulièrement intéressés, en effet nous avions trouvé le schéma \textbf{Place}, \textbf{PostalAddress} et \textbf{GeoCoordinates}. Ces trois schémas possédaient déjà les propriétés dont nous avions besoin et correspondaient exactement à ce que l'on voulait. Nous avons seulement ajouté trois propriétés que nous n'avons pas trouvé dans ces schémas. Nous avons donc recréé notre \emph{.ttl} en suivant la démarche suivante:
-\begin{enumerate}
-    \item{Chaque ligne présente dans le .csv représente un lieu de type Place.}
-    \item{Chaque lieu par la propriété \textbf{\nospace{place:address}} possède une adresse postale (représenté par un blank node).}
-    \item{Chaque adresse postale est définie à l'aide de différentes propriétés comme \textbf{\nospace{address:addressLocality}}, \textbf{\nospace{address:postalCode}}.}
-    \item{Chaque lieu par la propriété \textbf{\nospace{place:geo}} possède des coordonnées (représenté par un blank node).}
-    \item{Chaque coordonnée est définie à l'aide des propriétés suivantes \textbf{\nospace{geo:longitude}}, \textbf{\nospace{geo:latitude}}.}
-\end{enumerate}
-
-
-
-\subsection{Conclusion}
-Cette partie du projet nous a permis de voir que les inférences permettent d'avoir de nombreuses informations supplémentaires si l'on utilise beaucoup d'ontologies. En ce qui nous concerne, les ontologies que nous avons choisi nous permettent d'ajouter des informations sur les types qui ne se répercutent pas sur nos requêtes des étapes précédentes. Cependant, grâce à la requête bonus, nous pouvons constater que certaines requêtes peuvent effectivement voir leur résultat changer si nous avons des données avec inférences.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 4

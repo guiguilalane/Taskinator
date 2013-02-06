@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  5 FEB 2013 19:04
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  6 FEB 2013 19:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -629,7 +629,7 @@ Package pdftricks Warning: ****************************************
 (pdftricks)                [psTricks support in PDF (CVR, ACL)]
 (pdftricks)                ****************************************.
 
-runsystem(touch /tmp/w18-test-2013251144)...disabled (restricted).
+runsystem(touch /tmp/w18-test-2013261144)...disabled (restricted).
 
 
 Package pdftricks Warning: ****************************************
@@ -1364,7 +1364,7 @@ less on input line 108.
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less on input line 109.
 
-<Images/universite.png, id=43, 219.4599pt x 101.6598pt>
+<Images/universite.png, id=51, 219.4599pt x 101.6598pt>
 File: Images/universite.png Graphic file (type png)
 
 <use Images/universite.png>
@@ -1394,26 +1394,14 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.139 \newpage
-               [1] [2] [3] [4]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 200.
-
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-Overfull \hbox (36.37807pt too wide) in paragraph at lines 204--205
-[]\T1/cmr/m/n/10 Chaque adresse pos-tale est dé-fi-nie à l'aide de dif-fé-rente
-s pro-prié-tés comme \T1/cmr/bx/n/10 ad-dress:addressLocality\T1/cmr/m/n/10 ,
- []
-
-[5] 
+               [1] [2] [3] [4] [5] 
 AED: lastpage setting LastPage
 [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 226.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 226.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
  (./Rapport_COUTABLE_RULLIER.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 226.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 226.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 242.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 242.
 
 
 Package rerunfilecheck Warning: File `Rapport_COUTABLE_RULLIER.out' has changed
@@ -1422,20 +1410,23 @@ Package rerunfilecheck Warning: File `Rapport_COUTABLE_RULLIER.out' has changed
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `Rapport_COUTABLE_RULLIER.out':
-(rerunfilecheck)             Before: 255F31144F454B76A852434056DF2E7D;533
-(rerunfilecheck)             After:  F2B222A631A38E8B543A58E18B11D8EF;464.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 226.
+(rerunfilecheck)             Before: 13A85BF1DE654DBE2FF4138FB89A9FD2;776
+(rerunfilecheck)             After:  06035C52D81801E4132791F04447B73F;840.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 242.
  ) 
 Here is how much of TeX's memory you used:
- 24354 strings out of 493488
- 424488 string characters out of 3141326
- 587427 words of memory out of 3000000
- 27149 multiletter control sequences out of 15000+200000
+ 24361 strings out of 493488
+ 424177 string characters out of 3141326
+ 590427 words of memory out of 3000000
+ 27135 multiletter control sequences out of 15000+200000
  13076 words of font info for 33 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  61i,11n,96p,950b,461s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{subsection.2.1} has been referenced but does not 
-exist, replaced by a fixed one
+pdfTeX warning (dest): name{subsubsection.3.2.2} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.3.2.1} has been referenced but does n
+ot exist, replaced by a fixed one
 
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</
 usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></us
@@ -1445,12 +1436,11 @@ cal/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/loca
 l/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/
 texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texliv
-e/2012/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on Rapport_COUTABLE_RULLIER.pdf (7 pages, 256146 bytes).
+ive/2012/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on Rapport_COUTABLE_RULLIER.pdf (7 pages, 239516 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
- 90 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 177 PDF objects out of 1000 (max. 8388607)
+ 156 compressed objects within 2 object streams
+ 46 named destinations out of 1000 (max. 500000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 
