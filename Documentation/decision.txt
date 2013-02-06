@@ -1,0 +1,69 @@
+*) barre de bouton sur la gauche (lecture de gauche à droite et accès rapide toujours en rapport avec la selection)
+
+*) flèche de déplacement de tâche dans le menu de gauche pour éviter de changer le focus à chaque déplacement de tâche
+																		(si les flèches étaient sur la tâche elle même)
+																		
+*) corbeille, sur les deux (menu et tâche)
+
+*) lors d'un déplacement ou création de tâche (ou de liste) dans une liste ordonnée, vérifier la cohérence des dates et en informer l'utilisateur
+(par une popUp d'information(exemple?) et par une modification de la couleur des champs date concernés).
+	Dans le cas d'un problème de date, le champs date de la tâche (ou liste) qui change de couleur est la plus récente, car il est plus cohérent d'avancer l'exécution d'une tâche que de reculer l'exécution d'une tâche qui peut être "critique".
+	
+*) pour le changement de tâche ordonnée en non ordonnée(et inversement), la question était sélectionne t'on la tâche parent ou un des enfants pour la transformation?
+	Pour garder un semblant de cohérence avec notre application (selectionner la tache parent puis créer une liste ou tâche), il a été décider de conserver ce système (sélection de la tâche parent pour transformer les tâche filles)
+	
+*) Si l'utilisateur souhaite transformer une liste en tâche, une popUp aparaît pour l'avertir que cette opération supprimera les tâches filles.
+		Le bouton "non" est selectionné pour jouer la sécurité.
+		
+*) Dans le cas de la validation des tâches(dans une liste ordonnée), plusieurs façon de faire :
+	- on autorise la validation de toutes les tâches, avec une popup d'information si une tâche est cochée alors qu'une tâche antérieur ne l'est pas.
+	- on autorise la validation de la tâche non validée la plus haute les autres tâches sont grisées Si une tâche est grisée les tâche filles le sont aussi.
+	Nous sommes restés sur la deuxième façon de faire car cela oblige l'utilisateur à ne pas faire se qu'il veut(utiliser un comportement non adequat)
+
+	
+*) Dans le cas d'une liste de listes, la liste parent est cochée automatiquement lorsque toutes ses tâches filles le sont.
+
+*) Dans le cas d'un déplacement de tâches, dans une liste ordonnée dont une des tâches en cochée et l'autre non, décoche les deux tâches.
+
+
+Sénarios 1:
+	page 1 :
+		- remplir le nom de la liste
+		- remplir la date
+		- template par défaut à "none"
+		- liste ordonnée par défaut à "non"
+		-cliquer sur "Ok"
+		
+	page 2 :
+		- selectionner la ligne 1
+		- cliquer sur liste ordonnée (sur le menu de gauche) pour créer une sous liste ordonnée
+		
+	page 3 :
+		- changer le nom de la première liste, ainsi que la date
+		- sélectionner la tâche 1.1
+		- cliquer sur créer une tâche.
+		
+	page 4 :
+		- changer le nom et la date de la tâche 1.1
+		- selectionner la tâche en dessous(dans la liste ordonnée)
+		- cliquer sur créer une tâche
+		
+	page 5 :
+		- changer le nom et la date de la tâche 1.2
+		- cocher la tâche 1.1, degrise la tâche 1.2
+		- Sélectionner la tâche 1.1 et cliquer sur la flèche "vers le bas"
+		
+	page 6 :
+		- apparition de la popUp n°1 d'information qui informe d'un problème de date, et changement de couleur de fond des champs date
+		- selection de la tâche 1
+		- cliquer sur paramètre, affichage d'une "liste déroulante", pour permettre la transformation d'un composant (tâche, liste ordonnée, liste non ordonnée). Dans notre cas, à l'ouverture "liste ordonnée" cochée, et cocher "liste non ordonnée".
+		
+	page 7 :
+		- Selection de la tâche 1.2
+		- cliquer sur la corbeille dans le menu de gauche pour supprimer la tâche
+		
+	page 8 :
+		- cliquer sur la corbeille de la tâche 1.
+		- apparition de la popUp 3 qui informe de la suppression des sous-tâche.
+		- retour page 2
+		

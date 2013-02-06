@@ -11,22 +11,22 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = taskinator
 TEMPLATE = app
 
-SOURCES += main.cpp\
-        UI/mainwindow.cpp\
-        Model/component.cpp\
-        Model/list.cpp\
-        Model/sortedList.cpp\
+SOURCES += main.cpp \
+		UI/mainwindow.cpp \
+		UI/newlist.cpp \
+		Model/component.cpp \
+		Model/list.cpp \
+		Model/sortedList.cpp \
         Model/task.cpp \
-    UI/newlist.cpp \
-    Model/history.cpp
+		Model/history.cpp
 
-HEADERS += UI/mainwindow.h\
-           Model/component.h\
-           Model/list.h\
-           Model/sortedList.h\
-           Model/task.h \
-    UI/newlist.h \
-    Model/history.h
+HEADERS += UI/mainwindow.h \
+		UI/newlist.h \
+		Model/component.h \
+		Model/list.h \
+		Model/sortedList.h \
+		Model/task.h \
+		Model/history.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui
