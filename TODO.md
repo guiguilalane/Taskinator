@@ -24,3 +24,10 @@ newlist.ui
 
 
 --------------------------------------------- Question ---------------------------------------------
+
+* Est-ce qu'on met un apercu qui permet de désafficher les éléments vides --> en gros de voir les listes sous une forme finie ?
+* Cochage des tâches lors du déplacement --> Voir TODO Rapport
+* Couleur des dates --> Voir TODO Rapport
+* Est-ce que dans les scénarios je donne des valeurs aux champs nom et date des listes/tâches ?
+* Est-ce que quand l'utilisateur charge une liste à partir d'un template qu'il modifie et qu'il souhaite enregistrer un nouveau template --> est-ce que ça lui propose de modifier le template qu'il a charger ou d'en créer un nouveau ou est-ce qu'il peut l'écraser tout simplement en lui donnant le même nom ?
+* Est-ce qu'il faut qu'on ajoute créer liste, tâche, monter/descendre, paramètre, corbeille … dans le menu Outils par exemple ? --> A voir avec le prof ?

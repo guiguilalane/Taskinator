@@ -176,11 +176,16 @@ Voici les fonctionnalités secondaires:
 %%%%%%%%%%  Etape 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{StoryBoard, Paper Prototype et Scénarios}
+\section{Storyboard, Paper Prototype et Scénarios}
 
-\subsection{StoryBoard}
+\subsection{Storyboard}
 Le storyboard permet de montrer à quoi sert l'application. Il utilise les star people de Bill VerPlank. A la fin su storyboard, le personnage atteint son but et est satisfait. Nous avons donc ici créer notre storyboard pour notre application:
-%TODO Mettre le storyboard
+\begin{figure}[H]
+    \center
+    \includegraphics[width=13.9cm]{Images/storyboard.png}
+    \caption{Le storyboard}
+\end{figure}
+
 
 \subsection{Paper Prototype}
 
@@ -192,18 +197,18 @@ Voici quelques unes des maquettes réalisée pour le paper prototype. Nous expli
 Nous avons du faire quelques choix pour la conception de l'interface. Nous vous les présentons ici et surtout nous expliquons pourquoi nous avons choisi telle solution:
 \begin{itemize}
 \item \textbf{Fonctionnalité de création (liste ordonnée ou non et tâche):} nous avons décider d'adopter un système de sélection de l'élément "parent". Expliquons ce système. Lorsque l'utilisateur créer une liste, un élément vide de cette liste apparait. L'utilisateur doit alors sélectionner cet élément et définir de quel type il sera. Lorsque cet élément à un type, un nouvel élément vide apparait; l'utilisateur peut alors définir un autre élément ... Si l'utilisateur ne souhaite pas continuer à remplir cette liste, il ne tient plus compte des éléments vides.
-%TODO est-ce qu'on met un apercu qui permet de désafficher ces éléments vides ???  
-%TODO a revoir comment on explique
-\item \textbf{Fonctionnalité \textit{Monter} et \textit{Descendre}:} nous avons décider de placer ces fonctionnalités dans la boîte à outils plutôt que sur l'élément à déplacer pour un gain de temps au niveau de l'utilisation. En effet, si nous avions fait le choix de mettre les boutons monter et descendre sur l'élément, lorsque l'utilisateur souhaite déplacer l'élément de plusieurs place, il va perdre le focus de la souris sur ces boutons.
-%TODO A revoir Pour cette fonctionnalité, nous avons aussi fait le choix de décocher une tâche si nous déplacons deux tâches non cochées au sein d'une liste ordonnée
-\item \textbf{Fonctionnalité \textit{Supprimer} :} nous avons choisi d'ajouter cette possibilité de suppression sur chaque élément pour que l'utilisateur puisse supprimer plus rapidement. Nous avons de plus décider de faire apparaître une fenêtre d'avertissement car la suppression d'une liste sélectionnée peut entrainer la suppression d'éléments. Pour plus de sécurité, le focus de la validation de la suppression est par défaut sur \textit{Non}.
-\item \textbf{Fonctionnalité \textit{Paramètre}:} nous avons décider pour cette fonctionnalité (qui peut entraîner la suppression de différents éléments) de faire apparaître ici aussi une fenêtre d'avertissement. Dans cette fenêtre le focus de la validation du changement est mise à \textit{Non}. On perd cependant un peu de vitesse d'exécution (si l'utilisateur souhaite effectivement bien effectuer ce changement) au profit de plus de sécurité. %TODO a revoir dans le cours comment on appelle le tps d'exécution
+\item \textbf{Fonctionnalité \textit{Monter} et \textit{Descendre}:} nous avons décider de placer ces fonctionnalités dans la boîte à outils plutôt que sur l'élément à déplacer pour un gain de temps au niveau de l'utilisation. En effet, si nous avions fait le choix de mettre les boutons monter et descendre sur l'élément, lorsque l'utilisateur souhaite déplacer l'élément de plusieurs place, il va perdre le focus de la souris sur ces boutons. Attention, lors de l'utilisation de cette fonctionnalité dans une liste ordonnée; si on monte ou descend un élément de tel façon que un élément coché se trouve être en dessous d'un élément non coché dans la liste, alors l'élément coché sera décoché. 
+%TODO A revoir quand l'élément est une liste, qu'est-ce qu'on fait des tâches cochées à l'intérieur ?
+De plus, nous avons décidé d'afficher une fenêtre d'avertissement permettant à l'utilisateur d'être informé si il y a une incohérence au niveau des dates des éléments déplacés. Nous avons décidé de mettre en valeur ces dates par le remplissage du fond du champs date d'une couleur orange (permet d'attirer l'attention et de prévenir l'utilisateur).
+%TODO A revoir Les dates en couleur est-ce qu'il ne vaut pas mieux mettre les deux dates en couleur plutôt qu'une ! --> Le faire à chaque création d'élément
+\item \textbf{Fonctionnalité \textit{Supprimer}:} nous avons choisi d'ajouter cette possibilité de suppression sur chaque élément pour que l'utilisateur puisse supprimer plus rapidement. Nous avons de plus décider de faire apparaître une fenêtre d'avertissement car la suppression d'une liste sélectionnée peut entrainer la suppression d'éléments. Pour plus de sécurité, le focus de la validation de la suppression est par défaut sur \textit{Non}.
+\item \textbf{Fonctionnalité \textit{Paramètre}:} nous avons décider pour cette fonctionnalité (qui peut entraîner la suppression de différents éléments) de faire apparaître ici aussi une fenêtre d'avertissement. Dans cette fenêtre le focus de la validation du changement est mise à \textit{Non}. On perd cependant un peu de vitesse d'exécution (si l'utilisateur souhaite effectivement bien effectuer ce changement) au profit de plus de sécurité.
 \item \textbf{Widget désactivé :} nous avons décidé de griser tout menu, bouton inutilisable à un état de l'application afin que l'utilisateur n'exécute pas d'actions impossibles. Cela évitera qu'il se pose des questions s'il voit aucun changement effectué.
 \end{itemize}
-%TODO Choix --> Mettre couleur des dates et mettre que c'est la plus récente quand incohérence de date
 
 \subsection{Scénarios}
 Afin de tester notre PaperPrototype, nous avons créer plusieurs scénarios.
+%TODO A revoir Nom et dates Valeur ?
 \subsubsection{Scénario 1 - Création/Utilisation/Suppression de liste}
 Ce premier scénario a été utilisé pour tester le paper prototype. Il permet de créer une liste non ordonnée et d'y ajouter une liste ordonnée avec ses propres tâches et des tâches.
 \begin{enumerate}
@@ -214,8 +219,6 @@ Ce premier scénario a été utilisé pour tester le paper prototype. Il permet 
 \item{Il souhaite maintenant échanger les tâches 1.1 et 1.2, il sélectionne donc la tâche 1.1 et la place au dessous de la tâche 1.2}
 \item{Une popup peut apparaître et informe l'utilisateur que l'action qu'il vient d'effectuer provoque un conflit de date. Le champs date concerné par le conflit prend une couleur orange d'avertissement.}
 \item{L'utilisateur change le type de la liste 1 en une liste non ordonnée.}
-%TODO %%%%%%% A revoir
-%TODO %%%%%%%% Est-ce que je donne des valeurs au dates --> Pour l'affichage de la popup
 \item{L'utilisateur supprime la tâche 1.2}
 \item{L'utilisateur supprime la tâche 1. Une popup apparaît pour l'avertir que cette suppression supprimera aussi tous les éléments de la liste.}
 \end{enumerate}
@@ -227,8 +230,7 @@ Ce scénario permet de créer une liste à partir d'un template. De modifier cet
 \item{Il va ensuite pour tous les éléments de ce template donner une date.}
 \item{L'utilisateur va ensuite modifier cette liste en y ajoutant une tâche à la liste mère (il lui donne un nom et une date).}
 \item{Il va ensuite vouloir enregistrer cette nouvelle liste comme un nouveau template.}
-%TODO Est-ce que quand il charge une liste à partir d'un template quand il va enregister --> creéer une nouvelle liste comme normalement
-% mais s'il fait enregister un template est-ce que ça lui propose de modifier le template qu'il a charger ou d'en créer un nouveau ou est-ce qu'il peut l'écraser tout simplement en lui donnant le même nom ?
+%TODO A revoir l'histoire de modification d'un template
 \end{enumerate}
 
 
@@ -296,7 +298,7 @@ On retrouvera les fonctionnalités suivantes:
 
 \subsection{Boite à outils}
 Cette boite à outils permet de rassembler toutes les fonctionnalités que l'utilisateur sera amené à utiliser fréquemment. Nous avons décidé de mettre cette boite à outils à gauche, puisque dans notre culture le sens de lecture est de gauche à droite. Toutes les fonctionnalités présentent dans cette boîte à outils seront appliquée sur l'élément sélectionné dans la zone d'affichage de la liste. Cette boite à outils contient les fonctionnalités suivantes:
-%TODO dire comment on fait nivo widget pour exécuter ces fonctionalités ? ex paramètre juste un "menu" qui s'ouvre ?
+%TODO Dire comment on fait nivo widget pour exécuter ces fonctionalités ? ex paramètre juste un "menu" qui s'ouvre ?
 \begin{itemize}
 \item \textbf{Créer une liste non ordonnée (\includegraphics[width=0.25cm]{Images/list.png}) :} elle permet à l'utilisateur de créer une nouvelle liste non ordonnée.
 \item \textbf{Créer une liste ordonnée (\includegraphics[width=0.25cm]{Images/list_ordered.png}) :} elle permet à l'utilisateur de créer une nouvelle liste ordonnée.
@@ -306,8 +308,6 @@ Cette boite à outils permet de rassembler toutes les fonctionnalités que l'uti
 \item \textbf{Descendre  (\includegraphics[width=0.25cm]{Images/arrow_down.png}) :} elle permet à l'utilisateur de descendre un élément.
 \item \textbf{Supprimer  (\includegraphics[width=0.25cm]{Images/trash_empty.png}) :}  elle permet à l'utilisateur de supprimer un élément.
 \end{itemize}
-
-%TODO Est-ce qu'il faut qu'on mette créer liste ordonnée creer tâche poubelle monter et descendre dans le menu ????? --> A voir avec le prof ?
 
 \subsection{Zone d'affichage de la liste}
 Cette zone est comme indiquée réservée à l'affichage de la liste en cours de création. On pourra donc voir l'arborescence de la liste, avec toutes ses informations.
@@ -322,10 +322,7 @@ Chaque élément possédera un nom (implémenter par une QLineEdit) suivi d'une 
 \item Dans le cas d'une liste, sa checkbox sera automatiquement cochée lorsque tous les éléments de la liste seront eux aussi cochés.
 \end{itemize}
 Nous aurons une information supplémentaire au début de chaque élément. Dans le cas d'une liste non ordonnées, ses éléments sont représentés avec un tiret devant les informations de la liste, tandis que les éléments des listes ordonnées sont représenté à l'aide de numéro.
-
 %TODO mettre image pour expliquer
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 4
@@ -334,18 +331,23 @@ Nous aurons une information supplémentaire au début de chaque élément. Dans 
 \section{Le modèle}
 Afin de réaliser cette application nous avons du créer un modèle pour celle-ci. Voici le diagramme de classe de celui-ci:
 %TODO Mettre diagramme
-Le modèle de cette application est composé d'un pattern composite permettant d'i 
+%TODO Finir
+Le modèle de cette application est composé d'un pattern composite permettant d'implémenter une structure d'arbre et de composer les différents objets ensemble. Nous avons donc ici un \textit{Component} qui est soit une \textit{Task} (une tâche) ou une \textit{List} (une liste) qui elle-même peut ensuite être une \textit{ListOrdered} (une liste ordonnée), celle-ci hérite de la class \textit{List}. Ce modèle permet donc comme expliqué ci-dessus de composer ces éléments et d'obtenir par exemple des listes de listes de tâches \dots 
+
+Nous avons de plus une classe \textit{History} permettant de stocker dans une liste circulaire les différents états de la liste en cours de création, après chaque action de l'utilisateur. Cette classe permettra l'utilisation des boutons \textit{Annuler} et \textit{Rétablir}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Limite de l'application}
+%TODO A compléter
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  CONCLUSION GENERALE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Conclusion générale}
+%TODO A compléter, je sais pas quoi mettre du tout ^^
 
 \end{document}
