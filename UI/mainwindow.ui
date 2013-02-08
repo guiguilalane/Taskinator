@@ -188,7 +188,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -345,7 +345,7 @@
      <normaloff>:/Pictures/arrow_redo.png</normaloff>:/Pictures/arrow_redo.png</iconset>
    </property>
    <property name="text">
-    <string>Retablir</string>
+    <string>Rétablir</string>
    </property>
   </action>
   <action name="actionEnregistrer_template">

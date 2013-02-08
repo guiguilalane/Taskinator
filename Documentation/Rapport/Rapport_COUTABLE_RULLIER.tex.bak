@@ -334,7 +334,7 @@ Nous aurons une information supplémentaire au début de chaque élément. Dans 
 \section{Le modèle}
 Afin de réaliser cette application nous avons du créer un modèle pour celle-ci. Voici le diagramme de classe de celui-ci:
 %TODO Mettre diagramme
-Le modèle de cette application est composé d'un pattern composite permettant d'i 
+Le modèle de cette application est composé d'un pattern composite permettant d'implémenter des listes de l
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 5
