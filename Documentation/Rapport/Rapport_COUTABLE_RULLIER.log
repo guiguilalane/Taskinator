@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  8 FEB 2013 23:43
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  9 FEB 2013 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -629,7 +629,7 @@ Package pdftricks Warning: ****************************************
 (pdftricks)                [psTricks support in PDF (CVR, ACL)]
 (pdftricks)                ****************************************.
 
-runsystem(touch /tmp/w18-test-2013281423)...disabled (restricted).
+runsystem(touch /tmp/w18-test-2013291040)...disabled (restricted).
 
 
 Package pdftricks Warning: ****************************************
@@ -1401,96 +1401,155 @@ File: Images/storyboard.png Graphic file (type png)
 <use Images/storyboard.png>
 Package pdftex.def Info: Images/storyboard.png used on input line 185.
 (pdftex.def)             Requested size: 395.49312pt x 559.79001pt.
- [4 <./Images/storyboard.png>] [5] [6]
-<Images/menuFichier.png, id=177, 168.63pt x 174.6525pt>
+
+<Images/maquette1.jpeg, id=145, 577.9191pt x 416.2752pt>
+File: Images/maquette1.jpeg Graphic file (type jpg)
+
+<use Images/maquette1.jpeg>
+Package pdftex.def Info: Images/maquette1.jpeg used on input line 196.
+(pdftex.def)             Requested size: 193.47882pt x 139.35936pt.
+
+<Images/maquette2.jpeg, id=146, 593.0958pt x 415.3116pt>
+File: Images/maquette2.jpeg Graphic file (type jpg)
+
+<use Images/maquette2.jpeg>
+Package pdftex.def Info: Images/maquette2.jpeg used on input line 197.
+(pdftex.def)             Requested size: 202.01474pt x 141.45755pt.
+
+<Images/maquette3.jpeg, id=147, 587.796pt x 415.7934pt>
+File: Images/maquette3.jpeg Graphic file (type jpg)
+
+<use Images/maquette3.jpeg>
+Package pdftex.def Info: Images/maquette3.jpeg used on input line 198.
+(pdftex.def)             Requested size: 193.47882pt x 136.8633pt.
+
+<Images/maquette4.jpeg, id=148, 588.2778pt x 412.4208pt>
+File: Images/maquette4.jpeg Graphic file (type jpg)
+
+<use Images/maquette4.jpeg>
+Package pdftex.def Info: Images/maquette4.jpeg used on input line 199.
+(pdftex.def)             Requested size: 193.47882pt x 135.6399pt.
+
+<Images/maquette5.jpeg, id=149, 576.7146pt x 408.3255pt>
+File: Images/maquette5.jpeg Graphic file (type jpg)
+
+<use Images/maquette5.jpeg>
+Package pdftex.def Info: Images/maquette5.jpeg used on input line 200.
+(pdftex.def)             Requested size: 193.47882pt x 136.98459pt.
+
+<Images/maquette6.jpeg, id=150, 582.4962pt x 411.4572pt>
+File: Images/maquette6.jpeg Graphic file (type jpg)
+
+<use Images/maquette6.jpeg>
+Package pdftex.def Info: Images/maquette6.jpeg used on input line 201.
+(pdftex.def)             Requested size: 193.47882pt x 136.66653pt.
+
+<Images/maquette7.jpeg, id=151, 586.8324pt x 410.2527pt>
+File: Images/maquette7.jpeg Graphic file (type jpg)
+
+<use Images/maquette7.jpeg>
+Package pdftex.def Info: Images/maquette7.jpeg used on input line 202.
+(pdftex.def)             Requested size: 193.47882pt x 135.2586pt.
+
+<Images/maquette8.jpeg, id=152, 585.387pt x 415.5525pt>
+File: Images/maquette8.jpeg Graphic file (type jpg)
+
+<use Images/maquette8.jpeg>
+Package pdftex.def Info: Images/maquette8.jpeg used on input line 203.
+(pdftex.def)             Requested size: 193.47882pt x 137.34833pt.
+ [4 <./Images/storyboard.png>] [5 <./Images/maquette1.jpeg> <./Images/maquette2
+.jpeg> <./Images/maquette3.jpeg> <./Images/maquette4.jpeg> <./Images/maquette5.
+jpeg> <./Images/maquette6.jpeg> <./Images/maquette7.jpeg> <./Images/maquette8.j
+peg>] [6] [7]
+<Images/menuFichier.png, id=191, 168.63pt x 174.6525pt>
 File: Images/menuFichier.png Graphic file (type png)
 
 <use Images/menuFichier.png>
-Package pdftex.def Info: Images/menuFichier.png used on input line 267.
+Package pdftex.def Info: Images/menuFichier.png used on input line 278.
 (pdftex.def)             Requested size: 56.9055pt x 58.936pt.
 
-<Images/menuEdition.png, id=178, 114.4275pt x 72.27pt>
+<Images/menuEdition.png, id=192, 114.4275pt x 72.27pt>
 File: Images/menuEdition.png Graphic file (type png)
 
 <use Images/menuEdition.png>
-Package pdftex.def Info: Images/menuEdition.png used on input line 278.
+Package pdftex.def Info: Images/menuEdition.png used on input line 289.
 (pdftex.def)             Requested size: 56.9055pt x 35.93971pt.
 
-<Images/menuOutils.png, id=179, 197.73875pt x 70.2625pt>
+<Images/menuOutils.png, id=193, 197.73875pt x 70.2625pt>
 File: Images/menuOutils.png Graphic file (type png)
 
 <use Images/menuOutils.png>
-Package pdftex.def Info: Images/menuOutils.png used on input line 289.
+Package pdftex.def Info: Images/menuOutils.png used on input line 300.
 (pdftex.def)             Requested size: 56.9055pt x 20.22014pt.
- [7 <./Images/menuFichier.png> <./Images/menuEdition.png> <./Images/menuOutils.
-png>] <Images/list.png, id=191, 48.18pt x 48.18pt>
+ [8 <./Images/menuFichier.png> <./Images/menuEdition.png> <./Images/menuOutils.
+png>] <Images/list.png, id=205, 48.18pt x 48.18pt>
 File: Images/list.png Graphic file (type png)
 
 <use Images/list.png>
-Package pdftex.def Info: Images/list.png used on input line 303.
+Package pdftex.def Info: Images/list.png used on input line 314.
 (pdftex.def)             Requested size: 7.11317pt x 7.11273pt.
- <Images/list_ordered.png, id=192, 40.15pt x 40.15pt>
+ <Images/list_ordered.png, id=206, 40.15pt x 40.15pt>
 File: Images/list_ordered.png Graphic file (type png)
 
 <use Images/list_ordered.png>
-Package pdftex.def Info: Images/list_ordered.png used on input line 304.
+Package pdftex.def Info: Images/list_ordered.png used on input line 315.
 (pdftex.def)             Requested size: 7.11317pt x 7.11273pt.
- <Images/task.png, id=193, 301.125pt x 301.125pt>
+ <Images/task.png, id=207, 301.125pt x 301.125pt>
 File: Images/task.png Graphic file (type png)
 
 <use Images/task.png>
-Package pdftex.def Info: Images/task.png used on input line 305.
+Package pdftex.def Info: Images/task.png used on input line 316.
 (pdftex.def)             Requested size: 7.11317pt x 7.11273pt.
- <Images/gnome-system.png, id=194, 128.48pt x 128.48pt>
+ <Images/gnome-system.png, id=208, 128.48pt x 128.48pt>
 File: Images/gnome-system.png Graphic file (type png)
 
 <use Images/gnome-system.png>
-Package pdftex.def Info: Images/gnome-system.png used on input line 306.
+Package pdftex.def Info: Images/gnome-system.png used on input line 317.
 (pdftex.def)             Requested size: 7.11317pt x 7.11249pt.
 
-<Images/arrow_up.png, id=195, 128.48pt x 128.48pt>
+<Images/arrow_up.png, id=209, 128.48pt x 128.48pt>
 File: Images/arrow_up.png Graphic file (type png)
  <use Images/arrow_up.png>
-Package pdftex.def Info: Images/arrow_up.png used on input line 307.
+Package pdftex.def Info: Images/arrow_up.png used on input line 318.
 (pdftex.def)             Requested size: 7.11317pt x 7.11249pt.
 
-<Images/arrow_down.png, id=196, 128.48pt x 128.48pt>
+<Images/arrow_down.png, id=210, 128.48pt x 128.48pt>
 File: Images/arrow_down.png Graphic file (type png)
 
 <use Images/arrow_down.png>
-Package pdftex.def Info: Images/arrow_down.png used on input line 308.
+Package pdftex.def Info: Images/arrow_down.png used on input line 319.
 (pdftex.def)             Requested size: 7.11317pt x 7.11249pt.
 
-<Images/trash_empty.png, id=197, 128.48pt x 128.48pt>
+<Images/trash_empty.png, id=211, 128.48pt x 128.48pt>
 File: Images/trash_empty.png Graphic file (type png)
 
 <use Images/trash_empty.png>
-Package pdftex.def Info: Images/trash_empty.png used on input line 309.
+Package pdftex.def Info: Images/trash_empty.png used on input line 320.
 (pdftex.def)             Requested size: 7.11317pt x 7.11249pt.
- [8 <./Images/list.png> <./Images/list_ordered.png> <./Images/task.png> <./Imag
+ [9 <./Images/list.png> <./Images/list_ordered.png> <./Images/task.png> <./Imag
 es/gnome-system.png> <./Images/arrow_up.png> <./Images/arrow_down.png> <./Image
-s/trash_empty.png>] [9] [10]
+s/trash_empty.png>] [10] [11]
 
 AED: lastpage setting LastPage
-[11]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 353.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 353.
+[12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 364.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 364.
  (./Rapport_COUTABLE_RULLIER.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 353.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 353.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 364.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 364.
 Package rerunfilecheck Info: File `Rapport_COUTABLE_RULLIER.out' has not change
 d.
 (rerunfilecheck)             Checksum: 92BAE4A6884E35E961673C0B7950D580;1308.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 353.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 364.
  ) 
 Here is how much of TeX's memory you used:
- 24449 strings out of 493488
- 425861 string characters out of 3141326
+ 24492 strings out of 493488
+ 426818 string characters out of 3141326
  592427 words of memory out of 3000000
- 27198 multiletter control sequences out of 15000+200000
+ 27230 multiletter control sequences out of 15000+200000
  13777 words of font info for 34 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 61i,11n,96p,950b,521s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,11n,96p,950b,523s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfbi1000.pfb></
 usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></us
@@ -1501,10 +1560,10 @@ l/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/
 texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texl
 ive/2012/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on Rapport_COUTABLE_RULLIER.pdf (12 pages, 2025843 bytes).
+Output written on Rapport_COUTABLE_RULLIER.pdf (13 pages, 5763585 bytes).
 PDF statistics:
- 271 PDF objects out of 1000 (max. 8388607)
- 222 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
- 225 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 287 PDF objects out of 1000 (max. 8388607)
+ 229 compressed objects within 3 object streams
+ 62 named destinations out of 1000 (max. 500000)
+ 265 words of extra memory for PDF output out of 10000 (max. 10000000)
 

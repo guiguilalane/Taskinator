@@ -19,14 +19,14 @@
 \contentsline {subsection}{\numberline {3.1}Storyboard}{4}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Paper Prototype}{5}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Les maquettes}{5}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Choix r\IeC {\'e}alis\IeC {\'e}s}{5}{subsubsection.3.2.2}
-\contentsline {subsection}{\numberline {3.3}Sc\IeC {\'e}narios}{5}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Sc\IeC {\'e}nario 1 - Cr\IeC {\'e}ation/Utilisation/Suppression de liste}{5}{subsubsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.2}Sc\IeC {\'e}nario 2 - Utilisation des templates}{6}{subsubsection.3.3.2}
-\contentsline {section}{\numberline {4}L'IHM}{7}{section.4}
-\contentsline {subsection}{\numberline {4.1}Le menu}{7}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Boite \IeC {\`a} outils}{7}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Zone d'affichage de la liste}{8}{subsection.4.3}
-\contentsline {section}{\numberline {5}Le mod\IeC {\`e}le}{9}{section.5}
-\contentsline {section}{\numberline {6}Limite de l'application}{10}{section.6}
-\contentsline {section}{\numberline {7}Conclusion g\IeC {\'e}n\IeC {\'e}rale}{11}{section.7}
+\contentsline {subsubsection}{\numberline {3.2.2}Choix r\IeC {\'e}alis\IeC {\'e}s}{6}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Sc\IeC {\'e}narios}{6}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Sc\IeC {\'e}nario 1 - Cr\IeC {\'e}ation/Utilisation/Suppression de liste}{6}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Sc\IeC {\'e}nario 2 - Utilisation des templates}{7}{subsubsection.3.3.2}
+\contentsline {section}{\numberline {4}L'IHM}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}Le menu}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Boite \IeC {\`a} outils}{8}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Zone d'affichage de la liste}{9}{subsection.4.3}
+\contentsline {section}{\numberline {5}Le mod\IeC {\`e}le}{10}{section.5}
+\contentsline {section}{\numberline {6}Limite de l'application}{11}{section.6}
+\contentsline {section}{\numberline {7}Conclusion g\IeC {\'e}n\IeC {\'e}rale}{12}{section.7}
