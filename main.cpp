@@ -36,6 +36,10 @@ int main(int argc, char *argv[])
     CC->downComponent();
     coursIHM->affichage(std::cout);
 
+    std::cout << "\n \n" << std::endl;
+    sujet->check(true);
+    coursIHM->affichage(std::cout);
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

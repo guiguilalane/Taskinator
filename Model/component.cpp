@@ -47,6 +47,7 @@ void Component::setParent_(List * p)
 // Retourne un booléan indiquant si la liste est cochable ou non
 bool Component::checkedPreviousTask()
 {
+
     bool res;
     if (parent_ == 0)
     {
@@ -67,6 +68,8 @@ int Component::getIdFromMap()
     int size = parent_->getTabComponent_().size();
     while(i <= size && !res)
     {
+        //FIXME:
+        Component* component = parent_->getTabComponent_()[i];
         if(this == parent_->getTabComponent_()[i])
         {
             res = true;
@@ -98,5 +101,18 @@ void Component::downComponent()
         Component * tmp = parent_->getTabComponent_()[cleC];
         parent_->getTabComponent_()[cleC] = parent_->getTabComponent_()[cleC+1] ;
         parent_->getTabComponent_()[cleC + 1] = tmp;
+    }
+}
+
+void Component::check(bool newState)
+{
+    if(newState && checkedPreviousTask())
+    {
+        std::cout << "checké" << std::endl;
+        state_ = true;
+        //lorsque toutes les tâches soeurs sont checkées, checker la liste parent
+    } else {
+        std::cout << "impossible de checker" << std::endl;
+        state_ = false;
     }
 }

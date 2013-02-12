@@ -46,14 +46,9 @@ void List::addComponent(Component * c)
     id_++;
 }
 
-bool List::checkedPreviousTask()
-{
-    return ((Component* )this)->checkedPreviousTask();
-}
-
 std::ostream& List::affichage(std::ostream& os)
 {
-    os << this->getName_() << std::endl;
+    os << this->getName_() << ", " << (state_ ? "checked" : "not checked") << std::endl;
     for (int i = 1; i <= this->getTabComponent_().size() ; i++){
         os << "- ";
         tabComponent_[i]->affichage(os);

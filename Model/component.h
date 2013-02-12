@@ -35,6 +35,8 @@ public:
     void upComponent();
     void downComponent();
 
+    void check(bool newState);
+
     int getIdFromMap();
 
     virtual std::ostream& affichage(std::ostream& os) = 0;

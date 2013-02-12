@@ -23,3 +23,6 @@ Makefile
 
 #save file
 *~
+
+#video
+*.MOV

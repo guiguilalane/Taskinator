@@ -24,5 +24,5 @@ void Task::setParent_(List * p)
 
 std::ostream& Task::affichage(std::ostream& os)
 {
-    return os << this->getName_() << std::endl;
+    return os << this->getName_() << ", "<< (state_ ? "checked" : "not checked") << std::endl;
 }

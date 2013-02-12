@@ -27,7 +27,6 @@ public:
     int getId_();
     virtual void setParent_(List * p);
 
-    virtual bool checkedPreviousTask();
     virtual void addComponent(Component * c);
 	
     virtual std::ostream& affichage(std::ostream& os);

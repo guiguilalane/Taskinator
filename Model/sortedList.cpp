@@ -33,7 +33,7 @@ bool SortedList::checkedPreviousTask()
     }
     else
     {
-        int cle = parent_->getTabComponent_().find(getIdFromMap())->first;
+        int cle = getIdFromMap();
         bool check = false;
         if (cle > 1)
         {
@@ -53,10 +53,12 @@ void SortedList::addComponent(Component *c)
 
 std::ostream& SortedList::affichage(std::ostream& os)
 {
-    os << this->getName_() << std::endl;
+    os << this->getName_() << ", " << (state_ ? "checked" : "not checked") << std::endl;
     for (int i = 1; i <= this->getTabComponent_().size() ; i++){
         os << i << "- ";
         tabComponent_[i]->affichage(os);
+
     }
+
     return os;
 }

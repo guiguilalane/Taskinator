@@ -2,7 +2,7 @@
 #define HISTORY_H
 
 #include <vector>
-#include <list.h>
+#include "list.h"
 
 class List;
 
