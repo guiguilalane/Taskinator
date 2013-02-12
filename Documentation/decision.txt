@@ -8,6 +8,7 @@
 *) lors d'un déplacement ou création de tâche (ou de liste) dans une liste ordonnée, vérifier la cohérence des dates et en informer l'utilisateur
 (par une popUp d'information(exemple?) et par une modification de la couleur des champs date concernés).
 	Dans le cas d'un problème de date, le champs date de la tâche (ou liste) qui change de couleur est la plus récente, car il est plus cohérent d'avancer l'exécution d'une tâche que de reculer l'exécution d'une tâche qui peut être "critique".
+--> A mettre dans rapport mais je sais pas encore ou
 	
 *) pour le changement de tâche ordonnée en non ordonnée(et inversement), la question était sélectionne t'on la tâche parent ou un des enfants pour la transformation?
 	Pour garder un semblant de cohérence avec notre application (selectionner la tache parent puis créer une liste ou tâche), il a été décider de conserver ce système (sélection de la tâche parent pour transformer les tâche filles)

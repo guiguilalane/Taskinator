@@ -38,7 +38,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QToolButton" name="toolButton">
+        <widget class="QToolButton" name="toolButtonList">
          <property name="text">
           <string>Create List</string>
          </property>
@@ -55,7 +55,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_2">
+        <widget class="QToolButton" name="toolButtonListOrdered">
          <property name="text">
           <string>Create List Ordered</string>
          </property>
@@ -72,7 +72,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_3">
+        <widget class="QToolButton" name="toolButtonTask">
          <property name="text">
           <string>Create Task</string>
          </property>
@@ -166,15 +166,73 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QTreeWidget" name="treeWidget">
-         <attribute name="headerVisible">
-          <bool>true</bool>
-         </attribute>
-         <column>
-          <property name="text">
-           <string notr="true">1</string>
-          </property>
-         </column>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>Tab 1</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QWidget" name="widget_2" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QLineEdit" name="lineEdit"/>
+              </item>
+              <item>
+               <widget class="QDateEdit" name="dateEdit"/>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>Liste ordonnée:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButton">
+                   <property name="text">
+                    <string>Oui</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButton_2">
+                   <property name="text">
+                    <string>Non</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTreeWidget" name="listTree">
+             <attribute name="headerVisible">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>Element</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>Tab 2</string>
+          </attribute>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -188,7 +246,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -345,7 +403,7 @@
      <normaloff>:/Pictures/arrow_redo.png</normaloff>:/Pictures/arrow_redo.png</iconset>
    </property>
    <property name="text">
-    <string>Retablir</string>
+    <string>Rétablir</string>
    </property>
   </action>
   <action name="actionEnregistrer_template">

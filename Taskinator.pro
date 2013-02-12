@@ -18,7 +18,8 @@ SOURCES += main.cpp \
 		Model/list.cpp \
 		Model/sortedList.cpp \
         Model/task.cpp \
-		Model/history.cpp
+		Model/history.cpp \
+    UI/element.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -26,10 +27,12 @@ HEADERS += UI/mainwindow.h \
 		Model/list.h \
 		Model/sortedList.h \
 		Model/task.h \
-		Model/history.h
+		Model/history.h \
+    UI/element.h
 
 FORMS += UI/mainwindow.ui \
-    UI/newlist.ui
+    UI/newlist.ui \
+    UI/dateIncoherente.ui
 
 RESOURCES += \
     Resources.qrc

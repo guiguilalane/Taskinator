@@ -148,13 +148,6 @@ L'objectif de ce projet fut de développer un gestionnaire avancé de tâches. C
 
 Afin de créer cette application que nous avons appelé \textit{Taskinator}, nous avons du établir plusieurs étapes d'avancement du projet. Ce rapport présentera ces étapes les unes après les autres (même si lors de ce projet certaines étapes se sont croisées).
 
-% - Fonctionnalités
-% - StoryBoard + PaperPrototype + Scénario d'utilisation
-% - Model
-% - Limites de l'application
-% - Structure de IHM --> Menu widget ...
-%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -162,72 +155,210 @@ Afin de créer cette application que nous avons appelé \textit{Taskinator}, nou
 \section{Les fonctionnalités}
 La première étape fut d'analyser l'ensemble des fonctionnalités que notre application devait proposer. 
 
-Nous avons ainsi lister l'ensemble de ces fonctionnalités. Certaines d'entre-elles ne sont pas principales mais elles sont utiles pour l'utilisateur.
-\begin{itemize}
-\item{Créer une liste: cette fonctionnalité permet à l'utilisateur de créer une liste}
-\item{Créer une liste ordonnée: cette fonctionnalité permet à l'utilisateur de créer une liste ordonnée, l'ensemble des éléments de cette liste doivent être effectué dans un ordre précis}
-\item{Créer une tâche: cette fonctionnalité permet à l'utilisateur de créer une tâche}
-\item{Supprimer un élément: cette fonctionnalité permet de supprimer une tâche ou une liste (ordonnée ou non), dans le cas de la liste cela implique que la liste est supprimée ainsi que toutes ses sous-listes ou tâches}
-\item{Enregistrer: cette fonctionnalité permet à l'utilisateur d'enregistrer sa liste dans un document sur son disque dur}
-\item{Enregistrer un template: cette fonctionnalité permet à l'utilisateur d'enregistrer la liste qu'il vient de créer comme un template afin que la structure de celle-ci soit réutilisable}
-%%%%%%% A mettre qu'on veut seulement ajouter les date et le nom de la liste
-\item{Paramètre: cette fonctionnalité permet à l'utilisateur de modifier le ?}
-%%%%%%%%%%%%%%%%%%%%% A revoir avec le doc de Guillaume
-\item{Monter / Descendre: cette fonctionnalité permet de monter ou descendre un élément dans l'arborescence de la liste. Dans le cas d'une liste, tous ces éléments sont aussi monté/descendu d'un rang. Si le changement se fait au sein d'une liste ordonnée l'ordre des éléments est aussi changé.}
-%%%%%%% A revoir si bien formulé
-\item{Historique: cette fonctionnalité permet d'annuler ou rétablir des actions faites par l'utilisateur}
-\item{Gérer ses templates: cette fonctionnalité permet à l'utilisateur de supprimer les templates qu'il a enregistrer}
-%%%%%%% A voir si on laisse ça !!!
-\end{itemize}
+\subsection{Fonctionnalités principales}
+Voici dans un premier temps les fonctionnalités principales:
+\paragraph{Créer une liste:} cette fonctionnalité permet à l'utilisateur de créer une liste vide.
+\paragraph{Créer une liste ordonnée:} cette fonctionnalité permet à l'utilisateur de créer une liste ordonnée vide. L'ensemble des éléments de cette liste doivent être effectué dans un ordre précis.
+\paragraph{Créer une tâche:} cette fonctionnalité permet à l'utilisateur de créer une tâche.
+\paragraph{Supprimer un élément:} cette fonctionnalité permet de supprimer une tâche ou une liste (ordonnée ou non). Cette fonctionnalité est à manipuler avec précaution,, en effet dans le cas d'une liste, la suppression de celle-ci implique aussi la suppression de tous ses éléments (listes ou tâches).
+\paragraph{Enregistrer:} cette fonctionnalité permet à l'utilisateur d'enregistrer sa liste dans un document sur son disque dur.
+\paragraph{Enregistrer un template:} cette fonctionnalité permet à l'utilisateur d'enregistrer la liste qu'il vient de créer comme un template afin que la structure de celle-ci soit réutilisable.
+\paragraph{Ouvrir un template:} cette fonctionnalité permet à l'utilisateur de créer une liste à partir d'un template enregistré. Il devra cependant renseigné le nom de cette liste ainsi que toutes les dates de tous les éléments. Il peut ensuite continuer à modifier cette liste.
+
+\subsection{Fonctionnalités secondaires}
+Voici les fonctionnalités secondaires:
+\paragraph{Paramètre:} cette fonctionnalité permet à l'utilisateur de modifier le type de l'élément sélectionné. Il pourra par exemple choisir de modifier une liste en liste ordonnée ou en une tâche. Cette fonctionnalité est à manipuler avec précaution, en effet si l'utilisateur décide de transformer une liste en tâche l'ensemble des éléments de la liste seront supprimés.
+\paragraph{Monter / Descendre:} cette fonctionnalité permet de monter ou descendre un élément dans l'arborescence de la liste. Dans le cas d'une liste, tous ces éléments sont aussi monté/descendu d'un rang. Si le changement se fait au sein d'une liste ordonnée l'ordre des éléments est aussi changé. A chaque déplacement, une vérification de la cohérence des dates est effectuée et l'utilisateur en est informé.
+\paragraph{Historique:} cette fonctionnalité permet d'annuler ou rétablir des actions faites par l'utilisateur.
+\paragraph{Gérer ses templates:} cette fonctionnalité permet à l'utilisateur de supprimer les templates qu'il a enregistré.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{}
+\section{Storyboard, Paper Prototype et Scénarios}
 
+\subsection{Storyboard}
+Le storyboard permet de montrer à quoi sert l'application. Il utilise les star people de Bill VerPlank. A la fin su storyboard, le personnage atteint son but et est satisfait. Nous avons donc ici créer notre storyboard pour notre application:
+\begin{figure}[H]
+    \center
+    \includegraphics[width=13.9cm]{Images/storyboard.png}
+    \caption{Le storyboard}
+\end{figure}
+
+
+\subsection{Paper Prototype}
+
+\subsubsection{Les maquettes}
+Voici quelques unes des maquettes réalisée pour le paper prototype. Nous expliquons dans la section suivante quels ont été les choix effectués. Les maquettes ici présentent sont celles qui ont été utilisées pour la réalisation de la vidéo du scénario 1 présenté ci-dessous.
+\begin{figure}[H]
+    \center
+    \includegraphics[width=6.8cm]{Images/maquette1.jpeg}
+    \includegraphics[width=7.1cm]{Images/maquette2.jpeg}
+    \includegraphics[width=6.8cm]{Images/maquette3.jpeg}
+    \includegraphics[width=6.8cm]{Images/maquette4.jpeg}
+    \includegraphics[width=6.8cm]{Images/maquette5.jpeg}
+    \includegraphics[width=6.8cm]{Images/maquette6.jpeg}
+    \includegraphics[width=6.8cm]{Images/maquette7.jpeg}
+    \includegraphics[width=6.8cm]{Images/maquette8.jpeg}
+    \caption{Le paper prototype}
+\end{figure}
+
+\subsubsection{Choix réalisés}
+Nous avons du faire quelques choix pour la conception de l'interface. Nous vous les présentons ici et surtout nous expliquons pourquoi nous avons choisi telle solution:
+\begin{itemize}
+\item \textbf{Fonctionnalité de création (liste ordonnée ou non et tâche):} nous avons décider d'adopter un système de sélection de l'élément "parent". Expliquons ce système. Lorsque l'utilisateur créer une liste, un élément vide de cette liste apparait. L'utilisateur doit alors sélectionner cet élément et définir de quel type il sera. Lorsque cet élément à un type, un nouvel élément vide apparait; l'utilisateur peut alors définir un autre élément ... Si l'utilisateur ne souhaite pas continuer à remplir cette liste, il ne tient plus compte des éléments vides.
+\item \textbf{Fonctionnalité \textit{Monter} et \textit{Descendre}:} nous avons décider de placer ces fonctionnalités dans la boîte à outils plutôt que sur l'élément à déplacer pour un gain de temps au niveau de l'utilisation. En effet, si nous avions fait le choix de mettre les boutons monter et descendre sur l'élément, lorsque l'utilisateur souhaite déplacer l'élément de plusieurs place, il va perdre le focus de la souris sur ces boutons. Attention, lors de l'utilisation de cette fonctionnalité dans une liste ordonnée; si on monte ou descend un élément de tel façon que un élément coché se trouve être en dessous d'un élément non coché dans la liste, alors l'élément coché sera décoché. 
+%TODO A revoir quand l'élément est une liste, qu'est-ce qu'on fait des tâches cochées à l'intérieur ?
+De plus, nous avons décidé d'afficher une fenêtre d'avertissement permettant à l'utilisateur d'être informé si il y a une incohérence au niveau des dates des éléments déplacés. Nous avons décidé de mettre en valeur ces dates par le remplissage du fond du champs date d'une couleur orange (permet d'attirer l'attention et de prévenir l'utilisateur).
+%TODO A revoir Les dates en couleur est-ce qu'il ne vaut pas mieux mettre les deux dates en couleur plutôt qu'une ! --> Le faire à chaque création d'élément
+\item \textbf{Fonctionnalité \textit{Supprimer}:} nous avons choisi d'ajouter cette possibilité de suppression sur chaque élément pour que l'utilisateur puisse supprimer plus rapidement. Nous avons de plus décider de faire apparaître une fenêtre d'avertissement car la suppression d'une liste sélectionnée peut entrainer la suppression d'éléments. Pour plus de sécurité, le focus de la validation de la suppression est par défaut sur \textit{Non}.
+\item \textbf{Fonctionnalité \textit{Paramètre}:} nous avons décider pour cette fonctionnalité (qui peut entraîner la suppression de différents éléments) de faire apparaître ici aussi une fenêtre d'avertissement. Dans cette fenêtre le focus de la validation du changement est mise à \textit{Non}. On perd cependant un peu de vitesse d'exécution (si l'utilisateur souhaite effectivement bien effectuer ce changement) au profit de plus de sécurité.
+\item \textbf{Widget désactivé :} nous avons décidé de griser tout menu, bouton inutilisable à un état de l'application afin que l'utilisateur n'exécute pas d'actions impossibles. Cela évitera qu'il se pose des questions s'il voit aucun changement effectué.
+\end{itemize}
+
+\subsection{Scénarios}
+Afin de tester notre PaperPrototype, nous avons créer plusieurs scénarios.
+%TODO A revoir Nom et dates Valeur ?
+\subsubsection{Scénario 1 - Création/Utilisation/Suppression de liste}
+Ce premier scénario a été utilisé pour tester le paper prototype. Il permet de créer une liste non ordonnée et d'y ajouter une liste ordonnée avec ses propres tâches et des tâches.
+\begin{enumerate}
+\item{L'utilisateur choisit quel type de liste il souhaite créer, il choisit ici une liste non ordonnée. Il lui donne un nom et une date de fin. (Pour notre scénario cette liste sera appelée la liste mère)}
+\item{Il créé ensuite une liste ordonnée (qui est le premier élément de la liste mère). Il lui donne un nom et une date. (Pour notre scénario cette liste sera appelée la liste 1)}
+\item{Il créer ensuite une tâche qui sera le premier élément de la liste 1. Il lui donne un nom et une date. (Pour notre scénario cette tâche sera appelée la tâche 1.1)}
+\item{Il créer ensuite une tâche qui sera le deuxième élément de la liste 1. Il lui donne un nom et une date. (Pour notre scénario cette tâche sera appelée la tâche 1.2)}
+\item{Il souhaite maintenant échanger les tâches 1.1 et 1.2, il sélectionne donc la tâche 1.1 et la place au dessous de la tâche 1.2}
+\item{Une popup peut apparaître et informe l'utilisateur que l'action qu'il vient d'effectuer provoque un conflit de date. Le champs date concerné par le conflit prend une couleur orange d'avertissement.}
+\item{L'utilisateur change le type de la liste 1 en une liste non ordonnée.}
+\item{L'utilisateur supprime la tâche 1.2}
+\item{L'utilisateur supprime la tâche 1. Une popup apparaît pour l'avertir que cette suppression supprimera aussi tous les éléments de la liste.}
+\end{enumerate}
+
+\subsubsection{Scénario 2 - Utilisation des templates}
+Ce scénario permet de créer une liste à partir d'un template. De modifier cette liste et de la réenregistrer comme un nouveau template.
+\begin{enumerate}
+\item{L'utilisateur choisit de créer une liste à partir d'un template. Il choisit ici le template qui correspond à la préparation d'un cours, puis donne un nom et une date à sa liste.}
+\item{Il va ensuite pour tous les éléments de ce template donner une date.}
+\item{L'utilisateur va ensuite modifier cette liste en y ajoutant une tâche à la liste mère (il lui donne un nom et une date).}
+\item{Il va ensuite vouloir enregistrer cette nouvelle liste comme un nouveau template.}
+%TODO A revoir l'histoire de modification d'un template
+\end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Utiliser des ontologies RDFS ou OWL}
-\subsection{Objectif}
-L’objectif de cette sous-partie du projet consista à utiliser des ontologies RDFS ou OWL afin de lire des inférences. Nous devions ainsi comparer les résultats de nos requêtes créés lors des étapes précédentes avec les résultats obtenus à partir de nos données en plus de celles générées avec les inférences.
+\section{L'IHM}
 
-\subsection{Redéfinition du vocabulaire}
-Afin que nos données soient mieux définies, nous avons décidé de déterminer à nouveau le vocabulaire utilisé. Pour cela, nous nous sommes basés sur le site \url{http://schema.org} qui présente de nombreux schémas déjà existants. Trois schémas nous ont particulièrement intéressés, en effet nous avions trouvé le schéma \textbf{Place}, \textbf{PostalAddress} et \textbf{GeoCoordinates}. Ces trois schémas possédaient déjà les propriétés dont nous avions besoin et correspondaient exactement à ce que l'on voulait. Nous avons seulement ajouté trois propriétés que nous n'avons pas trouvé dans ces schémas. Nous avons donc recréé notre \emph{.ttl} en suivant la démarche suivante:
-\begin{enumerate}
-    \item{Chaque ligne présente dans le .csv représente un lieu de type Place.}
-    \item{Chaque lieu par la propriété \textbf{\nospace{place:address}} possède une adresse postale (représenté par un blank node).}
-    \item{Chaque adresse postale est définie à l'aide de différentes propriétés comme \textbf{\nospace{address:addressLocality}}, \textbf{\nospace{address:postalCode}}.}
-    \item{Chaque lieu par la propriété \textbf{\nospace{place:geo}} possède des coordonnées (représenté par un blank node).}
-    \item{Chaque coordonnée est définie à l'aide des propriétés suivantes \textbf{\nospace{geo:longitude}}, \textbf{\nospace{geo:latitude}}.}
-\end{enumerate}
+Afin de créer une interface la plus simple et explicite possible pour l'utilisateur nous avons du effectuer différents choix que nous allons expliquer ci-dessous.
 
+La fenêtre principale est tout d'abord composée d'un menu, d'une boite à outils et d'une zone réservée à l'affichage de la liste en cours de création.
+%TODO Image de l'application
 
+\subsection{Le menu}
+Le menu permet de regrouper différentes fonctionnalités sous un thème/rubrique.
+%TODO Image du menu + les sous menus
+On retrouvera les fonctionnalités suivantes:
+%TODO Revérifier tous les sous menus
+\begin{itemize}
+%%%%%%%%%%%%%%%%%%%%%%% Fichier %%%%%%%%%%%%%%%%%%%%%%%
+\item Fichier
+\begin{itemize}
+\item \textbf{Nouveau:} qui permet de créer une nouvelle liste vide ou à partir d'un template.
+\item \textbf{Ouvrir:} qui permet d'ouvrir une liste au format \textit{.tor} enregistrer sur un disque dur de l'utilisateur.
+\item \textbf{Ouvrir récent:} qui permet à l'utilisateur d'ouvrir l'une des cinq dernières listes ouvertes dans cette application.
+\item \textbf{Enregistrer:} qui permet à l'utilisateur d'enregistrer sa liste en cours à chemin déjà spécifié.
+\item \textbf{Enregistrer sous :} qui permet à l'utilisateur de choisir le chemin dans lequel il souhaite enregistrer sa liste et de l'enregistrer.
+\item \textbf{Exporter:} qui permet à l'utilisateur d'exporter sa liste au format PDF.
+\item \textbf{Quitter:} qui permet à l'utilisateur de quitter l'application.
+\end{itemize}
+\begin{figure}[H]
+    \center
+    \includegraphics[width=2cm]{Images/menuFichier.png}
+    \caption{Le menu Fichier}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%% Edition %%%%%%%%%%%%%%%%%%%%%%%
+\item Édition
+\begin{itemize}
+\item \textbf{Annuler:} qui permet à l'utilisateur d'annuler une action qu'il vient d'effectuer.
+\item \textbf{Rétablir:} qui permet à l'utilisateur de rétablir une action qu'il vient d'annuler.
+\end{itemize}	
+\begin{figure}[H]
+    \center
+    \includegraphics[width=2cm]{Images/menuEdition.png}
+    \caption{Le menu Fichier}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%% Outils %%%%%%%%%%%%%%%%%%%%%%%
+\item Outils
+\begin{itemize}
+\item 
+\item 
+\end{itemize}
+\begin{figure}[H]
+    \center
+    \includegraphics[width=2cm]{Images/menuOutils.png}
+    \caption{Le menu Fichier}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%% Aide %%%%%%%%%%%%%%%%%%%%%%%
+\item Aide
+\begin{itemize}
+\item \textbf{A propos:}
+\end{itemize}
+\end{itemize}
 
-\subsection{Conclusion}
-Cette partie du projet nous a permis de voir que les inférences permettent d'avoir de nombreuses informations supplémentaires si l'on utilise beaucoup d'ontologies. En ce qui nous concerne, les ontologies que nous avons choisi nous permettent d'ajouter des informations sur les types qui ne se répercutent pas sur nos requêtes des étapes précédentes. Cependant, grâce à la requête bonus, nous pouvons constater que certaines requêtes peuvent effectivement voir leur résultat changer si nous avons des données avec inférences.
+\subsection{Boite à outils}
+Cette boite à outils permet de rassembler toutes les fonctionnalités que l'utilisateur sera amené à utiliser fréquemment. Nous avons décidé de mettre cette boite à outils à gauche, puisque dans notre culture le sens de lecture est de gauche à droite. Toutes les fonctionnalités présentent dans cette boîte à outils seront appliquée sur l'élément sélectionné dans la zone d'affichage de la liste. Cette boite à outils contient les fonctionnalités suivantes:
+%TODO Dire comment on fait nivo widget pour exécuter ces fonctionalités ? ex paramètre juste un "menu" qui s'ouvre ?
+\begin{itemize}
+\item \textbf{Créer une liste non ordonnée (\includegraphics[width=0.25cm]{Images/list.png}) :} elle permet à l'utilisateur de créer une nouvelle liste non ordonnée.
+\item \textbf{Créer une liste ordonnée (\includegraphics[width=0.25cm]{Images/list_ordered.png}) :} elle permet à l'utilisateur de créer une nouvelle liste ordonnée.
+\item \textbf{Créer une tâche (\includegraphics[width=0.25cm]{Images/task.png}) :} elle permet à l'utilisateur de créer une nouvelle tâche.
+\item \textbf{Paramètre (\includegraphics[width=0.25cm]{Images/gnome-system.png}) :} elle permet à l'utilisateur de changer le type d'un élément.
+\item \textbf{Monter (\includegraphics[width=0.25cm]{Images/arrow_up.png}) :} elle permet à l'utilisateur de monter un élément.
+\item \textbf{Descendre  (\includegraphics[width=0.25cm]{Images/arrow_down.png}) :} elle permet à l'utilisateur de descendre un élément.
+\item \textbf{Supprimer  (\includegraphics[width=0.25cm]{Images/trash_empty.png}) :}  elle permet à l'utilisateur de supprimer un élément.
+\end{itemize}
+
+\subsection{Zone d'affichage de la liste}
+Cette zone est comme indiquée réservée à l'affichage de la liste en cours de création. On pourra donc voir l'arborescence de la liste, avec toutes ses informations.
+Cette zone sera organisée en une arborescence d'éléments. Pour cela, nous avons utilisé un TreeWidget.
+%TODO A compléter quand implémenté
+
+Un élément est représenté avec un ???. %TODO
+Chaque élément possédera un nom (implémenter par une QLineEdit) suivi d'une date de fin (implémenter par une QDateEdit). Il possédera de plus une corbeille. A la fin de chaque élément, on aura une checkbox permettant à l'utilisateur de coché si oui ou non cette tâche à été effectuée. Plusieurs cas sont possible pour l'état de la checkbox:
+\begin{itemize}
+\item Dans le cas d'un élément d'une liste ordonnée, cette checkbox sera grisée si la tâche antérieure n'est pas cochée.
+\item Dans le cas ou l'élément est une liste, tant que la checkbox de la liste est grisée, tous les éléments fils ont des checkbox grisées.
+\item Dans le cas d'une liste, sa checkbox sera automatiquement cochée lorsque tous les éléments de la liste seront eux aussi cochés.
+\end{itemize}
+Nous aurons une information supplémentaire au début de chaque élément. Dans le cas d'une liste non ordonnées, ses éléments sont représentés avec un tiret devant les informations de la liste, tandis que les éléments des listes ordonnées sont représenté à l'aide de numéro.
+%TODO mettre image pour expliquer
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+\section{Le modèle}
+Afin de réaliser cette application nous avons du créer un modèle pour celle-ci. Voici le diagramme de classe de celui-ci:
+%TODO Mettre diagramme
+%TODO Finir
+Le modèle de cette application est composé d'un pattern composite permettant d'implémenter une structure d'arbre et de composer les différents objets ensemble. Nous avons donc ici un \textit{Component} qui est soit une \textit{Task} (une tâche) ou une \textit{List} (une liste) qui elle-même peut ensuite être une \textit{ListOrdered} (une liste ordonnée), celle-ci hérite de la class \textit{List}. Ce modèle permet donc comme expliqué ci-dessus de composer ces éléments et d'obtenir par exemple des listes de listes de tâches \dots 
+
+Nous avons de plus une classe \textit{History} permettant de stocker dans une liste circulaire les différents états de la liste en cours de création, après chaque action de l'utilisateur. Cette classe permettra l'utilisation des boutons \textit{Annuler} et \textit{Rétablir}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Etape 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Limite de l'application}
+%TODO A compléter
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  CONCLUSION GENERALE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Conclusion générale}
-Ce projet nous a permis de contribuer au Web Sémantique en apportant notre propre lot de données ouvertes prêtes à être utilisées.
-Ce travail nous a montré que chacun pouvait contribuer au Cloud of Linked Data et participer de façon à obtenir une base de données géante et présente sur le web.
+%TODO A compléter, je sais pas quoi mettre du tout ^^
+
 \end{document}
-
-
-\begin{figure}[H]
-    \center
-    \includegraphics[width=15cm]{Images/Csv.png}
-    \caption{Extrait des données récupérées concernant les adresses postales de Nantes Métropole}
-\end{figure}
