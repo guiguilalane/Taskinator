@@ -35,6 +35,10 @@ private slots:
 
     void on_actionEnregistrer_sous_triggered();
 
+    void on_toolButtonUp_clicked();
+
+    void on_toolButtonDown_clicked();
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;

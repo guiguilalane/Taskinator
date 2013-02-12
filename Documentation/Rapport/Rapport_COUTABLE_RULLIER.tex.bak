@@ -142,7 +142,7 @@ COUTABLE Guillaume, RULLIER Noémie \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Introduction générale
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%TODO Ajouter dans les décisions que lorsque l'on créer une liste (ordonnée ou non) la date de la liste est égale à la date du dernier élément  --> Faire cette liaison dans l'interface
 \section{Introduction}
 L'objectif de ce projet fut de développer un gestionnaire avancé de tâches. Celui-ci devait permettre de créer des listes de tâches et de suivre l'avancement de celles-ci.
 
