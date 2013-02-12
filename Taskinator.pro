@@ -19,7 +19,8 @@ SOURCES += main.cpp \
 		Model/sortedList.cpp \
         Model/task.cpp \
 		Model/history.cpp \
-    UI/element.cpp
+    UI/element.cpp \
+    Controleur/controleur.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -28,7 +29,8 @@ HEADERS += UI/mainwindow.h \
 		Model/sortedList.h \
 		Model/task.h \
 		Model/history.h \
-    UI/element.h
+    UI/element.h \
+    Controleur/controleur.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui \
