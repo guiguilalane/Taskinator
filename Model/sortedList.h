@@ -30,7 +30,12 @@ public:
 	
     virtual std::ostream& affichage(std::ostream& os);
 
+    virtual bool isPreviousTaskChecked(const int cle);
+
 private:
+
+
+
 	
 };
 

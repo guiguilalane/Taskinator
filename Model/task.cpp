@@ -7,7 +7,7 @@
 //
 
 #include "task.h"
-
+#include "list.h"
 Task::Task()
 {}
 
@@ -21,6 +21,15 @@ void Task::setParent_(List * p)
 {
     parent_ = p;
 }
+
+//void Task::transformToList(List *list)
+//{
+//    list = new List(name_, date_);
+//    list->setParent_(parent_);
+//    int cle = getIdFromMap();
+//    parent_->getTabComponent_()[cle] = list;
+//    delete this;
+//}
 
 std::ostream& Task::affichage(std::ostream& os)
 {

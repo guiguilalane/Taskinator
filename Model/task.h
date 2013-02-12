@@ -11,6 +11,8 @@
 
 #include "component.h"
 
+class SortedList;
+
 #include <iostream>
 
 class Task : public Component
@@ -20,6 +22,9 @@ public:
 	Task();
     Task(const std::string& name, time_t date);
 	~Task();
+
+    //À faire dans le controleur
+//    void transformToList(List * list);
 
     virtual void setParent_(List * p);
 

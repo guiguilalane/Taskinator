@@ -28,10 +28,15 @@ public:
     virtual void setParent_(List * p);
 
     virtual void addComponent(Component * c);
+
+    virtual void removeComponent(const int cle);
 	
     virtual std::ostream& affichage(std::ostream& os);
 
+    virtual bool isPreviousTaskChecked(const int cle);
+
 protected:
+
     int id_;
     std::map<int, Component *> tabComponent_;
 	

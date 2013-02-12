@@ -4,6 +4,7 @@
 #include "Model/list.h"
 #include "Model/sortedList.h"
 #include "Model/task.h"
+#include <QDateTime>
 
 int main(int argc, char *argv[])
 {
@@ -38,11 +39,22 @@ int main(int argc, char *argv[])
 
     std::cout << "\n \n" << std::endl;
     sujet->check(true);
+    apporterCopie->check(true);
     coursIHM->affichage(std::cout);
 
+
+    std::cout << "\n \n" << std::endl;
+//    CC->removeComponent(apporterCopie->getIdFromMap());
+//    coursIHM->removeComponent(CC->getIdFromMap());
+//    List* newNote;
+//    note->transformToList(newNote);
+//    newNote->addComponent(new Task("test", time(NULL)));
+    coursIHM->affichage(std::cout);
+
+
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+//    MainWindow w;
+//    w.show();
     
     return a.exec();
 }

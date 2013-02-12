@@ -21,7 +21,13 @@ List::List(const std::string& name, time_t date): Component(name,date)
 
 List::~List()
 {
-    tabComponent_.erase(tabComponent_.begin(), tabComponent_.end());
+    int i = 1;
+    int taille = tabComponent_.size();
+    for (i; i <= taille; ++i)
+    {
+        delete tabComponent_[i];
+    }
+    tabComponent_.clear();
 }
 
 std::map<int, Component *>& List::getTabComponent_()
@@ -44,6 +50,29 @@ void List::addComponent(Component * c)
     c->setParent_(this);
     tabComponent_.insert(std::pair<int,Component*>(id_,c));
     id_++;
+
+    //Vérification que la date de la liste correspond à la date le plus "vieille" des sous-tâches
+}
+
+bool List::isPreviousTaskChecked(const int cle)
+{
+    return this->checkedPreviousTask();
+}
+
+void List::removeComponent(const int cle)
+{
+    Component *tmp = tabComponent_[cle];
+    delete tmp;
+
+    int i = cle+1;
+    int taille = tabComponent_.size();
+    for(i; i <= taille; ++i)
+    {
+        tabComponent_[i-1] = tabComponent_[i];
+    }
+    i--;
+    id_--;
+    tabComponent_.erase(i);
 }
 
 std::ostream& List::affichage(std::ostream& os)

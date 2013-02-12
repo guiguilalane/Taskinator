@@ -15,7 +15,15 @@ SortedList::SortedList(const std::string& name, time_t date) : List(name, date)
 {}
 
 SortedList::~SortedList()
-{}
+{
+    int i = 1;
+    int taille = tabComponent_.size();
+    for (; i <= taille; ++i)
+    {
+        delete tabComponent_[i];
+    }
+    tabComponent_.clear();
+}
 
 void SortedList::setParent_(List * p)
 {
@@ -37,6 +45,7 @@ bool SortedList::checkedPreviousTask()
         bool check = false;
         if (cle > 1)
         {
+            Component* tmp = getTabComponent_()[cle-1];
             check = parent_->getTabComponent_()[cle-1]->getState_();
         }
         res = parent_->checkedPreviousTask() && check;
@@ -44,11 +53,23 @@ bool SortedList::checkedPreviousTask()
     return res;
 }
 
+bool SortedList::isPreviousTaskChecked(const int cle)
+{
+    int i = 1;
+    bool isChecked = true;
+    while(i < cle && isChecked){
+        isChecked = isChecked && tabComponent_[i]->getState_();
+        ++i;
+    }
+    return isChecked && parent_->isPreviousTaskChecked(getIdFromMap());
+}
+
 void SortedList::addComponent(Component *c)
 {
     c->setParent_(this);
     tabComponent_.insert(std::pair<int,Component*>(id_,c));
     ++id_;
+    //mettre la date de la liste à la dernière date de la sous-tâche
 }
 
 std::ostream& SortedList::affichage(std::ostream& os)

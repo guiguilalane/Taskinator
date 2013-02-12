@@ -13,6 +13,7 @@
 #include <ctime>
 
 class List;
+//class SortedList;
 
 class Component
 {
@@ -32,6 +33,7 @@ public:
 
     // Permet de savoir si une case est cochable ou non
     virtual bool checkedPreviousTask();
+
     void upComponent();
     void downComponent();
 
