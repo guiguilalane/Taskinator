@@ -29,6 +29,12 @@ private slots:
 
     void on_toolButtonTask_clicked();
 
+    void on_toolButtonTrash_clicked();
+
+    void on_actionQuitter_triggered();
+
+    void on_actionEnregistrer_sous_triggered();
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;

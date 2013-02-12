@@ -6,6 +6,7 @@ NewList::NewList(QWidget *parent) :
     ui(new Ui::NewList)
 {
     ui->setupUi(this);
+    ui->dateEdit->setDate(QDate::currentDate());
 }
 
 NewList::~NewList()

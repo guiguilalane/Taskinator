@@ -12,6 +12,18 @@ MainWindow::MainWindow(QWidget *parent) :
     QLabel * vide = new QLabel("Sélectionner la ligne et créer une liste ou tâche");
     QTreeWidgetItem* videItem = new QTreeWidgetItem(ui->listTree);
     ui->listTree->setItemWidget(videItem,0,vide);
+
+    QMenu * menuParam = new QMenu();
+    QAction * liste = new QAction("Liste non ordonnée",0);
+    liste->setCheckable(true);
+    QAction * listeO = new QAction("Liste ordonnée",0);
+    listeO->setCheckable(true);
+    QAction * tache = new QAction("Tâche",0);
+    tache->setCheckable(true);
+    menuParam->addAction(liste);
+    menuParam->addAction(listeO);
+    menuParam->addAction(tache);
+    ui->toolButtonParam->setMenu(menuParam);
 }
 
 MainWindow::~MainWindow()
@@ -36,6 +48,7 @@ void MainWindow::on_toolButtonList_clicked()
     // On remplace l'élément sélectionné par la nouvelle liste non ordonnée
     QTreeWidgetItem* elementItem = ui->listTree->currentItem();
     Element * element = new Element();
+    // TODO A modifier à chercher dans liste ?
     element->changeType_(QString("-"));
     ui->listTree->setItemWidget(elementItem,0,element);
 
@@ -91,7 +104,7 @@ void MainWindow::on_toolButtonTask_clicked()
     // On remplace l'élément sélectionné par la nouvelle liste non ordonnée
     QTreeWidgetItem* elementItem = ui->listTree->currentItem();
     Element * element = new Element();
-    // TODO A modifier pour récupérer le num de la liste
+    // TODO A modifier pour récupérer le num de la liste pour les enfants
     element->changeType_(QString("-"));
     ui->listTree->setItemWidget(elementItem,0,element);
 
@@ -106,4 +119,30 @@ void MainWindow::on_toolButtonTask_clicked()
     }
     QLabel * videParent = new QLabel("Sélectionner la ligne et créer une liste ou tâche");
     ui->listTree->setItemWidget(videParentItem,0,videParent);
+}
+
+void MainWindow::on_toolButtonTrash_clicked()
+{
+    QTreeWidgetItem* elementItem = ui->listTree->currentItem();
+    ui->listTree->removeItemWidget(elementItem,0);
+}
+
+void MainWindow::on_actionQuitter_triggered()
+{
+    close();
+}
+
+void MainWindow::on_actionEnregistrer_sous_triggered()
+{
+    QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
+}
+
+void MainWindow::on_toolButtonUp_clicked()
+{
+
+}
+
+void MainWindow::on_toolButtonDown_clicked()
+{
+
 }

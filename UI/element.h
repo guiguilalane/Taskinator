@@ -13,7 +13,6 @@
 
 class Element : public QWidget
 {
-//Q_OBJECT
 
 public:
     Element(QWidget *parent = 0);

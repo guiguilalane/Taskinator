@@ -208,10 +208,8 @@ Voici quelques unes des maquettes réalisée pour le paper prototype. Nous expli
 Nous avons du faire quelques choix pour la conception de l'interface. Nous vous les présentons ici et surtout nous expliquons pourquoi nous avons choisi telle solution:
 \begin{itemize}
 \item \textbf{Fonctionnalité de création (liste ordonnée ou non et tâche):} nous avons décider d'adopter un système de sélection de l'élément "parent". Expliquons ce système. Lorsque l'utilisateur créer une liste, un élément vide de cette liste apparait. L'utilisateur doit alors sélectionner cet élément et définir de quel type il sera. Lorsque cet élément à un type, un nouvel élément vide apparait; l'utilisateur peut alors définir un autre élément ... Si l'utilisateur ne souhaite pas continuer à remplir cette liste, il ne tient plus compte des éléments vides.
-\item \textbf{Fonctionnalité \textit{Monter} et \textit{Descendre}:} nous avons décider de placer ces fonctionnalités dans la boîte à outils plutôt que sur l'élément à déplacer pour un gain de temps au niveau de l'utilisation. En effet, si nous avions fait le choix de mettre les boutons monter et descendre sur l'élément, lorsque l'utilisateur souhaite déplacer l'élément de plusieurs place, il va perdre le focus de la souris sur ces boutons. Attention, lors de l'utilisation de cette fonctionnalité dans une liste ordonnée; si on monte ou descend un élément de tel façon que un élément coché se trouve être en dessous d'un élément non coché dans la liste, alors l'élément coché sera décoché. 
-%TODO A revoir quand l'élément est une liste, qu'est-ce qu'on fait des tâches cochées à l'intérieur ?
-De plus, nous avons décidé d'afficher une fenêtre d'avertissement permettant à l'utilisateur d'être informé si il y a une incohérence au niveau des dates des éléments déplacés. Nous avons décidé de mettre en valeur ces dates par le remplissage du fond du champs date d'une couleur orange (permet d'attirer l'attention et de prévenir l'utilisateur).
-%TODO A revoir Les dates en couleur est-ce qu'il ne vaut pas mieux mettre les deux dates en couleur plutôt qu'une ! --> Le faire à chaque création d'élément
+\item \textbf{Fonctionnalité \textit{Monter} et \textit{Descendre}:} nous avons décider de placer ces fonctionnalités dans la boîte à outils plutôt que sur l'élément à déplacer pour un gain de temps au niveau de l'utilisation. En effet, si nous avions fait le choix de mettre les boutons monter et descendre sur l'élément, lorsque l'utilisateur souhaite déplacer l'élément de plusieurs place, il va perdre le focus de la souris sur ces boutons. Attention, lors de l'utilisation de cette fonctionnalité dans une liste ordonnée; si on monte ou descend un élément de tel façon que un élément coché se trouve être en dessous d'un élément non coché dans la liste, alors le déplacement ne sera pas activé.
+De plus, nous avons décidé d'afficher une fenêtre d'avertissement permettant à l'utilisateur d'être informé si il y a une incohérence au niveau des dates des éléments déplacés. Nous avons décidé de mettre en valeur la plus récente des dates (des éléments modifiés) par le remplissage du fond du champs date d'une couleur orange (permet d'attirer l'attention et de prévenir l'utilisateur).
 \item \textbf{Fonctionnalité \textit{Supprimer}:} nous avons choisi d'ajouter cette possibilité de suppression sur chaque élément pour que l'utilisateur puisse supprimer plus rapidement. Nous avons de plus décider de faire apparaître une fenêtre d'avertissement car la suppression d'une liste sélectionnée peut entrainer la suppression d'éléments. Pour plus de sécurité, le focus de la validation de la suppression est par défaut sur \textit{Non}.
 \item \textbf{Fonctionnalité \textit{Paramètre}:} nous avons décider pour cette fonctionnalité (qui peut entraîner la suppression de différents éléments) de faire apparaître ici aussi une fenêtre d'avertissement. Dans cette fenêtre le focus de la validation du changement est mise à \textit{Non}. On perd cependant un peu de vitesse d'exécution (si l'utilisateur souhaite effectivement bien effectuer ce changement) au profit de plus de sécurité.
 \item \textbf{Widget désactivé :} nous avons décidé de griser tout menu, bouton inutilisable à un état de l'application afin que l'utilisateur n'exécute pas d'actions impossibles. Cela évitera qu'il se pose des questions s'il voit aucun changement effectué.
@@ -219,7 +217,6 @@ De plus, nous avons décidé d'afficher une fenêtre d'avertissement permettant 
 
 \subsection{Scénarios}
 Afin de tester notre PaperPrototype, nous avons créer plusieurs scénarios.
-%TODO A revoir Nom et dates Valeur ?
 \subsubsection{Scénario 1 - Création/Utilisation/Suppression de liste}
 Ce premier scénario a été utilisé pour tester le paper prototype. Il permet de créer une liste non ordonnée et d'y ajouter une liste ordonnée avec ses propres tâches et des tâches.
 \begin{enumerate}
@@ -241,7 +238,6 @@ Ce scénario permet de créer une liste à partir d'un template. De modifier cet
 \item{Il va ensuite pour tous les éléments de ce template donner une date.}
 \item{L'utilisateur va ensuite modifier cette liste en y ajoutant une tâche à la liste mère (il lui donne un nom et une date).}
 \item{Il va ensuite vouloir enregistrer cette nouvelle liste comme un nouveau template.}
-%TODO A revoir l'histoire de modification d'un template
 \end{enumerate}
 
 
