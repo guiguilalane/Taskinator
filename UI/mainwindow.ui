@@ -39,6 +39,18 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QToolButton" name="toolButtonList">
+         <property name="mouseTracking">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Créer une liste non ordonnée</string>
+         </property>
+         <property name="statusTip">
+          <string/>
+         </property>
+         <property name="whatsThis">
+          <string/>
+         </property>
          <property name="text">
           <string>Create List</string>
          </property>
@@ -52,10 +64,25 @@
            <height>40</height>
           </size>
          </property>
+         <property name="popupMode">
+          <enum>QToolButton::DelayedPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>false</bool>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::NoArrow</enum>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonListOrdered">
+         <property name="toolTip">
+          <string>Créer une liste ordonnée</string>
+         </property>
          <property name="text">
           <string>Create List Ordered</string>
          </property>
@@ -73,6 +100,9 @@
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonTask">
+         <property name="toolTip">
+          <string>Créer une tâche</string>
+         </property>
          <property name="text">
           <string>Create Task</string>
          </property>
@@ -89,7 +119,10 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_7">
+        <widget class="QToolButton" name="toolButtonParam">
+         <property name="toolTip">
+          <string>Changer le type d'élément</string>
+         </property>
          <property name="text">
           <string>Parameter</string>
          </property>
@@ -103,10 +136,25 @@
            <height>40</height>
           </size>
          </property>
+         <property name="popupMode">
+          <enum>QToolButton::MenuButtonPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>false</bool>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::NoArrow</enum>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_4">
+        <widget class="QToolButton" name="toolButtonUp">
+         <property name="toolTip">
+          <string>Monter l'élément</string>
+         </property>
          <property name="text">
           <string>Up</string>
          </property>
@@ -123,7 +171,10 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_5">
+        <widget class="QToolButton" name="toolButtonDown">
+         <property name="toolTip">
+          <string>Descendre l'élément</string>
+         </property>
          <property name="text">
           <string>Down</string>
          </property>
@@ -140,7 +191,10 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_6">
+        <widget class="QToolButton" name="toolButtonTrash">
+         <property name="toolTip">
+          <string>Supprimer l'élément</string>
+         </property>
          <property name="text">
           <string>Delete</string>
          </property>
@@ -161,6 +215,12 @@
     </item>
     <item>
      <widget class="QFrame" name="frame_2">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="statusTip">
+       <string/>
+      </property>
       <property name="frameShape">
        <enum>QFrame::Box</enum>
       </property>
