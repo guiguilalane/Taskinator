@@ -19,8 +19,10 @@ SOURCES += main.cpp \
 		Model/sortedList.cpp \
         Model/task.cpp \
 		Model/history.cpp \
-    UI/element.cpp \
-    Controleur/controleur.cpp
+		UI/element.cpp \
+		Lib/pugixml_sources/pugixml.cpp \
+		xmloperation.cpp \
+		Controleur/controleur.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -29,8 +31,11 @@ HEADERS += UI/mainwindow.h \
 		Model/sortedList.h \
 		Model/task.h \
 		Model/history.h \
-    UI/element.h \
-    Controleur/controleur.h
+		UI/element.h \
+		Lib/pugixml_sources/pugiconfig.hpp \
+		Lib/pugixml_sources/pugixml.hpp \
+		xmloperation.h \
+		Controleur/controleur.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui \

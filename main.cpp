@@ -4,42 +4,44 @@
 #include "Model/list.h"
 #include "Model/sortedList.h"
 #include "Model/task.h"
+#include "xmloperation.h"
 #include <QDateTime>
 
 int main(int argc, char *argv[])
 {
 
-//    List * coursIHM = new List("Cours IHM",time(NULL));
-//    SortedList * CC = new SortedList("Preparer CC", time(NULL));
-//    coursIHM->addComponent(CC);
-//    Task * copie = new Task("Corriger copie", time(NULL));
-//    Task * note = new Task("Mettre bonne note", time(NULL));
-//    coursIHM->addComponent(copie);
-//    coursIHM->addComponent(note);
+    List * coursIHM = new List("Cours IHM",time(NULL));
+    SortedList * CC = new SortedList("Preparer CC", time(NULL));
+    coursIHM->addComponent(CC);
+    Task * copie = new Task("Corriger copie", time(NULL));
+    Task * note = new Task("Mettre bonne note", time(NULL));
+    coursIHM->addComponent(copie);
+    coursIHM->addComponent(note);
 
-//    Task * sujet = new Task("Preparer Sujet",time(NULL));
-//    Task * tirage = new Task("Tirer les copies", time(NULL));
-//    Task * apporterCopie = new Task("Apporter les copies", time(NULL));
-//    CC->addComponent(sujet);
-//    CC->addComponent(tirage);
-//    CC->addComponent(apporterCopie);
+    Task * sujet = new Task("Preparer Sujet",time(NULL));
+    Task * tirage = new Task("Tirer les copies", time(NULL));
+    Task * apporterCopie = new Task("Apporter les copies", time(NULL));
+    CC->addComponent(sujet);
+    CC->addComponent(tirage);
+    CC->addComponent(apporterCopie);
 //    coursIHM->affichage(std::cout);
 
 //    std::cout << "\n \n" << std::endl;
 
-//    apporterCopie->upComponent();
-//    apporterCopie->upComponent();
-//    apporterCopie->upComponent();
-//    apporterCopie->downComponent();
+    apporterCopie->upComponent();
+    apporterCopie->upComponent();
+    apporterCopie->upComponent();
+    apporterCopie->downComponent();
 //    coursIHM->affichage(std::cout);
 
 //    std::cout << "\n \n" << std::endl;
-//    CC->downComponent();
+    CC->downComponent();
 //    coursIHM->affichage(std::cout);
 
 //    std::cout << "\n \n" << std::endl;
-//    sujet->check(true);
-//    apporterCopie->check(true);
+    sujet->check(true);
+    apporterCopie->check(true);
+
 //    coursIHM->affichage(std::cout);
 
 
@@ -50,6 +52,11 @@ int main(int argc, char *argv[])
 //    note->transformToList(newNote);
 //    newNote->addComponent(new Task("test", time(NULL)));
 //    coursIHM->affichage(std::cout);
+
+    XMLOperation* op = new XMLOperation();
+    std::string s("/home/guillaume/Bureau/test.tor");
+    op->saveFile(s, coursIHM);
+
 
 
     QApplication a(argc, argv);
