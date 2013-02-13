@@ -13,10 +13,17 @@
 
 class Element : public QWidget
 {
+    //Q_OBJECT
 
 public:
     Element(QWidget *parent = 0);
-    void changeType_(QString t);
+    void setValueType_(QString t);
+    void setValueName_(QString t);
+    void setValueDate_(QDate d);
+    void setValueCheck_(bool b);
+    QString getValueName_();
+    QDate getValueDate_();
+    bool getValueCheck_();
 
 private:
     QLabel * type_;
