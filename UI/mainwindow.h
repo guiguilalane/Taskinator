@@ -4,8 +4,12 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QTreeWidgetItem>
+#include <QSignalMapper>
+
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"
+#include "mytreewidget.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -40,10 +44,15 @@ private slots:
 
     void on_toolButtonDown_clicked();
 
+//    void elementChanged(QWidget *elem);
+    void elementChanged(int key);
+
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;
     Controleur * cont_;
+    QSignalMapper* signalMapper_;
 };
 
 #endif // MAINWINDOW_H

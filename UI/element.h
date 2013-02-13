@@ -13,10 +13,21 @@
 
 class Element : public QWidget
 {
+    Q_OBJECT
 
 public:
     Element(QWidget *parent = 0);
     void changeType_(QString t);
+
+    QString getName() const;
+    QString getDate() const;
+    bool getState() const;
+
+signals:
+    void nameChanged();
+
+private slots:
+    void onNameChanged();
 
 private:
     QLabel * type_;

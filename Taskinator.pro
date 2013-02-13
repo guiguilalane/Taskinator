@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+$$VAR=basename(PWD)
+
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -22,7 +24,8 @@ SOURCES += main.cpp \
 		UI/element.cpp \
 		Lib/pugixml_sources/pugixml.cpp \
 		xmloperation.cpp \
-		Controleur/controleur.cpp
+		Controleur/controleur.cpp \
+    UI/mytreewidget.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -35,7 +38,8 @@ HEADERS += UI/mainwindow.h \
 		Lib/pugixml_sources/pugiconfig.hpp \
 		Lib/pugixml_sources/pugixml.hpp \
 		xmloperation.h \
-		Controleur/controleur.h
+		Controleur/controleur.h \
+    UI/mytreewidget.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui \

@@ -39,6 +39,21 @@ List *Component::getParent_()
     return parent_;
 }
 
+void Component::setName_(std::string name)
+{
+    name_ = name;
+}
+
+void Component::setDate_(time_t date)
+{
+    date_ = date;
+}
+
+void Component::setState_(bool state)
+{
+    state_ = state_;
+}
+
 void Component::setParent_(List * p)
 {
     parent_ = p;

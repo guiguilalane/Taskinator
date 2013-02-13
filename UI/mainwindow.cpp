@@ -9,7 +9,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    cont_ = new Controleur();
+
+    //in developpement
+    signalMapper_ = new QSignalMapper(this);
+    //end in developpement
+
+    cont_ = new Controleur(this, signalMapper_);
     // TODO A supprimer
     cont_->createList();
     ui->setupUi(this);
@@ -85,4 +90,18 @@ void MainWindow::on_toolButtonUp_clicked()
 void MainWindow::on_toolButtonDown_clicked()
 {
     cont_->downElement(ui->listTree);
+}
+
+//void MainWindow::elementChanged(QWidget* elem)
+//{
+//    std::cout << ((Element*)elem)->getName().toStdString() << " " << ((Element*)elem)->getDate().toStdString() << std::endl;
+//}
+
+void MainWindow::elementChanged(int key)
+{
+    QTreeWidgetItem* changedItem = cont_->getElement(key);
+    Element* changedElement = (Element*) ui->listTree->itemWidget(changedItem, 0);
+    QModelIndex changedMIndex = ui->listTree->getIndexFromItem(changedItem);
+    cont_->updateModel(&changedMIndex, changedElement->getName(), QDateTime(QDate::fromString(changedElement->getDate())), changedElement->getState());
+    //    std::cout << key << " " << cont_->getElement(key)->getName().toStdString() << " " << cont_->getElement(key)->getDate().toStdString() << std::endl;
 }

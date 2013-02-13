@@ -17,8 +17,30 @@ Element::Element(QWidget *parent) : QWidget(parent)
     layout_->addWidget(check_);
 
     this->setLayout(layout_);
+
+    connect(name_, SIGNAL(editingFinished()), this, SLOT(onNameChanged()));
 }
 
 void Element::changeType_(QString t){
     type_->setText(t);
+}
+
+QString Element::getName() const
+{
+    return name_->text();
+}
+
+QString Element::getDate() const
+{
+    return date_->date().toString("dd/MM/yyyy");
+}
+
+bool Element::getState() const
+{
+    return check_->isChecked();
+}
+
+void Element::onNameChanged()
+{
+    emit nameChanged();
 }

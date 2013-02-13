@@ -275,13 +275,13 @@
             </widget>
            </item>
            <item>
-            <widget class="QTreeWidget" name="listTree">
+            <widget class="MyTreeWidget" name="listTree">
              <attribute name="headerVisible">
               <bool>false</bool>
              </attribute>
              <column>
               <property name="text">
-               <string>Element</string>
+               <string notr="true">1</string>
               </property>
              </column>
             </widget>
@@ -306,7 +306,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -482,6 +482,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>MyTreeWidget</class>
+   <extends>QTreeWidget</extends>
+   <header>../Taskinator/UI/mytreewidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../Resources.qrc"/>
  </resources>

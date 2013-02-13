@@ -29,6 +29,11 @@ public:
     time_t getDate_();
     bool getState_();
     List * getParent_();
+
+    void setName_(std::string name);
+    void setDate_(time_t date);
+    void setState_(bool state);
+
     virtual void setParent_(List * p);
 
     // Permet de savoir si une case est cochable ou non

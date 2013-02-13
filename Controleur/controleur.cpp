@@ -2,8 +2,10 @@
 
 #include <QDebug>
 
-Controleur::Controleur()
-{}
+Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM): mainWindow_(mainW), signalMapper_(signalM)
+{
+    elements_ = new QHash<int, QTreeWidgetItem*>();
+}
 
 void Controleur::createList()
 {
@@ -29,7 +31,10 @@ std::vector<int> Controleur::calculateArborescence(QModelIndex m)
 void Controleur::refreshVue(QTreeWidget * t)
 {
     t->clear();
+    elements_->clear();
+    asup_.clear();
     parcoursList(t, 0, root_);
+    QObject::connect(signalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
     // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée
     t->expandAll();
 }
@@ -38,6 +43,8 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
 {
     int taille = parent->getTabComponent_().size();
     QTreeWidgetItem* elementItem = 0;
+    Element * element;
+    Component* component;
     for (int i = 1; i <= taille; ++i){
         if (parent == root_){
             elementItem = new QTreeWidgetItem(t);
@@ -45,9 +52,15 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
         else {
             elementItem = new QTreeWidgetItem(p);
         }
+        component = parent->getTabComponent_()[i];
+        element = new Element();
+        int hash = qHash(element);
+        elements_->insert(hash, elementItem);
+        asup_.push_back(element);
+        QObject::connect(element, SIGNAL(nameChanged()), signalMapper_, SLOT(map()));
+        signalMapper_->setMapping(element, hash);
         // Si on trouve une liste ordonnée
         if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){
-            Element * element = new Element();
             if (dynamic_cast<SortedList *>(parent)){
                 element->changeType_(QString::number(i)+QString("-"));
             }
@@ -59,7 +72,6 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
         }
         // Si on trouve une liste
         else if(dynamic_cast<List *>(parent->getTabComponent_()[i])) {
-            Element * element = new Element();
             if (dynamic_cast<SortedList *>(parent)){
                 element->changeType_(QString::number(i)+QString("-"));
             }
@@ -71,7 +83,6 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
         }
         // Si on trouve une tâche
         else {
-            Element * element = new Element();
             if (dynamic_cast<SortedList *>(parent)){
                 element->changeType_(QString::number(i)+QString("-"));
             }
@@ -193,7 +204,25 @@ void Controleur::valueChange(QTreeWidget t)
 //    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
 //        lts = (List*) lts->getTabComponent_()[(*rit)+1];
 //    }
-//    lts->getTabComponent_()[m.row()+1].setName_(t.currentItem()->);
+//        lts->getTabComponent_()[m.row()+1].setName_(t.currentItem()->);
 }
 
+void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDateTime &date, const bool state)
+{
+    std::vector<int> arbre = calculateArborescence(*mIndex);
+    std::vector<int>::reverse_iterator rit;
+    List * lts = root_;
+    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
+        lts = (List*) lts->getTabComponent_()[(*rit)+1];
+    }
+    Component* componentToChange = lts->getTabComponent_()[mIndex->row()+1];
+    componentToChange->setName_(name.toStdString());
+    componentToChange->setDate_(date.toTime_t());
+    componentToChange->setState_(state);
+    root_->affichage(std::cout);
+}
 
+QTreeWidgetItem *Controleur::getElement(const int key)
+{
+    return (*elements_)[key];
+}
