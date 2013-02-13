@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 //    std::cout << "\n \n" << std::endl;
     sujet->check(true);
     apporterCopie->check(true);
+
 //    coursIHM->affichage(std::cout);
 
 
@@ -57,9 +58,10 @@ int main(int argc, char *argv[])
     op->saveFile(s, coursIHM);
 
 
+
     QApplication a(argc, argv);
-//    MainWindow w;
-//    w.show();
+    MainWindow w;
+    w.show();
     
     return a.exec();
 }

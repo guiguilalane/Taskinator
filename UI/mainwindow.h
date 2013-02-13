@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QTreeWidgetItem>
 #include <UI/newlist.h>
+#include "../Controleur/controleur.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +43,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     NewList * newList_;
+    Controleur * cont_;
 };
 
 #endif // MAINWINDOW_H

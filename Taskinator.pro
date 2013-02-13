@@ -21,7 +21,8 @@ SOURCES += main.cpp \
 		Model/history.cpp \
 		UI/element.cpp \
 		Lib/pugixml_sources/pugixml.cpp \
-    xmloperation.cpp
+		xmloperation.cpp \
+		Controleur/controleur.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -33,7 +34,8 @@ HEADERS += UI/mainwindow.h \
 		UI/element.h \
 		Lib/pugixml_sources/pugiconfig.hpp \
 		Lib/pugixml_sources/pugixml.hpp \
-    xmloperation.h
+		xmloperation.h \
+		Controleur/controleur.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui \
