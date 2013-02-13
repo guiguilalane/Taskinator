@@ -17,11 +17,13 @@ class Element : public QWidget
 
 public:
     Element(QWidget *parent = 0);
-    void changeType_(QString t);
-
-    QString getName() const;
-    QString getDate() const;
-    bool getState() const;
+    void setValueType_(QString t);
+    void setValueName_(QString t);
+    void setValueDate_(QDate d);
+    void setValueCheck_(bool b);
+    QString getValueName_();
+    QDate getValueDate_();
+    bool getValueCheck_();
 
 signals:
     void nameChanged();

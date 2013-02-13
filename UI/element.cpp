@@ -21,26 +21,42 @@ Element::Element(QWidget *parent) : QWidget(parent)
     connect(name_, SIGNAL(editingFinished()), this, SLOT(onNameChanged()));
 }
 
-void Element::changeType_(QString t){
+void Element::setValueType_(QString t){
     type_->setText(t);
-}
-
-QString Element::getName() const
-{
-    return name_->text();
-}
-
-QString Element::getDate() const
-{
-    return date_->date().toString("dd/MM/yyyy");
-}
-
-bool Element::getState() const
-{
-    return check_->isChecked();
 }
 
 void Element::onNameChanged()
 {
     emit nameChanged();
+}
+
+void Element::setValueName_(QString t)
+{
+    name_->setText(t);
+}
+
+void Element::setValueDate_(QDate d)
+{
+    date_->setDate(d);
+}
+
+void Element::setValueCheck_(bool b)
+{
+    check_->setChecked(b);
+}
+
+QString Element::getValueName_()
+{
+    return name_->text();
+}
+
+QDate Element::getValueDate_()
+{
+    // TODO : est-ce que ca devrait pas retourner un time_t ?
+    return date_->date();
+}
+
+bool Element::getValueCheck_()
+{
+    return check_->isChecked();
 }

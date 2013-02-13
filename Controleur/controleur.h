@@ -25,6 +25,7 @@ public:
     void addTask(QTreeWidget *t);
     void refreshVue(QTreeWidget * t);
     void parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent);
+    void parcoursListModele(List * parent, List *nouvelle);
     void removeElement(QTreeWidget *t);
     void upElement(QTreeWidget * t);
     void downElement(QTreeWidget * t);
@@ -32,6 +33,9 @@ public:
     void updateModel(QModelIndex* mIndex, const QString& name, const QDateTime &date, const bool state);
 
     QTreeWidgetItem* getElement(const int key);
+    void toList(QTreeWidget *t);
+    void toSortedList(QTreeWidget *t);
+    void toTask(QTreeWidget *t);
 
 private:
     List * root_;

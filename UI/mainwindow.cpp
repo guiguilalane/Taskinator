@@ -22,17 +22,20 @@ MainWindow::MainWindow(QWidget *parent) :
     QTreeWidgetItem* videItem = new QTreeWidgetItem(ui->listTree);
     ui->listTree->setItemWidget(videItem,0,vide);
 
-    QMenu * menuParam = new QMenu();
-    QAction * liste = new QAction("Liste non ordonnée",0);
-    liste->setCheckable(true);
-    QAction * listeO = new QAction("Liste ordonnée",0);
-    listeO->setCheckable(true);
-    QAction * tache = new QAction("Tâche",0);
-    tache->setCheckable(true);
-    menuParam->addAction(liste);
-    menuParam->addAction(listeO);
-    menuParam->addAction(tache);
-    ui->toolButtonParam->setMenu(menuParam);
+    menuParam_ = new QMenu();
+    liste_ = new QAction("Liste non ordonnée",0);
+    liste_->setCheckable(true);
+    listeO_ = new QAction("Liste ordonnée",0);
+    listeO_->setCheckable(true);
+    tache_ = new QAction("Tâche",0);
+    tache_->setCheckable(true);
+    menuParam_->addAction(liste_);
+    menuParam_->addAction(listeO_);
+    menuParam_->addAction(tache_);
+    ui->toolButtonParam->setMenu(menuParam_);
+    connect(liste_, SIGNAL(triggered(bool)),this,SLOT(toolButtonParam_toList(bool)));
+    connect(listeO_, SIGNAL(triggered(bool)),this,SLOT(toolButtonParam_toSortedList(bool)));
+    connect(tache_, SIGNAL(triggered(bool)),this,SLOT(toolButtonParam_toTask(bool)));
 }
 
 MainWindow::~MainWindow()
@@ -92,16 +95,50 @@ void MainWindow::on_toolButtonDown_clicked()
     cont_->downElement(ui->listTree);
 }
 
-//void MainWindow::elementChanged(QWidget* elem)
-//{
-//    std::cout << ((Element*)elem)->getName().toStdString() << " " << ((Element*)elem)->getDate().toStdString() << std::endl;
-//}
-
 void MainWindow::elementChanged(int key)
 {
     QTreeWidgetItem* changedItem = cont_->getElement(key);
     Element* changedElement = (Element*) ui->listTree->itemWidget(changedItem, 0);
     QModelIndex changedMIndex = ui->listTree->getIndexFromItem(changedItem);
-    cont_->updateModel(&changedMIndex, changedElement->getName(), QDateTime(QDate::fromString(changedElement->getDate())), changedElement->getState());
+    cont_->updateModel(&changedMIndex, changedElement->getValueName_(), QDateTime(changedElement->getValueDate_()), changedElement->getValueCheck_());
     //    std::cout << key << " " << cont_->getElement(key)->getName().toStdString() << " " << cont_->getElement(key)->getDate().toStdString() << std::endl;
+}
+
+void MainWindow::toolButtonParam_toList(bool b)
+{
+    if (b)
+    {
+        cont_->toList(ui->listTree);
+        listeO_->setChecked(false);
+        tache_->setChecked(false);
+    }
+    else{
+        liste_->setChecked(true);
+    }
+}
+
+void MainWindow::toolButtonParam_toSortedList(bool b)
+{
+    if (b)
+    {
+        cont_->toSortedList(ui->listTree);
+        liste_->setChecked(false);
+        tache_->setChecked(false);
+    }
+    else{
+        listeO_->setChecked(true);
+    }
+}
+
+void MainWindow::toolButtonParam_toTask(bool b)
+{
+    if (b)
+    {
+        cont_->toTask(ui->listTree);
+        liste_->setChecked(false);
+        listeO_->setChecked(false);
+    }
+    else{
+        tache_->setChecked(true);
+    }
 }

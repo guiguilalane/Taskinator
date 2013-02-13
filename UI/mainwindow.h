@@ -44,15 +44,24 @@ private slots:
 
     void on_toolButtonDown_clicked();
 
-//    void elementChanged(QWidget *elem);
     void elementChanged(int key);
 
+    void toolButtonParam_toList(bool);
+
+    void toolButtonParam_toSortedList(bool b);
+
+    void toolButtonParam_toTask(bool b);
 
 private:
     Ui::MainWindow *ui;
     NewList * newList_;
     Controleur * cont_;
     QSignalMapper* signalMapper_;
+
+    QMenu * menuParam_;
+    QAction * liste_;
+    QAction * listeO_;
+    QAction * tache_;
 };
 
 #endif // MAINWINDOW_H
