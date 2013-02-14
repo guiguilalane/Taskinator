@@ -41,7 +41,7 @@ void Controleur::refreshVue(QTreeWidget * t)
     // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée
     t->expandAll();
     t->setAnimated(true);
-//    std::cout << t->isAnimated() << std::endl;
+    //    std::cout << t->isAnimated() << std::endl;
 }
 
 // TODO: ajouter que lorsque le l'on créer les élément on doit passer en paramètre les valeurs déjà renseignées !!!
@@ -306,19 +306,6 @@ void Controleur::saveFile()
     xmlOp_->saveFile(filePath_.toStdString(), root_);
 }
 
-void Controleur::valueChange(QTreeWidget t)
-{
-    // Change les valeurs dans le modèle
-//    QModelIndex m = t->currentIndex();
-//    std::vector<int> arbre = calculateArborescence(m);
-//    std::vector<int>::reverse_iterator rit;
-//    List * lts = root_;
-//    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
-//        lts = (List*) lts->getTabComponent_()[(*rit)+1];
-//    }
-//        lts->getTabComponent_()[m.row()+1].setName_(t.currentItem()->);
-}
-
 void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDateTime &date, const bool state)
 {
     std::vector<int> arbre = calculateArborescence(*mIndex);
@@ -345,10 +332,57 @@ QTreeWidgetItem* Controleur::getCurrentItem(QTreeWidget *t, std::vector<int>::re
         w = w->child((*rit));
     }
     return w;
-//    ((MyTreeWidget*) t)->onActivatedItem(w);
 }
 
 QTreeWidgetItem *Controleur::getElement(const int key)
 {
     return (*elements_)[key];
+}
+
+void Controleur::is(QTreeWidget * t, std::string& type, int& nb)
+{
+    QModelIndex m = t->currentIndex();
+    QWidget * wid = t->itemWidget(t->currentItem(),0);
+    if (dynamic_cast<Element *>(wid)){
+        std::vector<int> arbre = calculateArborescence(m);
+        std::vector<int>::reverse_iterator rit;
+        List * lts = root_;
+        for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
+            lts = (List*) lts->getTabComponent_()[(*rit)+1];
+        }
+        nb = lts->getTabComponent_().size();
+        Component * comp = lts->getTabComponent_()[m.row()+1];
+        if (dynamic_cast<SortedList *>(comp)){
+            type = "sortedList";
+        }
+        else if (dynamic_cast<List *>(comp)){
+            type = "list";
+        }
+        else if (dynamic_cast<Task *>(comp)){
+            type = "task";
+        }
+    }
+    else {
+        type = "vide";
+    }
+}
+
+bool Controleur::isListOrSortedList(QTreeWidget *t)
+{
+    bool res = false;
+    QModelIndex m = t->currentIndex();
+    std::vector<int> arbre = calculateArborescence(m);
+    std::vector<int>::reverse_iterator rit;
+    List * lts = root_;
+    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
+        lts = (List*) lts->getTabComponent_()[(*rit)+1];
+    }
+    Component * comp = lts->getTabComponent_()[m.row()+1];
+    if (dynamic_cast<SortedList *>(comp)){
+        res = true;
+    }
+    else if (dynamic_cast<List *>(comp)){
+        res = true;
+    }
+    return res;
 }

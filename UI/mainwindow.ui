@@ -83,6 +83,9 @@
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonListOrdered">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="toolTip">
           <string>Créer une liste ordonnée</string>
          </property>
@@ -103,6 +106,9 @@
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonTask">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="toolTip">
           <string>Créer une tâche</string>
          </property>
@@ -123,6 +129,9 @@
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonParam">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="toolTip">
           <string>Changer le type d'élément</string>
          </property>
@@ -155,6 +164,9 @@
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonUp">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="toolTip">
           <string>Monter l'élément</string>
          </property>
@@ -175,6 +187,9 @@
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonDown">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="toolTip">
           <string>Descendre l'élément</string>
          </property>
@@ -195,6 +210,9 @@
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonTrash">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="toolTip">
           <string>Supprimer l'élément</string>
          </property>
@@ -318,7 +336,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="sizePolicy">

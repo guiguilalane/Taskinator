@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QTreeWidgetItem>
 #include <QSignalMapper>
+#include <QMessageBox>
 
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"
@@ -53,6 +54,8 @@ private slots:
     void toolButtonParam_toTask(bool b);
 
     void on_actionEnregistrer_triggered();
+
+    void on_listTree_itemSelectionChanged();
 
 private:
     Ui::MainWindow *ui;

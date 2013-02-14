@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QTreeWidgetItem* videItem = new QTreeWidgetItem(ui->listTree);
     ui->listTree->setItemWidget(videItem,0,vide);
 
+    // Menu pour le bouton changement de type
     menuParam_ = new QMenu();
     liste_ = new QAction("Liste non ordonnée",0);
     liste_->setCheckable(true);
@@ -36,6 +37,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(liste_, SIGNAL(triggered(bool)),this,SLOT(toolButtonParam_toList(bool)));
     connect(listeO_, SIGNAL(triggered(bool)),this,SLOT(toolButtonParam_toSortedList(bool)));
     connect(tache_, SIGNAL(triggered(bool)),this,SLOT(toolButtonParam_toTask(bool)));
+
+    // Désactivation des boutons
+    ui->toolButtonList->setEnabled(false);
+    ui->toolButtonListOrdered->setEnabled(false);
+    ui->toolButtonTask->setEnabled(false);
+    ui->toolButtonParam->setEnabled(false);
+    ui->toolButtonUp->setEnabled(false);
+    ui->toolButtonDown->setEnabled(false);
+    ui->toolButtonTrash->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -81,32 +91,50 @@ void MainWindow::on_actionQuitter_triggered()
 
 void MainWindow::on_toolButtonList_clicked()
 {
+    ui->listTree->blockSignals(true);
     cont_->addList(ui->listTree);
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonListOrdered_clicked()
 {
+    ui->listTree->blockSignals(true);
     cont_->addSortedList(ui->listTree);
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonTask_clicked()
 {
+    ui->listTree->blockSignals(true);
     cont_->addTask(ui->listTree);
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonTrash_clicked()
 {
-    cont_->removeElement(ui->listTree);
+    ui->listTree->blockSignals(true);
+    if (cont_->isListOrSortedList(ui->listTree))
+    {
+        int r = QMessageBox::warning(this, "Suppression", tr("Attention \n" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. \n" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+        if (r == QMessageBox::Yes){
+            cont_->removeElement(ui->listTree);
+        }
+    }
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonUp_clicked()
 {
+    ui->listTree->blockSignals(true);
     cont_->upElement(ui->listTree);
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonDown_clicked()
 {
+    ui->listTree->blockSignals(true);
     cont_->downElement(ui->listTree);
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::elementChanged(int key)
@@ -120,39 +148,90 @@ void MainWindow::elementChanged(int key)
 
 void MainWindow::toolButtonParam_toList(bool b)
 {
+    ui->listTree->blockSignals(true);
     if (b)
     {
         cont_->toList(ui->listTree);
         listeO_->setChecked(false);
         tache_->setChecked(false);
     }
-    else{
-        liste_->setChecked(true);
-    }
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::toolButtonParam_toSortedList(bool b)
 {
+    ui->listTree->blockSignals(true);
     if (b)
     {
         cont_->toSortedList(ui->listTree);
         liste_->setChecked(false);
         tache_->setChecked(false);
     }
-    else{
-        listeO_->setChecked(true);
-    }
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::toolButtonParam_toTask(bool b)
 {
+    ui->listTree->blockSignals(true);
     if (b)
     {
-        cont_->toTask(ui->listTree);
-        liste_->setChecked(false);
-        listeO_->setChecked(false);
+        int r = QMessageBox::warning(this, "Changement de type", tr("Attention \n" "Vous allez changer une liste en tâche. Cette opération supprimera toutes les sous-listes ou tâches. \n" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+        if (r == QMessageBox::Yes){
+            cont_->toTask(ui->listTree);
+            liste_->setChecked(false);
+            listeO_->setChecked(false);
+        }
+        else {
+            tache_->setChecked(false);
+        }
     }
-    else{
-        tache_->setChecked(true);
+    ui->listTree->blockSignals(false);
+}
+
+void MainWindow::on_listTree_itemSelectionChanged()
+{
+    // Désactivation de tous les boutons
+    liste_->setChecked(false);
+    listeO_->setChecked(false);
+    tache_->setChecked(false);
+    ui->toolButtonList->setEnabled(false);
+    ui->toolButtonListOrdered->setEnabled(false);
+    ui->toolButtonTask->setEnabled(false);
+    ui->toolButtonParam->setEnabled(false);
+    ui->toolButtonUp->setEnabled(false);
+    ui->toolButtonDown->setEnabled(false);
+    ui->toolButtonTrash->setEnabled(false);
+    // Calcul du type d'élément
+    int nb = 0;
+    std::string type = "";
+    cont_->is(ui->listTree, type, nb);
+    // En fonction du type d'élément sélectionné
+    if (type == "vide"){
+        ui->toolButtonList->setEnabled(true);
+        ui->toolButtonListOrdered->setEnabled(true);
+        ui->toolButtonTask->setEnabled(true);
+    }
+    // Si c'est un élément
+    else {
+        ui->toolButtonTrash->setEnabled(true);
+        ui->toolButtonParam->setEnabled(true);
+        if (ui->listTree->currentIndex().row() != 0){
+            ui->toolButtonUp->setEnabled(true);
+        }
+        if (ui->listTree->currentIndex().row() != nb-1){
+            ui->toolButtonDown->setEnabled(true);
+        }
+        if (type == "list")
+        {
+            liste_->setChecked(true);
+        }
+        else if (type == "sortedList")
+        {
+            listeO_->setChecked(true);
+        }
+        else if (type == "task")
+        {
+            tache_->setChecked(true);
+        }
     }
 }
