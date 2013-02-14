@@ -100,7 +100,13 @@ void MainWindow::on_toolButtonTask_clicked()
 void MainWindow::on_toolButtonTrash_clicked()
 {
     ui->listTree->blockSignals(true);
-    cont_->removeElement(ui->listTree);
+    if (cont_->isListOrSortedList(ui->listTree))
+    {
+        int r = QMessageBox::warning(this, "Suppression", tr("Attention \n" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. \n" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+        if (r == QMessageBox::Yes){
+            cont_->removeElement(ui->listTree);
+        }
+    }
     ui->listTree->blockSignals(false);
 }
 
@@ -128,41 +134,44 @@ void MainWindow::elementChanged(int key)
 
 void MainWindow::toolButtonParam_toList(bool b)
 {
+    ui->listTree->blockSignals(true);
     if (b)
     {
         cont_->toList(ui->listTree);
         listeO_->setChecked(false);
         tache_->setChecked(false);
     }
-    else{
-        liste_->setChecked(true);
-    }
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::toolButtonParam_toSortedList(bool b)
 {
+    ui->listTree->blockSignals(true);
     if (b)
     {
         cont_->toSortedList(ui->listTree);
         liste_->setChecked(false);
         tache_->setChecked(false);
     }
-    else{
-        listeO_->setChecked(true);
-    }
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::toolButtonParam_toTask(bool b)
 {
+    ui->listTree->blockSignals(true);
     if (b)
     {
-        cont_->toTask(ui->listTree);
-        liste_->setChecked(false);
-        listeO_->setChecked(false);
+        int r = QMessageBox::warning(this, "Changement de type", tr("Attention \n" "Vous allez changer une liste en tâche. Cette opération supprimera toutes les sous-listes ou tâches. \n" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+        if (r == QMessageBox::Yes){
+            cont_->toTask(ui->listTree);
+            liste_->setChecked(false);
+            listeO_->setChecked(false);
+        }
+        else {
+            tache_->setChecked(false);
+        }
     }
-    else{
-        tache_->setChecked(true);
-    }
+    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_listTree_itemSelectionChanged()

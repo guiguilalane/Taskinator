@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QTreeWidgetItem>
 #include <QSignalMapper>
+#include <QMessageBox>
 
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"

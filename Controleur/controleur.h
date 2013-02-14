@@ -32,6 +32,7 @@ public:
     void downElement(QTreeWidget * t);
     void updateModel(QModelIndex* mIndex, const QString& name, const QDateTime &date, const bool state);
     void is(QTreeWidget *t, std::string &type, int &nb);
+    bool isListOrSortedList(QTreeWidget * t);
 
     QTreeWidgetItem* getElement(const int key);
     void toList(QTreeWidget *t);

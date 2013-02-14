@@ -40,7 +40,7 @@ void Controleur::refreshVue(QTreeWidget * t)
     // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée
     t->expandAll();
     t->setAnimated(true);
-//    std::cout << t->isAnimated() << std::endl;
+    //    std::cout << t->isAnimated() << std::endl;
 }
 
 // TODO: ajouter que lorsque le l'on créer les élément on doit passer en paramètre les valeurs déjà renseignées !!!
@@ -142,11 +142,11 @@ void Controleur::addList(QTreeWidget * t)
     lts->addComponent(new List());
     // Ajout à l'IHM
     refreshVue(t);
-//    QTreeWidgetItem * w = t->topLevelItem(m.row());
-//    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-//        w = w->child((*rit));
-//    }
-//    w->setSelected(true);
+    //    QTreeWidgetItem * w = t->topLevelItem(m.row());
+    //    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
+    //        w = w->child((*rit));
+    //    }
+    //    w->setSelected(true);
 }
 
 void Controleur::addSortedList(QTreeWidget * t)
@@ -162,11 +162,11 @@ void Controleur::addSortedList(QTreeWidget * t)
     lts->addComponent(new SortedList());
     // Ajout à l'IHM
     refreshVue(t);
-//    QTreeWidgetItem * w = t->topLevelItem(m.row());
-//    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-//        w = w->child((*rit));
-//    }
-//    w->setSelected(true);
+    //    QTreeWidgetItem * w = t->topLevelItem(m.row());
+    //    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
+    //        w = w->child((*rit));
+    //    }
+    //    w->setSelected(true);
 }
 
 void Controleur::addTask(QTreeWidget * t)
@@ -182,11 +182,11 @@ void Controleur::addTask(QTreeWidget * t)
     lts->addComponent(new Task());
     // Ajout à l'IHM
     refreshVue(t);
-//    QTreeWidgetItem * w = t->topLevelItem(m.row());
-//    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-//        w = w->child((*rit));
-//    }
-//    w->setSelected(true);
+    //    QTreeWidgetItem * w = t->topLevelItem(m.row());
+    //    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
+    //        w = w->child((*rit));
+    //    }
+    //    w->setSelected(true);
 }
 
 void Controleur::removeElement(QTreeWidget * t)
@@ -347,4 +347,24 @@ void Controleur::is(QTreeWidget * t, std::string& type, int& nb)
     else {
         type = "vide";
     }
+}
+
+bool Controleur::isListOrSortedList(QTreeWidget *t)
+{
+    bool res = false;
+    QModelIndex m = t->currentIndex();
+    std::vector<int> arbre = calculateArborescence(m);
+    std::vector<int>::reverse_iterator rit;
+    List * lts = root_;
+    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
+        lts = (List*) lts->getTabComponent_()[(*rit)+1];
+    }
+    Component * comp = lts->getTabComponent_()[m.row()+1];
+    if (dynamic_cast<SortedList *>(comp)){
+        res = true;
+    }
+    else if (dynamic_cast<List *>(comp)){
+        res = true;
+    }
+    return res;
 }
