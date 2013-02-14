@@ -102,7 +102,7 @@ void MainWindow::on_toolButtonTrash_clicked()
     ui->listTree->blockSignals(true);
     if (cont_->isListOrSortedList(ui->listTree))
     {
-        int r = QMessageBox::warning(this, "Suppression", tr("Attention \n" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. \n" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+        int r = QMessageBox::warning(this, "Suppression", tr(" <center> Attention </center> <br/>" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
         if (r == QMessageBox::Yes){
             cont_->removeElement(ui->listTree);
         }
@@ -161,7 +161,7 @@ void MainWindow::toolButtonParam_toTask(bool b)
     ui->listTree->blockSignals(true);
     if (b)
     {
-        int r = QMessageBox::warning(this, "Changement de type", tr("Attention \n" "Vous allez changer une liste en tâche. Cette opération supprimera toutes les sous-listes ou tâches. \n" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+        int r = QMessageBox::warning(this, "Changement de type", tr("<center> Attention </center> <br/>" "Vous allez changer une liste en tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
         if (r == QMessageBox::Yes){
             cont_->toTask(ui->listTree);
             liste_->setChecked(false);
@@ -220,4 +220,9 @@ void MainWindow::on_listTree_itemSelectionChanged()
             tache_->setChecked(true);
         }
     }
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::about(this,"About Taskinator",tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER"));
 }
