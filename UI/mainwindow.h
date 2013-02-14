@@ -57,6 +57,8 @@ private slots:
 
     void on_listTree_itemSelectionChanged();
 
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;
