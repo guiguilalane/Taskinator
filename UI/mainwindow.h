@@ -52,6 +52,8 @@ private slots:
 
     void toolButtonParam_toTask(bool b);
 
+    void on_listTree_itemSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;

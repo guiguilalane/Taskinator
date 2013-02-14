@@ -53,3 +53,6 @@ RESOURCES += \
 ICON = Pictures/taskinator.icns
 
 UI_HEADERS_DIR = $$PWD/UIHeaderFile
+UI_DIR = $$PWD/UIHeaderFile
+message($$UI_HEADERS_DIR)
+message($$UI_DIR)

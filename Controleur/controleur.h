@@ -30,8 +30,8 @@ public:
     void removeElement(QTreeWidget *t);
     void upElement(QTreeWidget * t);
     void downElement(QTreeWidget * t);
-    void valueChange(QTreeWidget t);
     void updateModel(QModelIndex* mIndex, const QString& name, const QDateTime &date, const bool state);
+    void is(QTreeWidget *t, std::string &type, int &nb);
 
     QTreeWidgetItem* getElement(const int key);
     void toList(QTreeWidget *t);
