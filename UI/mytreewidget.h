@@ -12,6 +12,8 @@ public:
 
     QModelIndex getIndexFromItem(QTreeWidgetItem* item, const int column = 0);
     
+    void onActivatedItem(QTreeWidgetItem* item, int column = 0);
+
 signals:
     
 public slots:

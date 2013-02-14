@@ -6,6 +6,7 @@
 #include "../Model/list.h"
 #include "../Model/task.h"
 #include "../UI/element.h"
+#include "../UI/mytreewidget.h"
 #include "xmloperation.h"
 #include <QMainWindow>
 #include <QModelIndex>
@@ -51,6 +52,8 @@ private:
 
     XMLOperation* xmlOp_;
     QString filePath_;
+
+    QTreeWidgetItem* getCurrentItem(QTreeWidget* t, std::vector<int>::reverse_iterator &rit, std::vector<int> &arbre, QModelIndex m);
 
 };
 

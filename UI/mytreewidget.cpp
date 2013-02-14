@@ -9,3 +9,8 @@ QModelIndex MyTreeWidget::getIndexFromItem(QTreeWidgetItem *item, const int colu
 {
     return indexFromItem(item, column);
 }
+
+void MyTreeWidget::onActivatedItem(QTreeWidgetItem *item, int column)
+{
+    emit itemActivated(item, column);
+}

@@ -145,11 +145,8 @@ void Controleur::addList(QTreeWidget * t)
     lts->addComponent(new List());
     // Ajout à l'IHM
     refreshVue(t);
-//    QTreeWidgetItem * w = t->topLevelItem(m.row());
-//    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-//        w = w->child((*rit));
-//    }
-//    w->setSelected(true);
+    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    t->setCurrentItem(w, 0);
 }
 
 void Controleur::addSortedList(QTreeWidget * t)
@@ -165,11 +162,8 @@ void Controleur::addSortedList(QTreeWidget * t)
     lts->addComponent(new SortedList());
     // Ajout à l'IHM
     refreshVue(t);
-//    QTreeWidgetItem * w = t->topLevelItem(m.row());
-//    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-//        w = w->child((*rit));
-//    }
-//    w->setSelected(true);
+    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    t->setCurrentItem(w, 0);
 }
 
 void Controleur::addTask(QTreeWidget * t)
@@ -185,11 +179,8 @@ void Controleur::addTask(QTreeWidget * t)
     lts->addComponent(new Task());
     // Ajout à l'IHM
     refreshVue(t);
-//    QTreeWidgetItem * w = t->topLevelItem(m.row());
-//    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-//        w = w->child((*rit));
-//    }
-//    w->setSelected(true);
+    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    t->setCurrentItem(w, 0);
 }
 
 void Controleur::removeElement(QTreeWidget * t)
@@ -220,6 +211,8 @@ void Controleur::upElement(QTreeWidget * t)
     lts->getTabComponent_()[m.row()+1]->upComponent();
     // Modification de l'IHM
     refreshVue(t);
+    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    t->setCurrentItem(t->itemAbove(w), 0);
 }
 
 void Controleur::downElement(QTreeWidget * t)
@@ -235,6 +228,8 @@ void Controleur::downElement(QTreeWidget * t)
     lts->getTabComponent_()[m.row()+1]->downComponent();
     // Modification de l'IHM
     refreshVue(t);
+    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    t->setCurrentItem(t->itemBelow(w), 0);
 }
 
 void Controleur::toList(QTreeWidget * t)
@@ -341,6 +336,16 @@ void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDa
 QString Controleur::getFilePath() const
 {
     return filePath_;
+}
+
+QTreeWidgetItem* Controleur::getCurrentItem(QTreeWidget *t, std::vector<int>::reverse_iterator &rit, std::vector<int> &arbre, QModelIndex m)
+{
+    QTreeWidgetItem * w = t->topLevelItem(m.row());
+    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
+        w = w->child((*rit));
+    }
+    return w;
+//    ((MyTreeWidget*) t)->onActivatedItem(w);
 }
 
 QTreeWidgetItem *Controleur::getElement(const int key)
