@@ -248,12 +248,21 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QTabWidget" name="tabWidget">
+         <property name="tabPosition">
+          <enum>QTabWidget::North</enum>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
-         <widget class="QWidget" name="tab">
+         <property name="elideMode">
+          <enum>Qt::ElideNone</enum>
+         </property>
+         <property name="tabsClosable">
+          <bool>false</bool>
+         </property>
+         <widget class="QWidget" name="creation">
           <attribute name="title">
-           <string>Tab 1</string>
+           <string>Création</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
@@ -309,10 +318,67 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="tab_2">
+         <widget class="QWidget" name="apercu">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <attribute name="title">
-           <string>Tab 2</string>
+           <string>Aperçu</string>
           </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QWidget" name="widget_3" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QLabel" name="nameLAp">
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="dateAp">
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget_4" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_5">
+                 <item>
+                  <widget class="QLabel" name="label_2">
+                   <property name="text">
+                    <string>Liste ordonnée:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="listSorted">
+                   <property name="text">
+                    <string>TextLabel</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="MyTreeWidget" name="listTreeAp">
+             <attribute name="headerVisible">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string notr="true">1</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>

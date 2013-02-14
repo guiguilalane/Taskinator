@@ -46,6 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButtonUp->setEnabled(false);
     ui->toolButtonDown->setEnabled(false);
     ui->toolButtonTrash->setEnabled(false);
+
+//    ui->tabWidget->setTabText(0,"Création");
 }
 
 MainWindow::~MainWindow()
@@ -106,6 +108,9 @@ void MainWindow::on_toolButtonTrash_clicked()
         if (r == QMessageBox::Yes){
             cont_->removeElement(ui->listTree);
         }
+    }
+    else {
+        cont_->removeElement(ui->listTree);
     }
     ui->listTree->blockSignals(false);
 }
@@ -225,4 +230,32 @@ void MainWindow::on_listTree_itemSelectionChanged()
 void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::about(this,"About Taskinator",tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER"));
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    if (index == 1){
+        // Désactivation des boutons
+        ui->toolButtonList->setEnabled(false);
+        ui->toolButtonListOrdered->setEnabled(false);
+        ui->toolButtonTask->setEnabled(false);
+        ui->toolButtonParam->setEnabled(false);
+        ui->toolButtonUp->setEnabled(false);
+        ui->toolButtonDown->setEnabled(false);
+        ui->toolButtonTrash->setEnabled(false);
+        cont_->createVueApercu(ui->listTreeAp);
+        // TODO a revérifier si ca marche quand on aura fait le signal sur le nom date et liste
+        // si on aura les bonnes valeurs
+        ui->nameLAp->setText(QString(cont_->getRoot_()->getName_().c_str()));
+        ui->dateAp->setText(QDateTime::fromTime_t(cont_->getRoot_()->getDate_()).toString("dd/MM/yyyy"));
+        if (cont_->rootIsSortedList()){
+            ui->listSorted->setText("Oui");
+        }
+        else {
+            ui->listSorted->setText("Non");
+        }
+    }
+    else if (index == 0){
+        emit ui->listTree->itemSelectionChanged();
+    }
 }

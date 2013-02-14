@@ -6,6 +6,7 @@
 #include "../Model/list.h"
 #include "../Model/task.h"
 #include "../UI/element.h"
+#include "../UI/elementapercu.h"
 #include "xmloperation.h"
 #include <QMainWindow>
 #include <QModelIndex>
@@ -33,6 +34,10 @@ public:
     void updateModel(QModelIndex* mIndex, const QString& name, const QDateTime &date, const bool state);
     void is(QTreeWidget *t, std::string &type, int &nb);
     bool isListOrSortedList(QTreeWidget * t);
+    void parcoursListApercu(QTreeWidget * t, QTreeWidgetItem * p, List* parent);
+    void createVueApercu(QTreeWidget * t);
+    bool rootIsSortedList();
+
 
     QTreeWidgetItem* getElement(const int key);
     void toList(QTreeWidget *t);
@@ -40,6 +45,7 @@ public:
     void toTask(QTreeWidget *t);
 
     void saveFile(QString path) const;
+    List * getRoot_();
 
 private:
     List * root_;

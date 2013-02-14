@@ -302,6 +302,11 @@ void Controleur::saveFile(QString path) const
     xmlOp_->saveFile(path.toStdString(), root_);
 }
 
+List *Controleur::getRoot_()
+{
+    return root_;
+}
+
 void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDateTime &date, const bool state)
 {
     std::vector<int> arbre = calculateArborescence(*mIndex);
@@ -364,6 +369,78 @@ bool Controleur::isListOrSortedList(QTreeWidget *t)
         res = true;
     }
     else if (dynamic_cast<List *>(comp)){
+        res = true;
+    }
+    return res;
+}
+
+void Controleur::parcoursListApercu(QTreeWidget *t, QTreeWidgetItem *p, List *parent)
+{
+    int taille = parent->getTabComponent_().size();
+    QTreeWidgetItem* elementItem = 0;
+    ElementApercu * element;
+    Component* component;
+    for (int i = 1; i <= taille; ++i){
+        if (parent == root_){
+            elementItem = new QTreeWidgetItem(t);
+        }
+        else {
+            elementItem = new QTreeWidgetItem(p);
+        }
+        component = parent->getTabComponent_()[i];
+        element = new ElementApercu();
+        if(!component->getName_().empty())
+        {
+            element->setValueName_(QString::fromStdString(component->getName_()));
+            element->setValueDate_(QDateTime::fromTime_t(component->getDate_()).date());
+            element->setValueCheck_(component->getState_());
+        }
+        // Si on trouve une liste ordonnée
+        if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){
+            if (dynamic_cast<SortedList *>(parent)){
+                element->setValueType_(QString::number(i)+QString("-"));
+            }
+            else if (dynamic_cast<List *>(parent)){
+                element->setValueType_(QString("-"));
+            }
+            t->setItemWidget(elementItem,0,element);
+            parcoursListApercu(t, elementItem, (SortedList*) parent->getTabComponent_()[i]);
+        }
+        // Si on trouve une liste
+        else if(dynamic_cast<List *>(parent->getTabComponent_()[i])) {
+            if (dynamic_cast<SortedList *>(parent)){
+                element->setValueType_(QString::number(i)+QString("-"));
+            }
+            else if (dynamic_cast<List *>(parent)){
+                element->setValueType_(QString("-"));
+            }
+            t->setItemWidget(elementItem,0,element);
+            parcoursListApercu(t, elementItem, (List*)parent->getTabComponent_()[i]);
+        }
+        // Si on trouve une tâche
+        else {
+            if (dynamic_cast<SortedList *>(parent)){
+                element->setValueType_(QString::number(i)+QString("-"));
+            }
+            else if (dynamic_cast<List *>(parent)){
+                element->setValueType_(QString("-"));
+            }
+            t->setItemWidget(elementItem,0,element);
+        }
+    }
+}
+
+void Controleur::createVueApercu(QTreeWidget *t)
+{
+    t->clear();
+    parcoursListApercu(t, 0, root_);
+    t->expandAll();
+}
+
+bool Controleur::rootIsSortedList()
+{
+    bool res = false;
+    if (dynamic_cast<SortedList*> (root_)){
         res = true;
     }
     return res;
