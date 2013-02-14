@@ -5,6 +5,7 @@
 Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM): mainWindow_(mainW), signalMapper_(signalM)
 {
     elements_ = new QHash<int, QTreeWidgetItem*>();
+    xmlOp_ = new XMLOperation();
 }
 
 void Controleur::createList()
@@ -34,6 +35,7 @@ void Controleur::refreshVue(QTreeWidget * t)
     elements_->clear();
     asup_.clear();
     parcoursList(t, 0, root_);
+    //FIXME : actuellement, execution du slot elementChanged nb_QTreeWidgetItem fois
     QObject::connect(signalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
     // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée
     t->expandAll();
@@ -41,7 +43,7 @@ void Controleur::refreshVue(QTreeWidget * t)
 //    std::cout << t->isAnimated() << std::endl;
 }
 
-// TODO: ajouter que lorsuqe le l'on créer les élément on doit passer en paramètre les valeurs déjà renseignées !!!
+// TODO: ajouter que lorsque le l'on créer les élément on doit passer en paramètre les valeurs déjà renseignées !!!
 void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent)
 {
     int taille = parent->getTabComponent_().size();
@@ -57,6 +59,12 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
         }
         component = parent->getTabComponent_()[i];
         element = new Element();
+        if(!component->getName_().empty())
+        {
+            element->setValueName_(QString::fromStdString(component->getName_()));
+            element->setValueDate_(QDateTime::fromTime_t(component->getDate_()).date());
+            element->setValueCheck_(component->getState_());
+        }
         int hash = qHash(element);
         elements_->insert(hash, elementItem);
         asup_.push_back(element);
@@ -289,6 +297,11 @@ void Controleur::toTask(QTreeWidget * t)
     refreshVue(t);
 }
 
+void Controleur::saveFile(QString path) const
+{
+    xmlOp_->saveFile(path.toStdString(), root_);
+}
+
 void Controleur::valueChange(QTreeWidget t)
 {
     // Change les valeurs dans le modèle
@@ -314,7 +327,6 @@ void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDa
     componentToChange->setName_(name.toStdString());
     componentToChange->setDate_(date.toTime_t());
     componentToChange->setState_(state);
-    root_->affichage(std::cout);
 }
 
 QTreeWidgetItem *Controleur::getElement(const int key)

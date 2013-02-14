@@ -4,7 +4,9 @@
 #
 #-------------------------------------------------
 
-$$VAR=basename(PWD)
+#Permet de définir une variable global du projet qui contient
+#le chemin vers ce fichier(utilisée dans le fichier MainWindow.ui
+
 
 QT       += core gui
 
@@ -23,9 +25,9 @@ SOURCES += main.cpp \
 		Model/history.cpp \
 		UI/element.cpp \
 		Lib/pugixml_sources/pugixml.cpp \
-		xmloperation.cpp \
+		Controleur/xmloperation.cpp \
 		Controleur/controleur.cpp \
-    UI/mytreewidget.cpp
+		UI/mytreewidget.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -37,7 +39,7 @@ HEADERS += UI/mainwindow.h \
 		UI/element.h \
 		Lib/pugixml_sources/pugiconfig.hpp \
 		Lib/pugixml_sources/pugixml.hpp \
-		xmloperation.h \
+		Controleur/xmloperation.h \
 		Controleur/controleur.h \
     UI/mytreewidget.h
 
@@ -49,3 +51,5 @@ RESOURCES += \
     Resources.qrc
 
 ICON = Pictures/taskinator.icns
+
+UI_HEADERS_DIR = $$PWD/UIHeaderFile

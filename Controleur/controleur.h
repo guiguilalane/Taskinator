@@ -6,6 +6,7 @@
 #include "../Model/list.h"
 #include "../Model/task.h"
 #include "../UI/element.h"
+#include "xmloperation.h"
 #include <QMainWindow>
 #include <QModelIndex>
 #include <QTreeWidget>
@@ -37,12 +38,16 @@ public:
     void toSortedList(QTreeWidget *t);
     void toTask(QTreeWidget *t);
 
+    void saveFile(QString path) const;
+
 private:
     List * root_;
     QSignalMapper* signalMapper_;
     QMainWindow * mainWindow_;
     QVector<Element*> asup_;
     QHash<int, QTreeWidgetItem*> *elements_;
+
+    XMLOperation* xmlOp_;
 
 };
 

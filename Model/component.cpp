@@ -9,7 +9,8 @@
 #include "list.h"
 
 Component::Component(List *parent) : parent_(parent), state_(false)
-{}
+{
+}
 
 Component::Component(const std::string& name, time_t date): name_(name), date_(date), state_(false)
 {

@@ -486,7 +486,7 @@
   <customwidget>
    <class>MyTreeWidget</class>
    <extends>QTreeWidget</extends>
-   <header>../Taskinator/UI/mytreewidget.h</header>
+   <header>../UI/mytreewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>

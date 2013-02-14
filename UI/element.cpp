@@ -5,6 +5,7 @@ Element::Element(QWidget *parent) : QWidget(parent)
     type_ = new QLabel();
     name_ = new QLineEdit(QString("Nom de l'élément"));
     date_ = new QDateEdit(QDate::currentDate());
+    date_->setDisplayFormat("dd/MM/yyyy");
     supp_ = new QToolButton();
     supp_->setIcon(QIcon("://Pictures/trash_empty.png"));
     check_ = new QCheckBox();
