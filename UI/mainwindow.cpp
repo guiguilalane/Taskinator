@@ -58,8 +58,21 @@ void MainWindow::on_actionOuvrir_triggered()
 void MainWindow::on_actionEnregistrer_sous_triggered()
 {
     QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
-    cont_->saveFile(fichier);
+    cont_->saveFileOn(fichier);
 }
+
+void MainWindow::on_actionEnregistrer_triggered()
+{
+    if(cont_->getFilePath().isEmpty())
+    {
+        on_actionEnregistrer_sous_triggered();
+    }
+    else
+    {
+        cont_->saveFile();
+    }
+}
+
 
 void MainWindow::on_actionQuitter_triggered()
 {
@@ -101,7 +114,8 @@ void MainWindow::elementChanged(int key)
     QTreeWidgetItem* changedItem = cont_->getElement(key);
     Element* changedElement = (Element*) ui->listTree->itemWidget(changedItem, 0);
     QModelIndex changedMIndex = ui->listTree->getIndexFromItem(changedItem);
-    cont_->updateModel(&changedMIndex, changedElement->getValueName_(), QDateTime(changedElement->getValueDate_()), changedElement->getValueCheck_());
+    qDebug() << (changedElement->getValueCheck_() > 0);
+    cont_->updateModel(&changedMIndex, changedElement->getValueName_(), QDateTime(changedElement->getValueDate_()), changedElement->getValueCheck_() > 0);
 }
 
 void MainWindow::toolButtonParam_toList(bool b)

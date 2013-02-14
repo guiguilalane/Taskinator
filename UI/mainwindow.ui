@@ -39,6 +39,9 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QToolButton" name="toolButtonList">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
@@ -272,6 +275,15 @@
                </widget>
               </item>
              </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTreeWidget" name="treeWidget">
+             <column>
+              <property name="text">
+               <string notr="true">1</string>
+              </property>
+             </column>
             </widget>
            </item>
            <item>

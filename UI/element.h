@@ -20,16 +20,18 @@ public:
     void setValueType_(QString t);
     void setValueName_(QString t);
     void setValueDate_(QDate d);
-    void setValueCheck_(bool b);
+    void setValueCheck_(int b);
     QString getValueName_();
     QDate getValueDate_();
-    bool getValueCheck_();
+    int getValueCheck_();
 
 signals:
-    void nameChanged();
+    void elementChanged();
 
 private slots:
-    void onNameChanged();
+    void onNameChange();
+    void onDateChange();
+    void onCheckChange(int state);
 
 private:
     QLabel * type_;

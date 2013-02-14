@@ -11,7 +11,7 @@
 Task::Task()
 {}
 
-Task::Task(const std::string& name, time_t date): Component(name,date)
+Task::Task(const std::string& name, time_t date, bool state): Component(name, date, state)
 {}
 
 Task::~Task()

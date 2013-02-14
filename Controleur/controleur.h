@@ -32,13 +32,15 @@ public:
     void downElement(QTreeWidget * t);
     void valueChange(QTreeWidget t);
     void updateModel(QModelIndex* mIndex, const QString& name, const QDateTime &date, const bool state);
+    QString getFilePath() const;
 
     QTreeWidgetItem* getElement(const int key);
     void toList(QTreeWidget *t);
     void toSortedList(QTreeWidget *t);
     void toTask(QTreeWidget *t);
 
-    void saveFile(QString path) const;
+    void saveFileOn(QString path);
+    void saveFile();
 
 private:
     List * root_;
@@ -48,6 +50,7 @@ private:
     QHash<int, QTreeWidgetItem*> *elements_;
 
     XMLOperation* xmlOp_;
+    QString filePath_;
 
 };
 

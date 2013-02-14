@@ -11,7 +11,7 @@
 SortedList::SortedList()
 {}
 
-SortedList::SortedList(const std::string& name, time_t date) : List(name, date)
+SortedList::SortedList(const std::string& name, time_t date, bool state) : List(name, date, state)
 {}
 
 SortedList::~SortedList()

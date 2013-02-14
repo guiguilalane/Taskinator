@@ -20,7 +20,7 @@ class Task : public Component
 
 public:
 	Task();
-    Task(const std::string& name, time_t date);
+    Task(const std::string& name, time_t date, bool state = false);
 	~Task();
 
     //À faire dans le controleur

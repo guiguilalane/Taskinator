@@ -20,7 +20,7 @@ void XMLOperation::parcoursList(List *c, xml_node& root, int indent)
     int taille = c->getTabComponent_().size();
     Component* current;
     for(int i = 1; i <= taille; ++i)
-    {//FIXME:
+    {
         xml_node component = root.append_child("component");
         current = c->getTabComponent_()[i];
         if(dynamic_cast<SortedList*>(current))

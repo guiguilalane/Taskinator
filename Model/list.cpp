@@ -14,7 +14,7 @@ List::List()
     id_=1;
 }
 
-List::List(const std::string& name, time_t date): Component(name,date)
+List::List(const std::string& name, time_t date, bool state): Component(name,date, state)
 {
     id_=1;
 }

@@ -6,6 +6,7 @@ Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM): mainWindow_(
 {
     elements_ = new QHash<int, QTreeWidgetItem*>();
     xmlOp_ = new XMLOperation();
+    filePath_ = "";
 }
 
 void Controleur::createList()
@@ -35,7 +36,7 @@ void Controleur::refreshVue(QTreeWidget * t)
     elements_->clear();
     asup_.clear();
     parcoursList(t, 0, root_);
-    //FIXME : actuellement, execution du slot elementChanged nb_QTreeWidgetItem fois
+    //FIXME: actuellement, execution du slot elementChanged nb_QTreeWidgetItem fois sur le même objet, même si un seul signal emit
     QObject::connect(signalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
     // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée
     t->expandAll();
@@ -63,12 +64,14 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
         {
             element->setValueName_(QString::fromStdString(component->getName_()));
             element->setValueDate_(QDateTime::fromTime_t(component->getDate_()).date());
+
+            //NOTE: sur une liste dépendra de la valeur des composents fils
             element->setValueCheck_(component->getState_());
         }
         int hash = qHash(element);
         elements_->insert(hash, elementItem);
         asup_.push_back(element);
-        QObject::connect(element, SIGNAL(nameChanged()), signalMapper_, SLOT(map()));
+        QObject::connect(element, SIGNAL(elementChanged()), signalMapper_, SLOT(map()));
         signalMapper_->setMapping(element, hash);
         // Si on trouve une liste ordonnée
         if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){
@@ -246,11 +249,11 @@ void Controleur::toList(QTreeWidget * t)
     }
     Component * comp = lts->getTabComponent_()[m.row()+1];
     if (dynamic_cast<Task *>(comp)){
-        lts->getTabComponent_()[m.row()+1] = new List(comp->getName_(),comp->getDate_());
+        lts->getTabComponent_()[m.row()+1] = new List(comp->getName_(),comp->getDate_(), comp->getState_());
         delete comp;
     }
     else if (dynamic_cast<SortedList *>(comp)){
-        lts->getTabComponent_()[m.row()+1] = new List();
+        lts->getTabComponent_()[m.row()+1] = new List(comp->getName_(),comp->getDate_(), comp->getState_());
         parcoursListModele((SortedList*) comp, (List*) lts->getTabComponent_()[m.row()+1]);
     }
     // Modification de l'IHM
@@ -269,11 +272,11 @@ void Controleur::toSortedList(QTreeWidget * t)
     }
     Component * comp = lts->getTabComponent_()[m.row()+1];
     if (dynamic_cast<Task *>(comp)){
-        lts->getTabComponent_()[m.row()+1] = new SortedList(comp->getName_(),comp->getDate_());
+        lts->getTabComponent_()[m.row()+1] = new SortedList(comp->getName_(),comp->getDate_(), comp->getState_());
         delete comp;
     }
     else if (dynamic_cast<List *>(comp)){
-        lts->getTabComponent_()[m.row()+1] = new SortedList();
+        lts->getTabComponent_()[m.row()+1] = new SortedList(comp->getName_(),comp->getDate_(), comp->getState_());
         parcoursListModele((List*) comp, (SortedList*) lts->getTabComponent_()[m.row()+1]);
     }
     // Modification de l'IHM
@@ -291,15 +294,21 @@ void Controleur::toTask(QTreeWidget * t)
         lts = (List*) lts->getTabComponent_()[(*rit)+1];
     }
     Component * comp = lts->getTabComponent_()[m.row()+1];
-    lts->getTabComponent_()[m.row()+1] = new Task(comp->getName_(),comp->getDate_());
+    lts->getTabComponent_()[m.row()+1] = new Task(comp->getName_(),comp->getDate_(), comp->getState_());
     delete comp;
     // Modification de l'IHM
     refreshVue(t);
 }
 
-void Controleur::saveFile(QString path) const
+void Controleur::saveFileOn(QString path)
 {
+    filePath_ = path;
     xmlOp_->saveFile(path.toStdString(), root_);
+}
+
+void Controleur::saveFile()
+{
+    xmlOp_->saveFile(filePath_.toStdString(), root_);
 }
 
 void Controleur::valueChange(QTreeWidget t)
@@ -327,6 +336,11 @@ void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDa
     componentToChange->setName_(name.toStdString());
     componentToChange->setDate_(date.toTime_t());
     componentToChange->setState_(state);
+}
+
+QString Controleur::getFilePath() const
+{
+    return filePath_;
 }
 
 QTreeWidgetItem *Controleur::getElement(const int key)

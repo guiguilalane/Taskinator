@@ -20,7 +20,7 @@ class List : public Component
 public:
 	
 	List();
-    List(const std::string& name, time_t date);
+    List(const std::string& name, time_t date, bool state = false);
 	~List();
 
     std::map<int, Component*>& getTabComponent_();

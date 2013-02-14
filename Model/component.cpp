@@ -12,7 +12,7 @@ Component::Component(List *parent) : parent_(parent), state_(false)
 {
 }
 
-Component::Component(const std::string& name, time_t date): name_(name), date_(date), state_(false)
+Component::Component(const std::string& name, time_t date, bool state): name_(name), date_(date), state_(state)
 {
     parent_ = 0;
 }
@@ -52,7 +52,7 @@ void Component::setDate_(time_t date)
 
 void Component::setState_(bool state)
 {
-    state_ = state_;
+    state_ = state;
 }
 
 void Component::setParent_(List * p)

@@ -19,16 +19,28 @@ Element::Element(QWidget *parent) : QWidget(parent)
 
     this->setLayout(layout_);
 
-    connect(name_, SIGNAL(editingFinished()), this, SLOT(onNameChanged()));
+    connect(name_, SIGNAL(editingFinished()), this, SLOT(onNameChange()));
+    connect(date_, SIGNAL(editingFinished()), this, SLOT(onDateChange()));
+    connect(check_, SIGNAL(stateChanged(int)), this, SLOT(onCheckChange(int)));
 }
 
 void Element::setValueType_(QString t){
     type_->setText(t);
 }
 
-void Element::onNameChanged()
+void Element::onNameChange()
 {
-    emit nameChanged();
+    emit elementChanged();
+}
+
+void Element::onDateChange()
+{
+    emit elementChanged();
+}
+
+void Element::onCheckChange(int state)
+{
+    emit elementChanged();
 }
 
 void Element::setValueName_(QString t)
@@ -41,7 +53,7 @@ void Element::setValueDate_(QDate d)
     date_->setDate(d);
 }
 
-void Element::setValueCheck_(bool b)
+void Element::setValueCheck_(int b)
 {
     check_->setChecked(b);
 }
@@ -57,7 +69,7 @@ QDate Element::getValueDate_()
     return date_->date();
 }
 
-bool Element::getValueCheck_()
+int Element::getValueCheck_()
 {
     return check_->isChecked();
 }

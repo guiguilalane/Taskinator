@@ -21,7 +21,7 @@ class Component
 public:
 	
     Component(List * parent = 0);
-    Component(const std::string& name, time_t date);
+    Component(const std::string& name, time_t date, bool state = false);
     virtual ~Component()=0;
 
     // Ajouter getters et setters

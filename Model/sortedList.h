@@ -19,7 +19,7 @@ class SortedList : public List
 public:
 	
 	SortedList();
-    SortedList(const std::string& name, time_t date);
+    SortedList(const std::string& name, time_t date, bool state = false);
 	~SortedList();
 
     virtual void setParent_(List * p);
