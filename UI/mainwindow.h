@@ -64,6 +64,8 @@ private slots:
 
     void on_lineEdit_editingFinished();
 
+    void on_dateEdit_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;

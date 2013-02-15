@@ -272,7 +272,11 @@
                <widget class="QLineEdit" name="lineEdit"/>
               </item>
               <item>
-               <widget class="QDateEdit" name="dateEdit"/>
+               <widget class="QDateEdit" name="dateEdit">
+                <property name="displayFormat">
+                 <string>dd/MM/yyyy</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QWidget" name="widget" native="true">

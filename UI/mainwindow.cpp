@@ -276,3 +276,8 @@ void MainWindow::on_lineEdit_editingFinished()
 {
     cont_->getRoot_()->setName_(ui->lineEdit->text().toStdString());
 }
+
+void MainWindow::on_dateEdit_editingFinished()
+{
+    cont_->getRoot_()->setDate_(ui->dateEdit->dateTime().toTime_t());
+}
