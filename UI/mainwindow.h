@@ -6,6 +6,7 @@
 #include <QTreeWidgetItem>
 #include <QSignalMapper>
 #include <QMessageBox>
+#include <QDateTime>
 
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"
@@ -23,7 +24,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    
+
 private slots:
     void on_actionNouveau_triggered();
 
@@ -58,6 +59,8 @@ private slots:
     void on_actionAbout_triggered();
 
     void on_tabWidget_currentChanged(int index);
+
+    void createList(bool liste, QString name, QDateTime date);
 
 private:
     Ui::MainWindow *ui;

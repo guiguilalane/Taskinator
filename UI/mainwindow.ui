@@ -285,14 +285,14 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton">
+                  <widget class="QRadioButton" name="radioButton_Y">
                    <property name="text">
                     <string>Oui</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_2">
+                  <widget class="QRadioButton" name="radioButton_N">
                    <property name="text">
                     <string>Non</string>
                    </property>

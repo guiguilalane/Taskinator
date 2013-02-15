@@ -44,7 +44,6 @@ QString ElementApercu::getValueName_()
 
 QDate ElementApercu::getValueDate_()
 {
-    // TODO : est-ce que ca devrait pas retourner un time_t ?
     return QDate::fromString(date_->text());
 }
 

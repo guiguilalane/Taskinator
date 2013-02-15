@@ -8,14 +8,14 @@ Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM): mainWindow_(
     xmlOp_ = new XMLOperation();
 }
 
-void Controleur::createList()
+void Controleur::createList(const std::string& name, time_t date)
 {
-    root_ = new List();
+    root_ = new List(name, date);
 }
 
-void Controleur::createSortedList()
+void Controleur::createSortedList(const std::string& name, time_t date)
 {
-    root_ = new SortedList();
+    root_ = new SortedList(name, date);
 }
 
 std::vector<int> Controleur::calculateArborescence(QModelIndex m)
@@ -182,11 +182,11 @@ void Controleur::addTask(QTreeWidget * t)
     lts->addComponent(new Task());
     // Ajout à l'IHM
     refreshVue(t);
-    //    QTreeWidgetItem * w = t->topLevelItem(m.row());
-    //    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-    //        w = w->child((*rit));
-    //    }
-    //    w->setSelected(true);
+//    QTreeWidgetItem * w = t->topLevelItem(m.row());
+//    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
+//        w = w->child((*rit));
+//    }
+//    w->setSelected(true);
 }
 
 void Controleur::removeElement(QTreeWidget * t)

@@ -19,8 +19,8 @@ class Controleur
 {
 public:
     Controleur(QMainWindow *mainW, QSignalMapper *signalM);
-    void createList();
-    void createSortedList();
+    void createList(const std::string &name, time_t date);
+    void createSortedList(const std::string &name, time_t date);
     std::vector<int> calculateArborescence(QModelIndex m);
     void addList(QTreeWidget *t);
     void addSortedList(QTreeWidget * t);
