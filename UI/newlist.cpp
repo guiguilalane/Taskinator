@@ -13,3 +13,13 @@ NewList::~NewList()
 {
     delete ui;
 }
+
+void NewList::on_buttonBox_rejected()
+{
+    this->close();
+}
+
+void NewList::on_buttonBox_accepted()
+{
+    emit createList(ui->radioButtonNo->isChecked(), ui->lineEditName->text(), ui->dateEdit->dateTime());
+}

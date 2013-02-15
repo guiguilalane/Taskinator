@@ -27,7 +27,8 @@ SOURCES += main.cpp \
 		Lib/pugixml_sources/pugixml.cpp \
 		Controleur/xmloperation.cpp \
 		Controleur/controleur.cpp \
-		UI/mytreewidget.cpp
+		UI/mytreewidget.cpp \
+    UI/elementapercu.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -41,7 +42,8 @@ HEADERS += UI/mainwindow.h \
 		Lib/pugixml_sources/pugixml.hpp \
 		Controleur/xmloperation.h \
 		Controleur/controleur.h \
-    UI/mytreewidget.h
+    UI/mytreewidget.h \
+    UI/elementapercu.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui \
@@ -52,7 +54,7 @@ RESOURCES += \
 
 ICON = Pictures/taskinator.icns
 
-UI_HEADERS_DIR = $$PWD/UIHeaderFile
+#UI_HEADERS_DIR = $$PWD/UIHeaderFile
 UI_DIR = $$PWD/UIHeaderFile
-message($$UI_HEADERS_DIR)
+#message($$UI_HEADERS_DIR)
 message($$UI_DIR)

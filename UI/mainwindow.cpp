@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     cont_ = new Controleur(this, signalMapper_);
     // TODO A supprimer
-    cont_->createList();
+//    cont_->createList();
     ui->setupUi(this);
     QLabel * vide = new QLabel("Sélectionner la ligne et créer une liste ou tâche");
     QTreeWidgetItem* videItem = new QTreeWidgetItem(ui->listTree);
@@ -46,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButtonUp->setEnabled(false);
     ui->toolButtonDown->setEnabled(false);
     ui->toolButtonTrash->setEnabled(false);
+
 }
 
 MainWindow::~MainWindow()
@@ -57,6 +58,7 @@ void MainWindow::on_actionNouveau_triggered()
 {
     newList_ = new NewList();
     newList_->show();
+    QObject::connect(newList_,SIGNAL(createList(bool, QString, QDateTime)),this,SLOT(createList(bool, QString, QDateTime)));
 }
 
 void MainWindow::on_actionOuvrir_triggered()
@@ -244,4 +246,54 @@ void MainWindow::on_listTree_itemSelectionChanged()
 void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::about(this,"About Taskinator",tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER"));
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    if (index == 1){
+        // Désactivation des boutons
+        ui->toolButtonList->setEnabled(false);
+        ui->toolButtonListOrdered->setEnabled(false);
+        ui->toolButtonTask->setEnabled(false);
+        ui->toolButtonParam->setEnabled(false);
+        ui->toolButtonUp->setEnabled(false);
+        ui->toolButtonDown->setEnabled(false);
+        ui->toolButtonTrash->setEnabled(false);
+        cont_->createVueApercu(ui->listTreeAp);
+        ui->nameLAp->setText(QString(cont_->getRoot_()->getName_().c_str()));
+        ui->dateAp->setText(QDateTime::fromTime_t(cont_->getRoot_()->getDate_()).toString("dd/MM/yyyy"));
+        if (cont_->rootIsSortedList()){
+            ui->listSorted->setText("Oui");
+        }
+        else {
+            ui->listSorted->setText("Non");
+        }
+    }
+    else if (index == 0){
+        ui->listTree->onItemSelectionChanged();
+    }
+}
+
+void MainWindow::createList(bool liste, QString name, QDateTime date)
+{
+    if (liste){
+        cont_->createList(name.toStdString(), date.toTime_t());
+        ui->radioButton_N->setChecked(true);
+    }
+    else {
+        cont_->createSortedList(name.toStdString(), date.toTime_t());
+        ui->radioButton_Y->setChecked(true);
+    }
+    ui->lineEdit->setText(name);
+    ui->dateEdit->setDate(date.date());
+}
+
+void MainWindow::on_lineEdit_editingFinished()
+{
+    cont_->getRoot_()->setName_(ui->lineEdit->text().toStdString());
+}
+
+void MainWindow::on_dateEdit_editingFinished()
+{
+    cont_->getRoot_()->setDate_(ui->dateEdit->dateTime().toTime_t());
 }

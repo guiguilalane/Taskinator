@@ -14,6 +14,8 @@ public:
     
     void onActivatedItem(QTreeWidgetItem* item, int column = 0);
 
+    void onItemSelectionChanged();
+
 signals:
     
 public slots:

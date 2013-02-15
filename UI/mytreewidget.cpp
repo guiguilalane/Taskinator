@@ -14,3 +14,8 @@ void MyTreeWidget::onActivatedItem(QTreeWidgetItem *item, int column)
 {
     emit itemActivated(item, column);
 }
+
+void MyTreeWidget::onItemSelectionChanged()
+{
+    emit itemSelectionChanged();
+}

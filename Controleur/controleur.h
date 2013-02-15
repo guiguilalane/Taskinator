@@ -7,6 +7,7 @@
 #include "../Model/task.h"
 #include "../UI/element.h"
 #include "../UI/mytreewidget.h"
+#include "../UI/elementapercu.h"
 #include "xmloperation.h"
 #include <QMainWindow>
 #include <QModelIndex>
@@ -19,8 +20,8 @@ class Controleur
 {
 public:
     Controleur(QMainWindow *mainW, QSignalMapper *signalM);
-    void createList();
-    void createSortedList();
+    void createList(const std::string &name, time_t date);
+    void createSortedList(const std::string &name, time_t date);
     std::vector<int> calculateArborescence(QModelIndex m);
     void addList(QTreeWidget *t);
     void addSortedList(QTreeWidget * t);
@@ -35,6 +36,10 @@ public:
     QString getFilePath() const;
     void is(QTreeWidget *t, std::string &type, int &nb);
     bool isListOrSortedList(QTreeWidget * t);
+    void parcoursListApercu(QTreeWidget * t, QTreeWidgetItem * p, List* parent);
+    void createVueApercu(QTreeWidget * t);
+    bool rootIsSortedList();
+
 
     QTreeWidgetItem* getElement(const int key);
     void toList(QTreeWidget *t);
@@ -43,6 +48,7 @@ public:
 
     void saveFileOn(QString path);
     void saveFile();
+    List * getRoot_();
 
 private:
     List * root_;
