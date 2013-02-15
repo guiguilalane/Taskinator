@@ -32,16 +32,14 @@ std::vector<int> Controleur::calculateArborescence(QModelIndex m)
 
 void Controleur::refreshVue(QTreeWidget * t)
 {
+    t->setAnimated(false);
     t->clear();
     elements_->clear();
     asup_.clear();
     parcoursList(t, 0, root_);
     //FIXME: actuellement, execution du slot elementChanged nb_QTreeWidgetItem fois sur le même objet, même si un seul signal emit
     QObject::connect(signalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
-    // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée
-    t->expandAll();
-    t->setAnimated(true);
-    //    std::cout << t->isAnimated() << std::endl;
+    // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée et éviter de mettre des expandAll() dans toutes les fonctionnalitées qui utilise la méthode refreshView()
 }
 
 // TODO: ajouter que lorsque le l'on créer les élément on doit passer en paramètre les valeurs déjà renseignées !!!
@@ -145,8 +143,10 @@ void Controleur::addList(QTreeWidget * t)
     lts->addComponent(new List());
     // Ajout à l'IHM
     refreshVue(t);
-    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::addSortedList(QTreeWidget * t)
@@ -162,8 +162,10 @@ void Controleur::addSortedList(QTreeWidget * t)
     lts->addComponent(new SortedList());
     // Ajout à l'IHM
     refreshVue(t);
-    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::addTask(QTreeWidget * t)
@@ -179,8 +181,10 @@ void Controleur::addTask(QTreeWidget * t)
     lts->addComponent(new Task());
     // Ajout à l'IHM
     refreshVue(t);
-    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::removeElement(QTreeWidget * t)
@@ -196,6 +200,10 @@ void Controleur::removeElement(QTreeWidget * t)
     lts->removeComponent(m.row()+1);
     // Suppression de l'IHM
     refreshVue(t);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
+    t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::upElement(QTreeWidget * t)
@@ -211,8 +219,10 @@ void Controleur::upElement(QTreeWidget * t)
     lts->getTabComponent_()[m.row()+1]->upComponent();
     // Modification de l'IHM
     refreshVue(t);
-    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(t->itemAbove(w), 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::downElement(QTreeWidget * t)
@@ -228,8 +238,10 @@ void Controleur::downElement(QTreeWidget * t)
     lts->getTabComponent_()[m.row()+1]->downComponent();
     // Modification de l'IHM
     refreshVue(t);
-    QTreeWidgetItem* w = getCurrentItem(t, rit, arbre, m);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(t->itemBelow(w), 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::toList(QTreeWidget * t)
@@ -253,6 +265,10 @@ void Controleur::toList(QTreeWidget * t)
     }
     // Modification de l'IHM
     refreshVue(t);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
+    t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::toSortedList(QTreeWidget * t)
@@ -276,6 +292,10 @@ void Controleur::toSortedList(QTreeWidget * t)
     }
     // Modification de l'IHM
     refreshVue(t);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
+    t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::toTask(QTreeWidget * t)
@@ -293,6 +313,10 @@ void Controleur::toTask(QTreeWidget * t)
     delete comp;
     // Modification de l'IHM
     refreshVue(t);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
+    t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
 }
 
 void Controleur::saveFileOn(QString path)
@@ -325,11 +349,27 @@ QString Controleur::getFilePath() const
     return filePath_;
 }
 
-QTreeWidgetItem* Controleur::getCurrentItem(QTreeWidget *t, std::vector<int>::reverse_iterator &rit, std::vector<int> &arbre, QModelIndex m)
+QTreeWidgetItem* Controleur::getCurrentItem(QTreeWidget *t, std::vector<int> &arbre, QModelIndex m)
 {
-    QTreeWidgetItem * w = t->topLevelItem(m.row());
-    for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-        w = w->child((*rit));
+    std::vector<int>::reverse_iterator rit;
+    QTreeWidgetItem * w;
+    if(!arbre.empty())
+    {
+        rit = arbre.rbegin();
+        //FIXME: voir pour le cas de premiere création de composant
+        w = t->topLevelItem(*rit);
+        ++rit;
+        for (rit; rit != arbre.rend(); ++rit){
+            w = w->child((*rit));
+        }
+        w = w->child(m.row());
+    }
+    else
+    {
+        w = t->topLevelItem(m.row());
+        for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
+            w = w->child((*rit));
+        }
     }
     return w;
 }

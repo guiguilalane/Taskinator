@@ -54,7 +54,7 @@ private:
     XMLOperation* xmlOp_;
     QString filePath_;
 
-    QTreeWidgetItem* getCurrentItem(QTreeWidget* t, std::vector<int>::reverse_iterator &rit, std::vector<int> &arbre, QModelIndex m);
+    QTreeWidgetItem* getCurrentItem(QTreeWidget* t, std::vector<int> &arbre, QModelIndex m);
 
 };
 

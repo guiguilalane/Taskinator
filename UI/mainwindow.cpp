@@ -91,28 +91,28 @@ void MainWindow::on_actionQuitter_triggered()
 
 void MainWindow::on_toolButtonList_clicked()
 {
-    ui->listTree->blockSignals(true);
+//    ui->listTree->blockSignals(true);
     cont_->addList(ui->listTree);
-    ui->listTree->blockSignals(false);
+//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonListOrdered_clicked()
 {
-    ui->listTree->blockSignals(true);
+//    ui->listTree->blockSignals(true);
     cont_->addSortedList(ui->listTree);
-    ui->listTree->blockSignals(false);
+//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonTask_clicked()
 {
-    ui->listTree->blockSignals(true);
+//    ui->listTree->blockSignals(true);
     cont_->addTask(ui->listTree);
-    ui->listTree->blockSignals(false);
+//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonTrash_clicked()
 {
-    ui->listTree->blockSignals(true);
+//    ui->listTree->blockSignals(true);
     if (cont_->isListOrSortedList(ui->listTree))
     {
         int r = QMessageBox::warning(this, "Suppression", tr(" <center> Attention </center> <br/>" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
@@ -120,25 +120,30 @@ void MainWindow::on_toolButtonTrash_clicked()
             cont_->removeElement(ui->listTree);
         }
     }
-    ui->listTree->blockSignals(false);
+    else
+    {
+        cont_->removeElement(ui->listTree);
+    }
+//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonUp_clicked()
 {
-    ui->listTree->blockSignals(true);
+//    ui->listTree->blockSignals(true);
     cont_->upElement(ui->listTree);
-    ui->listTree->blockSignals(false);
+//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonDown_clicked()
 {
-    ui->listTree->blockSignals(true);
+//    ui->listTree->blockSignals(true);
     cont_->downElement(ui->listTree);
-    ui->listTree->blockSignals(false);
+//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::elementChanged(int key)
 {
+    //FIXME: forcer l'actualisation des champs d'un item(s'ils sont en édition) lors de l'utilisation d'un bouton de la barre d'outils
     QTreeWidgetItem* changedItem = cont_->getElement(key);
     Element* changedElement = (Element*) ui->listTree->itemWidget(changedItem, 0);
     QModelIndex changedMIndex = ui->listTree->getIndexFromItem(changedItem);
