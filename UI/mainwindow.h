@@ -62,6 +62,8 @@ private slots:
 
     void createList(bool liste, QString name, QDateTime date);
 
+    void on_lineEdit_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;

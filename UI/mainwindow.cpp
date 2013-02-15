@@ -272,3 +272,7 @@ void MainWindow::createList(bool liste, QString name, QDateTime date)
     ui->dateEdit->setDate(date.date());
 }
 
+void MainWindow::on_lineEdit_editingFinished()
+{
+    cont_->getRoot_()->setName_(ui->lineEdit->text().toStdString());
+}
