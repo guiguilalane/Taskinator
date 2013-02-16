@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    boutonAnnulerActif_ = true;
     ui->setupUi(this);
     settings_ = new QSettings("kiwiCorporation", "Taskinator");
 
@@ -51,8 +52,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // On actionne la fenêtre nouveau si aucun fichier n'est enregistrer ou s'il n'existe plus
     QFile * f = new QFile(settings_->value("lastFile").toString());
     if(!f->exists()){
+        boutonAnnulerActif_ = false;
         ui->actionNouveau->triggered();
-        // TODO Ajouter le grisage du bouton
     }
     // Sinon ajouter le chargement automatique du fichier
     // TODO ajouter le chargement automatique du fichier
@@ -65,7 +66,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNouveau_triggered()
 {
-    newList_ = new NewList();
+    std::cout << "actif" << boutonAnnulerActif_ << std::endl;
+    newList_ = new NewList(boutonAnnulerActif_);
     newList_->show();
     QObject::connect(newList_,SIGNAL(createList(bool, QString, QDateTime)),this,SLOT(createList(bool, QString, QDateTime)));
 }

@@ -1,11 +1,16 @@
 #include "newlist.h"
 #include "ui_newlist.h"
 
-NewList::NewList(QWidget *parent) :
+NewList::NewList(bool boutonAnnulerActif, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NewList)
 {
     ui->setupUi(this);
+    if (!boutonAnnulerActif)
+    {
+        QPushButton * cancelButton = ui->buttonBox->button(QDialogButtonBox::Cancel);
+        cancelButton->setEnabled(false);
+    }
     ui->dateEdit->setDate(QDate::currentDate());
 }
 

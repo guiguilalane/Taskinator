@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QDialog>
 #include <QDateTime>
+#include <QPushButton>
 
 namespace Ui {
 class NewList;
@@ -14,7 +15,7 @@ class NewList : public QDialog
     Q_OBJECT
     
 public:
-    explicit NewList(QWidget *parent = 0);
+    explicit NewList(bool boutonAnnulerActif, QWidget *parent = 0);
     ~NewList();
 
 signals:
