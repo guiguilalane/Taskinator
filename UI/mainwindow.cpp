@@ -66,10 +66,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNouveau_triggered()
 {
-    std::cout << "actif" << boutonAnnulerActif_ << std::endl;
     newList_ = new NewList(boutonAnnulerActif_);
     newList_->show();
     QObject::connect(newList_,SIGNAL(createList(bool, QString, QDateTime)),this,SLOT(createList(bool, QString, QDateTime)));
+    boutonAnnulerActif_ = true;
 }
 
 void MainWindow::on_actionOuvrir_triggered()
