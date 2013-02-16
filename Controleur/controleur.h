@@ -16,6 +16,8 @@
 #include <QHash>
 #include <vector>
 
+
+//TODO: remplacer les création de composant par un appel à la factory
 class Controleur
 {
 public:
@@ -50,6 +52,8 @@ public:
 
     void saveFileOn(QString path);
     void saveFile();
+
+    void openFile(QString path);
     List * getRoot_();
 
 private:

@@ -322,6 +322,12 @@ void Controleur::saveFile()
     xmlOp_->saveFile(filePath_.toStdString(), root_);
 }
 
+void Controleur::openFile(QString path)
+{
+    filePath_ = path;
+    xmlOp_->readFile(path.toStdString());
+}
+
 List *Controleur::getRoot_()
 {
     return root_;

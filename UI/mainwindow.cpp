@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // On actionne la fenêtre nouveau si aucun fichier n'est enregistrer ou s'il n'existe plus
     QFile * f = new QFile(settings_->value("lastFile").toString());
     if(!f->exists()){
-        ui->actionNouveau->triggered();
+        ui->actionNouveau->trigger();
         // TODO Ajouter le grisage du bouton
     }
     // Sinon ajouter le chargement automatique du fichier
@@ -72,8 +72,8 @@ void MainWindow::on_actionNouveau_triggered()
 
 void MainWindow::on_actionOuvrir_triggered()
 {
-    QFileDialog * filediag = new QFileDialog();
-    filediag->getOpenFileNames();
+    QString file = QFileDialog::getOpenFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
+    cont_->openFile(file);
 }
 
 void MainWindow::on_actionEnregistrer_sous_triggered()

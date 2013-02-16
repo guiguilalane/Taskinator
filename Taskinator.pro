@@ -28,7 +28,8 @@ SOURCES += main.cpp \
 		Controleur/xmloperation.cpp \
 		Controleur/controleur.cpp \
 		UI/mytreewidget.cpp \
-    UI/elementapercu.cpp
+    UI/elementapercu.cpp \
+    Controleur/componentfactory.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -43,7 +44,8 @@ HEADERS += UI/mainwindow.h \
 		Controleur/xmloperation.h \
 		Controleur/controleur.h \
     UI/mytreewidget.h \
-    UI/elementapercu.h
+    UI/elementapercu.h \
+    Controleur/componentfactory.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui \

@@ -20,6 +20,7 @@ void XMLOperation::readFile(const std::string &file)
     xml_document doc;
     xml_parse_result result = doc.load_file(file.c_str());
     std::cout << result.description() << std::endl;
+
 }
 
 //TODO: enlever le paramètre 'indent' qui ne sert que pour l'affichage
