@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    boutonAnnulerActif_ = true;
     ui->setupUi(this);
     settings_ = new QSettings("kiwiCorporation", "Taskinator");
 
@@ -53,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
     if(!f->exists()){
         ui->actionNouveau->trigger();
         // TODO Ajouter le grisage du bouton
+        boutonAnnulerActif_ = false;
     }
     // Sinon ajouter le chargement automatique du fichier
     // TODO ajouter le chargement automatique du fichier
@@ -65,9 +67,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNouveau_triggered()
 {
-    newList_ = new NewList();
+    newList_ = new NewList(boutonAnnulerActif_);
     newList_->show();
     QObject::connect(newList_,SIGNAL(createList(bool, QString, QDateTime)),this,SLOT(createList(bool, QString, QDateTime)));
+    boutonAnnulerActif_ = true;
 }
 
 void MainWindow::on_actionOuvrir_triggered()

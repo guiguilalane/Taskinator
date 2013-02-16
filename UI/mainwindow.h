@@ -84,6 +84,8 @@ private:
     QAction * listeO_;
     QAction * tache_;
     QSettings * settings_;
+
+    bool boutonAnnulerActif_;
 };
 
 #endif // MAINWINDOW_H
