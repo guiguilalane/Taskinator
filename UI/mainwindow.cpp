@@ -51,8 +51,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // On actionne la fenêtre nouveau si aucun fichier n'est enregistrer ou s'il n'existe plus
     QFile * f = new QFile(settings_->value("lastFile").toString());
     if(!f->exists()){
-        emit ui->actionNouveau->triggered();
-        std::cout << "rien" << std::endl;
+        ui->actionNouveau->triggered();
+        // TODO Ajouter le grisage du bouton
     }
     // Sinon ajouter le chargement automatique du fichier
     // TODO ajouter le chargement automatique du fichier
