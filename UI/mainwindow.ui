@@ -517,7 +517,10 @@
      <normaloff>:/Pictures/filesave.png</normaloff>:/Pictures/filesave.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Enregistrer</string>
+    <string>Enregistrer</string>
+   </property>
+   <property name="shortcut">
+    <string>Meta+S</string>
    </property>
   </action>
   <action name="actionEnregistrer_sous">
