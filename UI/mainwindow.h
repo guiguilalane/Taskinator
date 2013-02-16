@@ -7,6 +7,7 @@
 #include <QSignalMapper>
 #include <QMessageBox>
 #include <QDateTime>
+#include <QSettings>
 
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"
@@ -82,6 +83,7 @@ private:
     QAction * liste_;
     QAction * listeO_;
     QAction * tache_;
+    QSettings * settings_;
 };
 
 #endif // MAINWINDOW_H

@@ -9,15 +9,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    ui->setupUi(this);
+    settings_ = new QSettings("kiwiCorporation", "Taskinator");
 
     //in developpement
     signalMapper_ = new QSignalMapper(this);
     //end in developpement
 
     cont_ = new Controleur(this, signalMapper_);
-    // TODO A supprimer
-//    cont_->createList();
-    ui->setupUi(this);
+
+    // Ajout de la première ligne vide dans la vue
     QLabel * vide = new QLabel("Sélectionner la ligne et créer une liste ou tâche");
     QTreeWidgetItem* videItem = new QTreeWidgetItem(ui->listTree);
     ui->listTree->setItemWidget(videItem,0,vide);
@@ -47,6 +48,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButtonDown->setEnabled(false);
     ui->toolButtonTrash->setEnabled(false);
 
+    // On actionne la fenêtre nouveau si aucun fichier n'est enregistrer ou s'il n'existe plus
+    QFile * f = new QFile(settings_->value("lastFile").toString());
+    if(!f->exists()){
+        emit ui->actionNouveau->triggered();
+        std::cout << "rien" << std::endl;
+    }
+    // Sinon ajouter le chargement automatique du fichier
+    // TODO ajouter le chargement automatique du fichier
 }
 
 MainWindow::~MainWindow()
@@ -71,6 +80,8 @@ void MainWindow::on_actionEnregistrer_sous_triggered()
 {
     QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
     cont_->saveFileOn(fichier);
+    std::cout << fichier.toStdString() << std::endl;
+    settings_->setValue("lastFile",fichier);
 }
 
 void MainWindow::on_actionEnregistrer_triggered()
