@@ -303,7 +303,6 @@ void MainWindow::on_radioButton_Y_toggled(bool checked)
 {
     if (checked){
         cont_->listToSortedList(ui->listTree);
-        std::cout << "liste ordonnée" << std::endl;
     }
 }
 
@@ -311,6 +310,5 @@ void MainWindow::on_radioButton_N_toggled(bool checked)
 {
     if (checked){
         cont_->sortedListToList(ui->listTree);
-        std::cout << "liste non ordonnée" << std::endl;
     }
 }
