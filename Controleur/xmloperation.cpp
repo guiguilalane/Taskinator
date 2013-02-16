@@ -15,6 +15,14 @@ void XMLOperation::saveFile(const std::string &file, Component *root)
     doc.save_file(file.c_str());
 }
 
+void XMLOperation::readFile(const std::string &file)
+{
+    xml_document doc;
+    xml_parse_result result = doc.load_file(file.c_str());
+    std::cout << result.description() << std::endl;
+}
+
+//TODO: enlever le paramètre 'indent' qui ne sert que pour l'affichage
 void XMLOperation::parcoursList(List *c, xml_node& root, int indent)
 {
     int taille = c->getTabComponent_().size();
