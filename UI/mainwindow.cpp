@@ -114,7 +114,7 @@ void MainWindow::on_toolButtonTask_clicked()
 
 void MainWindow::on_toolButtonTrash_clicked()
 {
-//    ui->listTree->blockSignals(true);
+    ui->listTree->blockSignals(true);
     if (cont_->isListOrSortedList(ui->listTree))
     {
         int r = QMessageBox::warning(this, "Suppression", tr(" <center> Attention </center> <br/>" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
@@ -126,7 +126,8 @@ void MainWindow::on_toolButtonTrash_clicked()
     {
         cont_->removeElement(ui->listTree);
     }
-//    ui->listTree->blockSignals(false);
+    ui->listTree->blockSignals(false);
+    ui->listTree->onItemSelectionChanged();
 }
 
 void MainWindow::on_toolButtonUp_clicked()
