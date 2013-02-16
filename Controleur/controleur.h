@@ -39,6 +39,8 @@ public:
     void parcoursListApercu(QTreeWidget * t, QTreeWidgetItem * p, List* parent);
     void createVueApercu(QTreeWidget * t);
     bool rootIsSortedList();
+    void sortedListToList(QTreeWidget * t);
+    void listToSortedList(QTreeWidget * t);
 
 
     QTreeWidgetItem* getElement(const int key);

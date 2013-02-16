@@ -118,15 +118,7 @@ void Controleur::parcoursListModele(List * parent, List * nouvelle)
 {
     int taille = parent->getTabComponent_().size();
     for (int i = 1; i <= taille; ++i){
-        if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){
-            parcoursListModele((SortedList*) parent->getTabComponent_()[i], nouvelle);
-        }
-        else if(dynamic_cast<List *>(parent->getTabComponent_()[i])) {
-            parcoursListModele((List*) parent->getTabComponent_()[i], nouvelle);
-        }
-        else {
             nouvelle->addComponent(parent->getTabComponent_()[i]);
-        }
     }
 }
 
@@ -502,4 +494,46 @@ bool Controleur::rootIsSortedList()
         res = true;
     }
     return res;
+}
+
+void Controleur::sortedListToList(QTreeWidget *t)
+{
+    QModelIndex m = t->currentIndex();
+    std::vector<int> arbre = calculateArborescence(m);
+    std::vector<int>::reverse_iterator rit;
+    List * lts = root_;
+    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
+        lts = (List*) lts->getTabComponent_()[(*rit)+1];
+    }
+    // Modification dans le modèle
+    List * comp = root_;
+    root_ = new List(comp->getName_(),comp->getDate_(), comp->getState_());
+    parcoursListModele((SortedList*) comp, (List*) root_);
+    // Modification IHM
+    refreshVue(t);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
+    t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
+}
+
+void Controleur::listToSortedList(QTreeWidget *t)
+{
+    QModelIndex m = t->currentIndex();
+    std::vector<int> arbre = calculateArborescence(m);
+    std::vector<int>::reverse_iterator rit;
+    List * lts = root_;
+    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
+        lts = (List*) lts->getTabComponent_()[(*rit)+1];
+    }
+    // Modification dans le modèle
+    List * comp = root_;
+    root_ = new SortedList(comp->getName_(),comp->getDate_(), comp->getState_());
+    parcoursListModele(comp, (SortedList*) root_);
+    // Modification IHM
+    refreshVue(t);
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
+    t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
 }

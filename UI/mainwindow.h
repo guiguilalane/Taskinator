@@ -68,6 +68,10 @@ private slots:
 
     void on_dateEdit_editingFinished();
 
+    void on_radioButton_Y_toggled(bool checked);
+
+    void on_radioButton_N_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;
