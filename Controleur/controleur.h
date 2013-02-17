@@ -58,6 +58,7 @@ public:
 
     void openFile(QString path);
     List * getRoot_();
+    bool getFileModified_();
 
     void saveTemplate(QString nameFile);
 private:
@@ -69,6 +70,7 @@ private:
 
     XMLOperation* xmlOp_;
     QString filePath_;
+    bool fileModified_;
 
     QTreeWidgetItem* getCurrentItem(QTreeWidget* t, std::vector<int> &arbre, QModelIndex m);
 
