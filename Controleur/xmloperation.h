@@ -13,7 +13,7 @@ class XMLOperation
 public:
     XMLOperation();
 
-    void newFileFromTemplate(const std::string& file, const std::string& rootName);
+    List *newFileFromTemplate(const std::string& file);
     void createTemplate(const std::string& file, Component *root);
     void saveFile(const std::string& file, Component* root);
     List *readFile(const std::string& file);

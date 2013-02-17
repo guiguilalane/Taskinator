@@ -15,17 +15,19 @@ class NewList : public QDialog
     Q_OBJECT
     
 public:
-    explicit NewList(bool boutonAnnulerActif, QWidget *parent = 0);
+    explicit NewList(bool boutonAnnulerActif, QStringList templates, QWidget *parent = 0);
     ~NewList();
 
 signals:
 
-    void createList(bool liste, QString name, QDateTime date);
+    void createList(QString templatePath, bool liste, QString name, QDateTime date);
     
 private slots:
     void on_buttonBox_rejected();
 
     void on_buttonBox_accepted();
+
+    void on_comboBox_currentIndexChanged(int index);
 
 private:
     Ui::NewList *ui;

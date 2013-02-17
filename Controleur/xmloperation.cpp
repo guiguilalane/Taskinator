@@ -80,6 +80,30 @@ List* XMLOperation::readFile(const std::string &file)
     return root;
 }
 
+List* XMLOperation::newFileFromTemplate(const std::string &file)
+{
+    xml_document doc;
+    doc.load_file(file.c_str());
+    xml_node rootElement = doc.child("template");
+    std::string type(rootElement.attribute("type").as_string());
+    List* root = NULL;
+    if(type.compare("sortedList")==0)
+    {
+        root = ComponentFactory::getInstance()->createSortedList(std::string(rootElement.attribute("name").as_string()), QDateTime::fromString(QString(rootElement.attribute("date").as_string()), "dd/MM/yyyy").toTime_t());
+    }
+    else if(type.compare("list")==0)
+    {
+        root = ComponentFactory::getInstance()->createList(std::string(rootElement.attribute("name").as_string()), QDateTime::fromString(QString(rootElement.attribute("date").as_string()), "dd/MM/yyyy").toTime_t());
+    }
+    else
+    {
+        //lever une exception(n'est possible que si l'utilisateur change la valeur de l'attribut 'type' de la balise 'tasklist'
+        //NOTE: le mieux serait de cryper les données pour que l'utilisateur ne puisse pas les modifier à la main
+    }
+    parcoursFile(root, rootElement);
+    return root;
+}
+
 void XMLOperation::parcoursList(List *c, xml_node& root, const bool isTemplate)
 {
     int taille = c->getTabComponent_().size();

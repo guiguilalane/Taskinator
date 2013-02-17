@@ -1,7 +1,7 @@
 #include "newlist.h"
 #include "ui_newlist.h"
 
-NewList::NewList(bool boutonAnnulerActif, QWidget *parent) :
+NewList::NewList(bool boutonAnnulerActif, QStringList templates, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NewList)
 {
@@ -12,6 +12,8 @@ NewList::NewList(bool boutonAnnulerActif, QWidget *parent) :
         cancelButton->setEnabled(false);
     }
     ui->dateEdit->setDate(QDate::currentDate());
+    templates = QStringList() << tr("aucun") << templates;
+    ui->comboBox->addItems(templates);
 }
 
 NewList::~NewList()
@@ -26,5 +28,18 @@ void NewList::on_buttonBox_rejected()
 
 void NewList::on_buttonBox_accepted()
 {
-    emit createList(ui->radioButtonNo->isChecked(), ui->lineEditName->text(), ui->dateEdit->dateTime());
+    QString path = "";
+    if(ui->comboBox->currentIndex() > 0)
+    {
+        path = ui->comboBox->currentText();
+    }
+    emit createList(path, ui->radioButtonNo->isChecked(), ui->lineEditName->text(), ui->dateEdit->dateTime());
+}
+
+void NewList::on_comboBox_currentIndexChanged(int index)
+{
+    bool b = (index==0);
+    ui->ordered->setEnabled(b);
+    ui->radioButtonNo->setEnabled(b);
+    ui->radioButtonYes->setEnabled(b);
 }

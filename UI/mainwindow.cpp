@@ -12,12 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
     boutonAnnulerActif_ = true;
     ui->setupUi(this);
     settings_ = new QSettings("kiwiCorporation", "Taskinator");
+    //TODO: faire une fenêtre d'option qui permettra de changer le répertoire des templates
+    settings_->setValue("templateDirectory", "/home/guillaume/Bureau/template/");
 
-    //in developpement
     signalMapper_ = new QSignalMapper(this);
-    //end in developpement
-
     cont_ = new Controleur(this, signalMapper_);
+    cont_->setTemplateDirectory(settings_->value("templateDirectory").toString());
 
     // Ajout de la première ligne vide dans la vue
     QLabel * vide = new QLabel(QString::fromUtf8("Sélectionner la ligne et créer une liste ou tâche"));
@@ -91,9 +91,14 @@ void MainWindow::on_actionNouveau_triggered()
     if (cont_->getFileModified_()){
         askSaveFile();
     }
-    newList_ = new NewList(boutonAnnulerActif_);
+    QDir templateDirectory(cont_->getTemplateDirectory());
+    QStringList filters;
+    filters << "*.ulk";
+    templateDirectory.setNameFilters(filters);
+    qDebug() << templateDirectory.entryList();
+    newList_ = new NewList(boutonAnnulerActif_, templateDirectory.entryList());
     newList_->show();
-    QObject::connect(newList_,SIGNAL(createList(bool, QString, QDateTime)),this,SLOT(createList(bool, QString, QDateTime)));
+    QObject::connect(newList_,SIGNAL(createList(QString, bool, QString, QDateTime)),this,SLOT(createList(QString, bool, QString, QDateTime)));
     boutonAnnulerActif_ = true;
 }
 
@@ -329,18 +334,27 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     }
 }
 
-void MainWindow::createList(bool liste, QString name, QDateTime date)
+void MainWindow::createList(QString templatePath, bool liste, QString name, QDateTime date)
 {
-    if (liste){
-        cont_->createList(name.toStdString(), date.toTime_t());
-        ui->radioButton_N->setChecked(true);
+    if(templatePath=="")
+    {
+        if (liste){
+            cont_->createList(name.toStdString(), date.toTime_t());
+            ui->radioButton_N->setChecked(true);
+        }
+        else {
+            cont_->createSortedList(name.toStdString(), date.toTime_t());
+            ui->radioButton_Y->setChecked(true);
+        }
     }
-    else {
-        cont_->createSortedList(name.toStdString(), date.toTime_t());
-        ui->radioButton_Y->setChecked(true);
+    else
+    {
+        cont_->loadTemplate(templatePath);
     }
     ui->lineEdit->setText(name);
+    on_lineEdit_editingFinished();
     ui->dateEdit->setDate(date.date());
+    on_dateEdit_editingFinished();
     cont_->refreshVue(ui->listTree);
 }
 

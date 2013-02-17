@@ -353,8 +353,22 @@ void Controleur::toTask(QTreeWidget * t)
 
 void Controleur::saveTemplate(QString nameFile)
 {
-    QString path = "/home/guillaume/Bureau/" + nameFile + ".ulk";
+    QString path = templateDirectory_ + nameFile + ".ulk";
     xmlOp_->createTemplate(path.toStdString(), root_);
+}
+
+void Controleur::loadTemplate(const QString path)
+{
+    QString templatePath = templateDirectory_ + path;
+    if(root_ != NULL)
+    {
+        delete root_;
+        fileModified_ = true;
+    }
+    else {
+        fileModified_ = false;
+    }
+    root_ = xmlOp_->newFileFromTemplate(templatePath.toStdString());
 }
 
 void Controleur::saveFileOn(QString path)
@@ -412,6 +426,16 @@ void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDa
 QString Controleur::getFilePath() const
 {
     return filePath_;
+}
+
+QString Controleur::getTemplateDirectory() const
+{
+    return templateDirectory_;
+}
+
+void Controleur::setTemplateDirectory(const QString path)
+{
+    templateDirectory_ = path;
 }
 
 QTreeWidgetItem* Controleur::getCurrentItem(QTreeWidget *t, std::vector<int> &arbre, QModelIndex m)

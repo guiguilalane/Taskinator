@@ -66,7 +66,7 @@ private slots:
 
     void on_tabWidget_currentChanged(int index);
 
-    void createList(bool liste, QString name, QDateTime date);
+    void createList(QString templatePath, bool liste, QString name, QDateTime date);
 
     void on_lineEdit_editingFinished();
 

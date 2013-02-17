@@ -39,6 +39,8 @@ public:
     void downElement(QTreeWidget * t);
     void updateModel(QModelIndex* mIndex, const QString& name, const QDateTime &date, const bool state);
     QString getFilePath() const;
+    QString getTemplateDirectory() const;
+    void setTemplateDirectory(const QString path);
     void is(QTreeWidget *t, std::string &type, int &nb);
     bool isListOrSortedList(QTreeWidget * t);
     void parcoursListApercu(QTreeWidget * t, QTreeWidgetItem * p, List* parent);
@@ -61,6 +63,7 @@ public:
     bool getFileModified_();
 
     void saveTemplate(QString nameFile);
+    void loadTemplate(const QString path);
 private:
     List * root_;
     QSignalMapper* signalMapper_;
@@ -70,6 +73,7 @@ private:
 
     XMLOperation* xmlOp_;
     QString filePath_;
+    QString templateDirectory_;
     bool fileModified_;
 
     QTreeWidgetItem* getCurrentItem(QTreeWidget* t, std::vector<int> &arbre, QModelIndex m);
