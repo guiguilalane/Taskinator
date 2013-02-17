@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QDateTime>
 #include <QSettings>
+#include <QTextCodec>
 
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"

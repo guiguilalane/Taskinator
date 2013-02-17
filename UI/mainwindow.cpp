@@ -9,6 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    //encodage en UTF8
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     boutonAnnulerActif_ = true;
     ui->setupUi(this);
     settings_ = new QSettings("kiwiCorporation", "Taskinator");
