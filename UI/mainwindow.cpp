@@ -9,8 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    //encodage en UTF8
-//    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     boutonAnnulerActif_ = true;
     ui->setupUi(this);
     settings_ = new QSettings("kiwiCorporation", "Taskinator");
@@ -64,9 +62,21 @@ MainWindow::MainWindow(QWidget *parent) :
         QString file = settings_->value("lastFile").toString();
         cont_->openFile(file);
         cont_->refreshVue(ui->listTree);
+        ui->radioButton_N->blockSignals(true);
+        ui->radioButton_Y->blockSignals(true);
         cont_->refreshTitle(ui->lineEdit, ui->dateEdit, ui->radioButton_Y, ui->radioButton_N);
+        ui->radioButton_Y->blockSignals(false);
+        ui->radioButton_N->blockSignals(false);
     }
 
+}
+
+void MainWindow::askSaveFile()
+{
+    int r = QMessageBox::warning(this, "Enregistrement", tr(" <center> Attention </center> <br/>" "Cette action remplacera la liste en cours <br/><br/>" "Voulez-vous enregistrer votre liste ?"), QMessageBox::Yes | QMessageBox::Default, QMessageBox::No);
+    if (r == QMessageBox::Yes){
+        ui->actionEnregistrer->triggered();
+    }
 }
 
 MainWindow::~MainWindow()
@@ -74,8 +84,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+
 void MainWindow::on_actionNouveau_triggered()
 {
+    if (cont_->getFileModified_()){
+        askSaveFile();
+    }
     newList_ = new NewList(boutonAnnulerActif_);
     newList_->show();
     QObject::connect(newList_,SIGNAL(createList(bool, QString, QDateTime)),this,SLOT(createList(bool, QString, QDateTime)));
@@ -84,17 +99,21 @@ void MainWindow::on_actionNouveau_triggered()
 
 void MainWindow::on_actionOuvrir_triggered()
 {
+    if (cont_->getFileModified_()){
+        askSaveFile();
+    }
     QString file = QFileDialog::getOpenFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
-    cont_->openFile(file);
-    cont_->refreshVue(ui->listTree);
-    cont_->refreshTitle(ui->lineEdit, ui->dateEdit, ui->radioButton_Y, ui->radioButton_N);
+    if (file != ""){
+        cont_->openFile(file);
+        cont_->refreshVue(ui->listTree);
+        cont_->refreshTitle(ui->lineEdit, ui->dateEdit, ui->radioButton_Y, ui->radioButton_N);
+    }
 }
 
 void MainWindow::on_actionEnregistrer_sous_triggered()
 {
     QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
     cont_->saveFileOn(fichier);
-    std::cout << fichier.toStdString() << std::endl;
     settings_->setValue("lastFile",fichier);
 }
 
@@ -113,6 +132,7 @@ void MainWindow::on_actionEnregistrer_triggered()
 
 void MainWindow::on_actionQuitter_triggered()
 {
+    askSaveFile();
     close();
 }
 
@@ -311,6 +331,7 @@ void MainWindow::createList(bool liste, QString name, QDateTime date)
     }
     ui->lineEdit->setText(name);
     ui->dateEdit->setDate(date.date());
+    cont_->refreshVue(ui->listTree);
 }
 
 void MainWindow::on_lineEdit_editingFinished()

@@ -7,17 +7,20 @@ Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM): mainWindow_(
     elements_ = new QHash<int, QTreeWidgetItem*>();
     xmlOp_ = new XMLOperation();
     filePath_ = "";
+    fileModified_ = false;
     root_ = NULL;
 }
 
 void Controleur::createList(const std::string& name, time_t date)
 {
     root_ = new List(name, date);
+    fileModified_ = true;
 }
 
 void Controleur::createSortedList(const std::string& name, time_t date)
 {
     root_ = new SortedList(name, date);
+    fileModified_ = true;
 }
 
 std::vector<int> Controleur::calculateArborescence(QModelIndex m)
@@ -134,6 +137,9 @@ void Controleur::addList(QTreeWidget * t)
         lts = (List*) lts->getTabComponent_()[(*rit)+1];
     }
     lts->addComponent(new List());
+
+    fileModified_ = true;
+
     // Ajout à l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -153,6 +159,9 @@ void Controleur::addSortedList(QTreeWidget * t)
         lts = (List*) lts->getTabComponent_()[(*rit)+1];
     }
     lts->addComponent(new SortedList());
+
+    fileModified_ = true;
+
     // Ajout à l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -172,6 +181,9 @@ void Controleur::addTask(QTreeWidget * t)
         lts = (List*) lts->getTabComponent_()[(*rit)+1];
     }
     lts->addComponent(new Task());
+
+    fileModified_ = true;
+
     // Ajout à l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -200,6 +212,9 @@ void Controleur::removeElement(QTreeWidget * t)
         lts = (List*) lts->getTabComponent_()[(*rit)+1];
     }
     lts->removeComponent(m.row()+1);
+
+    fileModified_ = true;
+
     // Suppression de l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -219,6 +234,9 @@ void Controleur::upElement(QTreeWidget * t)
         lts = (List*) lts->getTabComponent_()[(*rit)+1];
     }
     lts->getTabComponent_()[m.row()+1]->upComponent();
+
+    fileModified_ = true;
+
     // Modification de l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -238,6 +256,9 @@ void Controleur::downElement(QTreeWidget * t)
         lts = (List*) lts->getTabComponent_()[(*rit)+1];
     }
     lts->getTabComponent_()[m.row()+1]->downComponent();
+
+    fileModified_ = true;
+
     // Modification de l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -265,6 +286,9 @@ void Controleur::toList(QTreeWidget * t)
         lts->getTabComponent_()[m.row()+1] = new List(comp->getName_(),comp->getDate_(), comp->getState_());
         parcoursListModele((SortedList*) comp, (List*) lts->getTabComponent_()[m.row()+1]);
     }
+
+    fileModified_ = true;
+
     // Modification de l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -292,6 +316,9 @@ void Controleur::toSortedList(QTreeWidget * t)
         lts->getTabComponent_()[m.row()+1] = new SortedList(comp->getName_(),comp->getDate_(), comp->getState_());
         parcoursListModele((List*) comp, (SortedList*) lts->getTabComponent_()[m.row()+1]);
     }
+
+    fileModified_ = true;
+
     // Modification de l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -313,6 +340,9 @@ void Controleur::toTask(QTreeWidget * t)
     Component * comp = lts->getTabComponent_()[m.row()+1];
     lts->getTabComponent_()[m.row()+1] = new Task(comp->getName_(),comp->getDate_(), comp->getState_());
     delete comp;
+
+    fileModified_ = true;
+
     // Modification de l'IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -325,20 +355,25 @@ void Controleur::saveFileOn(QString path)
 {
     filePath_ = path;
     xmlOp_->saveFile(path.toStdString(), root_);
+    fileModified_ = false;
 }
 
 void Controleur::saveFile()
 {
     xmlOp_->saveFile(filePath_.toStdString(), root_);
+    fileModified_ = false;
 }
 
 void Controleur::openFile(QString path)
 {
     filePath_ = path;
-    //TODO: proposer d'enregistrer
     if(root_ != NULL)
     {
         delete root_;
+        fileModified_ = true;
+    }
+    else {
+        fileModified_ = false;
     }
     root_ = xmlOp_->readFile(path.toStdString());
 }
@@ -346,6 +381,11 @@ void Controleur::openFile(QString path)
 List *Controleur::getRoot_()
 {
     return root_;
+}
+
+bool Controleur::getFileModified_()
+{
+    return fileModified_;
 }
 
 void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDateTime &date, const bool state)
@@ -530,6 +570,9 @@ void Controleur::sortedListToList(QTreeWidget *t)
     List * comp = root_;
     root_ = new List(comp->getName_(),comp->getDate_(), comp->getState_());
     parcoursListModele((SortedList*) comp, (List*) root_);
+
+    fileModified_ = true;
+
     // Modification IHM
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
@@ -547,6 +590,9 @@ void Controleur::listToSortedList(QTreeWidget *t)
     for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
         lts = (List*) lts->getTabComponent_()[(*rit)+1];
     }
+
+    fileModified_ = true;
+
     // Modification dans le modèle
     List * comp = root_;
     root_ = new SortedList(comp->getName_(),comp->getDate_(), comp->getState_());
