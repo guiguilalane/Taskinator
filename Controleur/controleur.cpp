@@ -406,6 +406,7 @@ void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDa
     componentToChange->setName_(name.toStdString());
     componentToChange->setDate_(date.toTime_t());
     componentToChange->setState_(state);
+    fileModified_ = true;
 }
 
 QString Controleur::getFilePath() const
