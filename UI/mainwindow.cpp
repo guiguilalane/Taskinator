@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     cont_ = new Controleur(this, signalMapper_);
 
     // Ajout de la première ligne vide dans la vue
-    QLabel * vide = new QLabel("Sélectionner la ligne et créer une liste ou tâche");
+    QLabel * vide = new QLabel(QString::fromUtf8("Sélectionner la ligne et créer une liste ou tâche"));
     QTreeWidgetItem* videItem = new QTreeWidgetItem(ui->listTree);
     ui->listTree->setItemWidget(videItem,0,vide);
 
@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QFile * f = new QFile(settings_->value("lastFile").toString());
     if(!f->exists()){
         boutonAnnulerActif_ = false;
-        //TODO: enlever la croix qui permet de fermer la fenetre de dialogue (au moins pour la première ouverture)
+        //TODO: enlever la croix qui permet de fermer la fenetre de dialogue (au moins pour la première ouverture) sous Ubuntu
         ui->actionNouveau->trigger();
     }
     // Sinon ajouter le chargement automatique du fichiers
