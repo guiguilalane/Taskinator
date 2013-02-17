@@ -110,7 +110,7 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
     else {
         elementItem = new QTreeWidgetItem(p);
     }
-    QLabel * videParent = new QLabel("Sélectionner la ligne et créer une liste ou tâche");
+    QLabel * videParent = new QLabel(QString::fromUtf8("Sélectionner la ligne et créer une liste ou tâche"));
     t->setItemWidget(elementItem,0,videParent);
 }
 
