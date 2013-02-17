@@ -7,6 +7,7 @@ Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM): mainWindow_(
     elements_ = new QHash<int, QTreeWidgetItem*>();
     xmlOp_ = new XMLOperation();
     filePath_ = "";
+    root_ = NULL;
 }
 
 void Controleur::createList(const std::string& name, time_t date)
@@ -335,7 +336,10 @@ void Controleur::openFile(QString path)
 {
     filePath_ = path;
     //TODO: proposer d'enregistrer
-    delete root_;
+    if(root_ != NULL)
+    {
+        delete root_;
+    }
     root_ = xmlOp_->readFile(path.toStdString());
 }
 
