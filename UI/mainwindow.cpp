@@ -28,11 +28,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Menu pour le bouton changement de type
     menuParam_ = new QMenu();
-    liste_ = new QAction("Liste non ordonnée",0);
+    liste_ = new QAction(QString::fromUtf8("Liste non ordonnée"),0);
     liste_->setCheckable(true);
-    listeO_ = new QAction("Liste ordonnée",0);
+    listeO_ = new QAction(QString::fromUtf8("Liste ordonnée"),0);
     listeO_->setCheckable(true);
-    tache_ = new QAction("Tâche",0);
+    tache_ = new QAction(QString::fromUtf8("Tâche"),0);
     tache_->setCheckable(true);
     menuParam_->addAction(liste_);
     menuParam_->addAction(listeO_);
@@ -142,7 +142,7 @@ void MainWindow::on_toolButtonTrash_clicked()
     ui->listTree->blockSignals(true);
     if (cont_->isListOrSortedList(ui->listTree))
     {
-        int r = QMessageBox::warning(this, "Suppression", tr(" <center> Attention </center> <br/>" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+        int r = QMessageBox::warning(this, "Suppression", QString::fromUtf8(tr(" <center> Attention </center> <br/>" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?").toStdString().c_str()), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
         if (r == QMessageBox::Yes){
             cont_->removeElement(ui->listTree);
         }
@@ -207,7 +207,7 @@ void MainWindow::toolButtonParam_toTask(bool b)
     ui->listTree->blockSignals(true);
     if (b)
     {
-        int r = QMessageBox::warning(this, "Changement de type", tr("<center> Attention </center> <br/>" "Vous allez changer une liste en tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?"), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+        int r = QMessageBox::warning(this, "Changement de type", QString::fromUtf8(tr("<center> Attention </center> <br/>" "Vous allez changer une liste en tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?").toStdString().c_str()), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
         if (r == QMessageBox::Yes){
             cont_->toTask(ui->listTree);
             liste_->setChecked(false);
@@ -270,7 +270,7 @@ void MainWindow::on_listTree_itemSelectionChanged()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this,"About Taskinator",tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER"));
+    QMessageBox::about(this,"About Taskinator",QString::fromUtf8(tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER").toStdString().c_str()));
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index)
