@@ -75,7 +75,7 @@ void MainWindow::askSaveFile()
 {
     int r = QMessageBox::warning(this, "Enregistrement", tr(" <center> Attention </center> <br/>" "Cette action remplacera la liste en cours <br/><br/>" "Voulez-vous enregistrer votre liste ?"), QMessageBox::Yes | QMessageBox::Default, QMessageBox::No);
     if (r == QMessageBox::Yes){
-        ui->actionEnregistrer->triggered();
+        ui->actionEnregistrer->trigger();
     }
 }
 
