@@ -53,10 +53,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QFile * f = new QFile(settings_->value("lastFile").toString());
     if(!f->exists()){
         boutonAnnulerActif_ = false;
+        //TODO: enlever la croix qui permet de fermer la fenetre de dialogue (au moins pour la première ouverture)
         ui->actionNouveau->trigger();
     }
-    // Sinon ajouter le chargement automatique du fichier
-    // TODO ajouter le chargement automatique du fichier
+    else
+    {// Sinon ajouter le chargement automatique du fichier
+        // TODO: ajouter le chargement automatique du fichier
+        //TODO: récupérer le dernier fichier enregistré(à l'aide d'un fichier de config?)
+        cont_->openFile("/home/guillaume/Bureau/test.tor");
+    }
+
 }
 
 MainWindow::~MainWindow()
@@ -76,6 +82,8 @@ void MainWindow::on_actionOuvrir_triggered()
 {
     QString file = QFileDialog::getOpenFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
     cont_->openFile(file);
+    cont_->refreshVue(ui->listTree);
+    cont_->refreshTitle(ui->lineEdit, ui->dateEdit, ui->radioButton_Y, ui->radioButton_N);
 }
 
 void MainWindow::on_actionEnregistrer_sous_triggered()
@@ -163,7 +171,6 @@ void MainWindow::elementChanged(int key)
     QTreeWidgetItem* changedItem = cont_->getElement(key);
     Element* changedElement = (Element*) ui->listTree->itemWidget(changedItem, 0);
     QModelIndex changedMIndex = ui->listTree->getIndexFromItem(changedItem);
-    qDebug() << (changedElement->getValueCheck_() > 0);
     cont_->updateModel(&changedMIndex, changedElement->getValueName_(), QDateTime(changedElement->getValueDate_()), changedElement->getValueCheck_() > 0);
 }
 

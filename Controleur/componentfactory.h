@@ -12,11 +12,11 @@ public:
 
     static void kill();
 
-    Task* createTask(const std::string& name, const time_t date);
+    Task* createTask(const std::string& name, const time_t date, const bool state = false);
 
-    List* createList(const std::string& name, const time_t date);
+    List* createList(const std::string& name, const time_t date, const bool state = false);
 
-    SortedList* createSortedList(const std::string& name, const time_t date);
+    SortedList* createSortedList(const std::string& name, const time_t date, const bool state = false);
 
 private:
 

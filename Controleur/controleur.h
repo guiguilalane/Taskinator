@@ -9,9 +9,11 @@
 #include "../UI/mytreewidget.h"
 #include "../UI/elementapercu.h"
 #include "xmloperation.h"
+#include "componentfactory.h"
 #include <QMainWindow>
 #include <QModelIndex>
 #include <QTreeWidget>
+#include <QRadioButton>
 #include <QSignalMapper>
 #include <QHash>
 #include <vector>
@@ -28,6 +30,7 @@ public:
     void addList(QTreeWidget *t);
     void addSortedList(QTreeWidget * t);
     void addTask(QTreeWidget *t);
+    void refreshTitle(QLineEdit* lineEdit, QDateEdit* dateEdit, QRadioButton* RBY, QRadioButton* RBN);
     void refreshVue(QTreeWidget * t);
     void parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent);
     void parcoursListModele(List * parent, List *nouvelle);

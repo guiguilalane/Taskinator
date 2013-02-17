@@ -179,6 +179,15 @@ void Controleur::addTask(QTreeWidget * t)
     t->setAnimated(true);
 }
 
+void Controleur::refreshTitle(QLineEdit *lineEdit, QDateEdit *dateEdit, QRadioButton *RBY, QRadioButton *RBN)
+{
+    lineEdit->setText(QString::fromStdString(root_->getName_()));
+    dateEdit->setDate(QDateTime::fromTime_t(root_->getDate_()).date());
+    bool b = dynamic_cast<SortedList*>(root_);
+    RBY->setChecked(b);
+    RBN->setChecked(!b);
+}
+
 void Controleur::removeElement(QTreeWidget * t)
 {
     // Suppression au modèle
@@ -325,7 +334,9 @@ void Controleur::saveFile()
 void Controleur::openFile(QString path)
 {
     filePath_ = path;
-    xmlOp_->readFile(path.toStdString());
+    //TODO: proposer d'enregistrer
+    delete root_;
+    root_ = xmlOp_->readFile(path.toStdString());
 }
 
 List *Controleur::getRoot_()
