@@ -331,16 +331,16 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::createList(bool liste, QString name, QDateTime date)
 {
-    if (liste){
-        cont_->createList(name.toStdString(), date.toTime_t());
-        ui->radioButton_N->setChecked(true);
-    }
-    else {
-        cont_->createSortedList(name.toStdString(), date.toTime_t());
-        ui->radioButton_Y->setChecked(true);
-    }
     ui->lineEdit->setText(name);
     ui->dateEdit->setDate(date.date());
+    if (liste){
+        ui->radioButton_N->setChecked(true);
+        cont_->createList(name.toStdString(), date.toTime_t());
+    }
+    else {
+        ui->radioButton_Y->setChecked(true);
+        cont_->createSortedList(name.toStdString(), date.toTime_t());
+    }
     cont_->refreshVue(ui->listTree);
 }
 
