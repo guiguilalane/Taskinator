@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     //encodage en UTF8
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+//    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     boutonAnnulerActif_ = true;
     ui->setupUi(this);
     settings_ = new QSettings("kiwiCorporation", "Taskinator");
@@ -58,11 +58,13 @@ MainWindow::MainWindow(QWidget *parent) :
         //TODO: enlever la croix qui permet de fermer la fenetre de dialogue (au moins pour la première ouverture)
         ui->actionNouveau->trigger();
     }
+    // Sinon ajouter le chargement automatique du fichiers
     else
-    {// Sinon ajouter le chargement automatique du fichier
-        // TODO: ajouter le chargement automatique du fichier
-        //TODO: récupérer le dernier fichier enregistré(à l'aide d'un fichier de config?)
-        cont_->openFile("/home/guillaume/Bureau/test.tor");
+    {
+        QString file = settings_->value("lastFile").toString();
+        cont_->openFile(file);
+        cont_->refreshVue(ui->listTree);
+        cont_->refreshTitle(ui->lineEdit, ui->dateEdit, ui->radioButton_Y, ui->radioButton_N);
     }
 
 }
