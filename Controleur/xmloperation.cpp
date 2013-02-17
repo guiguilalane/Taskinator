@@ -26,7 +26,7 @@ void XMLOperation::saveFile(const std::string &file, Component *root)
     component.append_attribute("date") = QDateTime::fromTime_t(root->getDate_()).date().toString("dd/MM/yyyy").toStdString().c_str();
     component.append_attribute("checked") = false;
 
-    parcoursList((List*)root, component, 0);
+    parcoursList((List*)root, component);
     //enregistrer xml_document
     doc.save_file(file.c_str());
 }
@@ -56,7 +56,7 @@ List* XMLOperation::readFile(const std::string &file)
 }
 
 //TODO: enlever le paramètre 'indent' qui ne sert que pour l'affichage
-void XMLOperation::parcoursList(List *c, xml_node& root, int indent)
+void XMLOperation::parcoursList(List *c, xml_node& root)
 {
     int taille = c->getTabComponent_().size();
     Component* current;
@@ -64,55 +64,29 @@ void XMLOperation::parcoursList(List *c, xml_node& root, int indent)
     {
         xml_node component = root.append_child("component");
         current = c->getTabComponent_()[i];
+
+        xml_attribute firstAttr = component.append_attribute("name") = current->getName_().c_str();
+
+        component.append_attribute("date") = QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString().c_str();
+
+        component.append_attribute("checked") = current->getState_() ;
+
         if(dynamic_cast<SortedList*>(current))
         {//sortedList
-            component.append_attribute("type") = "sortedList";
+            component.insert_attribute_before("type", firstAttr) = "sortedList";
 
-            component.append_attribute("name") = current->getName_().c_str();
-
-            component.append_attribute("date") = QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString().c_str();
-
-            component.append_attribute("checked") = current->getState_() ;
-
-            printIndent(indent);
-            std::cout << "<component type=\"sortedList\" name=\"" << current->getName_() << "\" date=\"" << QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString() << "\" checked=\"" << (current->getState_() ? "true" : "false") << "\">" << std::endl;
-            parcoursList((SortedList*) current, component, indent+1);
+            parcoursList((SortedList*) current, component);
         }
         else if(dynamic_cast<List*>(current))
         {//list
-            component.append_attribute("type") = "list";
+            component.insert_attribute_before("type", firstAttr) = "list";
 
-            component.append_attribute("name") = current->getName_().c_str();
-
-            component.append_attribute("date") = QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString().c_str();
-
-            component.append_attribute("checked") = current->getState_() ;
-
-            printIndent(indent);
-            std::cout << "<component type=\"list\" name=\"" << current->getName_() << "\" date=\"" << QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString() << "\" checked=\"" << (current->getState_() ? "true" : "false") << "\">" << std::endl;
-            parcoursList((List*) current, component, indent+1);
+            parcoursList((List*) current, component);
         }
         else
         {//task
-            component.append_attribute("type") = "task";
-
-            component.append_attribute("name") = current->getName_().c_str();
-
-            component.append_attribute("date") = QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString().c_str();
-
-            component.append_attribute("checked") = current->getState_() ;
-
-            printIndent(indent);
-            std::cout << "<component type=\"task\" name=\"" << current->getName_() << "\" date=\"" << QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString() << "\" checked=\"" << (current->getState_() ? "true" : "false") << "\">" << std::endl;
+            component.insert_attribute_before("type", firstAttr) = "task";
         }
-    }
-}
-
-void XMLOperation::printIndent(const int indent)
-{
-    for(int i = 0; i < indent; ++i)
-    {
-        std::cout << "\t";
     }
 }
 
@@ -139,4 +113,10 @@ void XMLOperation::parcoursFile(List *c, xml_node &element)
         }
         c->addComponent(child);
     }
+}
+
+
+void XMLOperation::createTemplate(const std::string &file)
+{
+
 }

@@ -21,8 +21,7 @@ public:
 private:
 //    pugi::xml_document doc_;
 
-    void parcoursList(List *c, pugi::xml_node &root, int indent);
-    void printIndent(const int indent);
+    void parcoursList(List *c, pugi::xml_node &root);
 
     void parcoursFile(List* c, pugi::xml_node &element);
 };
