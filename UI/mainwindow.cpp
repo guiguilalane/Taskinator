@@ -110,6 +110,16 @@ void MainWindow::on_actionEnregistrer_triggered()
     }
 }
 
+void MainWindow::on_actionEnregistrer_template_triggered()
+{
+    bool ok;
+    QString fichier = QInputDialog::getText(this, QString::fromUtf8(tr("Nom du fichier template").toStdString().c_str()), QString::fromUtf8(tr("Veuillez entrer le nom du template").toStdString().c_str()), QLineEdit::Normal, QString(), &ok);
+    if(ok && !fichier.isEmpty())
+    {
+        cont_->saveTemplate(fichier);
+    }
+}
+
 
 void MainWindow::on_actionQuitter_triggered()
 {

@@ -9,6 +9,7 @@
 #include <QDateTime>
 #include <QSettings>
 #include <QTextCodec>
+#include <QInputDialog>
 
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"
@@ -73,6 +74,8 @@ private slots:
     void on_radioButton_Y_toggled(bool checked);
 
     void on_radioButton_N_toggled(bool checked);
+
+    void on_actionEnregistrer_template_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -321,6 +321,12 @@ void Controleur::toTask(QTreeWidget * t)
     t->setAnimated(true);
 }
 
+void Controleur::saveTemplate(QString nameFile)
+{
+    QString path = "/home/guillaume/Bureau/" + nameFile + ".ulk";
+    xmlOp_->createTemplate(path.toStdString(), root_);
+}
+
 void Controleur::saveFileOn(QString path)
 {
     filePath_ = path;

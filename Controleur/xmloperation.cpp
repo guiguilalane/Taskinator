@@ -20,13 +20,38 @@ void XMLOperation::saveFile(const std::string &file, Component *root)
     }
     else
     {
-        //lever une exception (ne devrait jamais arriver
+        //lever une exception (ne devrait jamais arriver)
     }
     component.append_attribute("name") = root->getName_().c_str();
     component.append_attribute("date") = QDateTime::fromTime_t(root->getDate_()).date().toString("dd/MM/yyyy").toStdString().c_str();
     component.append_attribute("checked") = false;
 
-    parcoursList((List*)root, component);
+    parcoursList((List*)root, component, false);
+    //enregistrer xml_document
+    doc.save_file(file.c_str());
+}
+
+void XMLOperation::createTemplate(const std::string &file, Component *root)
+{
+    xml_document doc;
+    xml_node component = doc.append_child("template");
+    if(dynamic_cast<SortedList*>(root))
+    {
+        component.append_attribute("type") = "sortedList";
+    }
+    else if(dynamic_cast<List*>(root))
+    {
+        component.append_attribute("type") = "list";
+    }
+    else
+    {
+        //lever une exception (ne devrait jamais arriver)
+    }
+    component.append_attribute("name") = "";
+    component.append_attribute("date") = "";
+    component.append_attribute("checked") = false;
+
+    parcoursList((List*)root, component, true);
     //enregistrer xml_document
     doc.save_file(file.c_str());
 }
@@ -55,8 +80,7 @@ List* XMLOperation::readFile(const std::string &file)
     return root;
 }
 
-//TODO: enlever le paramètre 'indent' qui ne sert que pour l'affichage
-void XMLOperation::parcoursList(List *c, xml_node& root)
+void XMLOperation::parcoursList(List *c, xml_node& root, const bool isTemplate)
 {
     int taille = c->getTabComponent_().size();
     Component* current;
@@ -66,22 +90,30 @@ void XMLOperation::parcoursList(List *c, xml_node& root)
         current = c->getTabComponent_()[i];
 
         xml_attribute firstAttr = component.append_attribute("name") = current->getName_().c_str();
+        if(!isTemplate)
+        {
+            component.append_attribute("date") = QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString().c_str();
 
-        component.append_attribute("date") = QDateTime::fromTime_t(current->getDate_()).date().toString("dd/MM/yyyy").toStdString().c_str();
+            component.append_attribute("checked") = current->getState_() ;
+        }
+        else
+        {
+            component.append_attribute("date") = "";
 
-        component.append_attribute("checked") = current->getState_() ;
+            component.append_attribute("checked") = false;
+        }
 
         if(dynamic_cast<SortedList*>(current))
         {//sortedList
             component.insert_attribute_before("type", firstAttr) = "sortedList";
 
-            parcoursList((SortedList*) current, component);
+            parcoursList((SortedList*) current, component, isTemplate);
         }
         else if(dynamic_cast<List*>(current))
         {//list
             component.insert_attribute_before("type", firstAttr) = "list";
 
-            parcoursList((List*) current, component);
+            parcoursList((List*) current, component, isTemplate);
         }
         else
         {//task
@@ -113,10 +145,4 @@ void XMLOperation::parcoursFile(List *c, xml_node &element)
         }
         c->addComponent(child);
     }
-}
-
-
-void XMLOperation::createTemplate(const std::string &file)
-{
-
 }

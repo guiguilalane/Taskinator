@@ -14,14 +14,14 @@ public:
     XMLOperation();
 
     void newFileFromTemplate(const std::string& file, const std::string& rootName);
-    void createTemplate(const std::string& file);
+    void createTemplate(const std::string& file, Component *root);
     void saveFile(const std::string& file, Component* root);
     List *readFile(const std::string& file);
 
 private:
 //    pugi::xml_document doc_;
 
-    void parcoursList(List *c, pugi::xml_node &root);
+    void parcoursList(List *c, pugi::xml_node &root, const bool isTemplate);
 
     void parcoursFile(List* c, pugi::xml_node &element);
 };

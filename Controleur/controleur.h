@@ -59,6 +59,7 @@ public:
     void openFile(QString path);
     List * getRoot_();
 
+    void saveTemplate(QString nameFile);
 private:
     List * root_;
     QSignalMapper* signalMapper_;
