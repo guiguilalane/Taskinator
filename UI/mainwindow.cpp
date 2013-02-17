@@ -95,7 +95,6 @@ void MainWindow::on_actionNouveau_triggered()
     QStringList filters;
     filters << "*.ulk";
     templateDirectory.setNameFilters(filters);
-    qDebug() << templateDirectory.entryList();
     newList_ = new NewList(boutonAnnulerActif_, templateDirectory.entryList());
     newList_->show();
     QObject::connect(newList_,SIGNAL(createList(QString, bool, QString, QDateTime)),this,SLOT(createList(QString, bool, QString, QDateTime)));
@@ -355,6 +354,7 @@ void MainWindow::createList(QString templatePath, bool liste, QString name, QDat
     on_lineEdit_editingFinished();
     ui->dateEdit->setDate(date.date());
     on_dateEdit_editingFinished();
+
     cont_->refreshVue(ui->listTree);
 }
 

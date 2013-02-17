@@ -13,12 +13,18 @@ Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM): mainWindow_(
 
 void Controleur::createList(const std::string& name, time_t date)
 {
+    if (root_ != NULL){
+        delete root_;
+    }
     root_ = new List(name, date);
     fileModified_ = true;
 }
 
 void Controleur::createSortedList(const std::string& name, time_t date)
 {
+    if (root_ != NULL){
+        delete root_;
+    }
     root_ = new SortedList(name, date);
     fileModified_ = true;
 }
@@ -37,9 +43,12 @@ std::vector<int> Controleur::calculateArborescence(QModelIndex m)
 void Controleur::refreshVue(QTreeWidget * t)
 {
     t->setAnimated(false);
+    t->blockSignals(true);
     t->clear();
+    t->blockSignals(false);
     elements_->clear();
     asup_.clear();
+
     parcoursList(t, 0, root_);
     //FIXME: actuellement, execution du slot elementChanged nb_QTreeWidgetItem fois sur le même objet, même si un seul signal emit
     QObject::connect(signalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
