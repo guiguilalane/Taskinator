@@ -334,7 +334,7 @@ void MainWindow::on_listTree_itemSelectionChanged()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this,"About Taskinator",QString::fromUtf8(tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER").toStdString().c_str()));
+    QMessageBox::about(this,"About Taskinator",QString::fromUtf8(tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER. <br/><br/> <img src=\"://Pictures/Copyright.png\"> Copyright KiwiCorporation ").toStdString().c_str()));
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index)
