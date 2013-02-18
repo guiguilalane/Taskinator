@@ -16,8 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //TODO: faire une fenêtre d'option qui permettra de changer le répertoire des templates
 //    settings_->setValue("templateDirectory", "/home/guillaume/Bureau/template/");
 
-    signalMapper_ = new QSignalMapper(this);
-    cont_ = new Controleur(this, signalMapper_);
+    modifiedElementSignalMapper_ = new QSignalMapper(this);
+    deletedElementSignalMapper_ = new QSignalMapper(this);
+    cont_ = new Controleur(this, modifiedElementSignalMapper_, deletedElementSignalMapper_);
     cont_->setTemplateDirectory(settings_->value("templateDirectory").toString());
 
     // Ajout de la première ligne vide dans la vue
@@ -50,6 +51,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButtonDown->setEnabled(false);
     ui->toolButtonTrash->setEnabled(false);
 
+    opDial_ = new OptionsDialog(settings_, cont_, this);
+}
+
+void MainWindow::askSaveFile()
+{
+    int r = QMessageBox::warning(this, "Enregistrement", tr(" <center> Attention </center> <br/>" "Cette action remplacera la liste en cours <br/><br/>" "Voulez-vous enregistrer votre liste ?"), QMessageBox::Yes | QMessageBox::Default, QMessageBox::No);
+    if (r == QMessageBox::Yes){
+        ui->actionEnregistrer->trigger();
+    }
+}
+
+void MainWindow::AfterCreatedWindow()
+{
     // On actionne la fenêtre nouveau si aucun fichier n'est enregistrer ou s'il n'existe plus
     QFile * f = new QFile(settings_->value("lastFile").toString());
     if(!f->exists()){
@@ -68,15 +82,6 @@ MainWindow::MainWindow(QWidget *parent) :
         cont_->refreshTitle(ui->lineEdit, ui->dateEdit, ui->radioButton_Y, ui->radioButton_N);
         ui->radioButton_Y->blockSignals(false);
         ui->radioButton_N->blockSignals(false);
-    }
-    opDial_ = new OptionsDialog(settings_, cont_, this);
-}
-
-void MainWindow::askSaveFile()
-{
-    int r = QMessageBox::warning(this, "Enregistrement", tr(" <center> Attention </center> <br/>" "Cette action remplacera la liste en cours <br/><br/>" "Voulez-vous enregistrer votre liste ?"), QMessageBox::Yes | QMessageBox::Default, QMessageBox::No);
-    if (r == QMessageBox::Yes){
-        ui->actionEnregistrer->trigger();
     }
 }
 
@@ -98,7 +103,7 @@ void MainWindow::on_actionNouveau_triggered()
     {
         delete newList_;
     }
-    newList_ = new NewList(boutonAnnulerActif_, templateDirectory.entryList());
+    newList_ = new NewList(boutonAnnulerActif_, templateDirectory.entryList(), this);
     newList_->show();
     QObject::connect(newList_,SIGNAL(createList(QString, bool, QString, QDateTime)),this,SLOT(createList(QString, bool, QString, QDateTime)));
     boutonAnnulerActif_ = true;
@@ -212,7 +217,30 @@ void MainWindow::elementChanged(int key)
     QTreeWidgetItem* changedItem = cont_->getElement(key);
     Element* changedElement = (Element*) ui->listTree->itemWidget(changedItem, 0);
     QModelIndex changedMIndex = ui->listTree->getIndexFromItem(changedItem);
+    std::cout << changedElement->getValueCheck_() << std::endl;
     cont_->updateModel(&changedMIndex, changedElement->getValueName_(), QDateTime(changedElement->getValueDate_()), changedElement->getValueCheck_() > 0);
+}
+
+void MainWindow::elementDeleted(int key)
+{
+    QTreeWidgetItem* deletedItem = cont_->getElement(key);
+    if(NULL != deletedItem)
+    {
+        ui->listTree->blockSignals(true);
+        if (cont_->isListOrSortedListFromItem(ui->listTree, deletedItem))
+        {
+            int r = QMessageBox::warning(this, "Suppression", QString::fromUtf8(tr(" <center> Attention </center> <br/>" "Vous allez supprimer une liste de tâche. Cette opération supprimera toutes les sous-listes ou tâches. <br/><br/>" "Êtes-vous sûr de vouloir continuer ?").toStdString().c_str()), QMessageBox::Yes, QMessageBox::No | QMessageBox::Default);
+            if (r == QMessageBox::Yes){
+                cont_->removeElementFromItem(ui->listTree, deletedItem);
+            }
+        }
+        else
+        {
+            cont_->removeElementFromItem(ui->listTree, deletedItem);
+        }
+        ui->listTree->blockSignals(false);
+        ui->listTree->onItemSelectionChanged();
+    }
 }
 
 void MainWindow::toolButtonParam_toList(bool b)

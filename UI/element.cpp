@@ -22,6 +22,8 @@ Element::Element(QWidget *parent) : QWidget(parent)
     connect(name_, SIGNAL(editingFinished()), this, SLOT(onNameChange()));
     connect(date_, SIGNAL(editingFinished()), this, SLOT(onDateChange()));
     connect(check_, SIGNAL(stateChanged(int)), this, SLOT(onCheckChange(int)));
+
+    connect(supp_, SIGNAL(clicked()), this, SLOT(onDeleteElement()));
 }
 
 void Element::setValueType_(QString t){
@@ -41,6 +43,11 @@ void Element::onDateChange()
 void Element::onCheckChange(int state)
 {
     emit elementChanged();
+}
+
+void Element::onDeleteElement()
+{
+    emit elementDeleted();
 }
 
 void Element::setValueName_(QString t)
@@ -72,4 +79,9 @@ QDate Element::getValueDate_()
 int Element::getValueCheck_()
 {
     return check_->isChecked();
+}
+
+void Element::setCheckable(const bool b)
+{
+    check_->setEnabled(b);
 }

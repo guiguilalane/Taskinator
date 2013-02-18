@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM): mainWindow_(mainW), signalMapper_(signalM)
+Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM, QSignalMapper *signalD): mainWindow_(mainW), modifiedElementSignalMapper_(signalM), deletedElementSignalMapper_(signalD)
 {
     elements_ = new QHash<int, QTreeWidgetItem*>();
     xmlOp_ = new XMLOperation();
@@ -71,7 +71,9 @@ void Controleur::refreshVue(QTreeWidget * t)
     delete old;
     t->blockSignals(false);
     //FIXME: actuellement, execution du slot elementChanged nb_QTreeWidgetItem fois sur le même objet, même si un seul signal emit
-    QObject::connect(signalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
+    QObject::connect(modifiedElementSignalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
+    QObject::connect(deletedElementSignalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementDeleted(int)));
+    // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée et éviter de mettre des expandAll() dans toutes les fonctionnalitées qui utilise la méthode refreshView()
 }
 
 // TODO: ajouter que lorsque le l'on créer les élément on doit passer en paramètre les valeurs déjà renseignées !!!
@@ -92,17 +94,22 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
         element = new Element();
         if(!component->getName_().empty())
         {
-            element->setValueName_(QString::fromStdString(component->getName_()));
+            element->setValueName_(QString::fromUtf8(component->getName_().c_str()));
             element->setValueDate_(QDateTime::fromTime_t(component->getDate_()).date());
 
             //NOTE: sur une liste dépendra de la valeur des composents fils
             element->setValueCheck_(component->getState_());
         }
+//        bool b = true;
+//        b = component->checkedPreviousTask();
+//        element->setCheckable(b);
         int hash = qHash(element);
         elements_->insert(hash, elementItem);
         asup_.push_back(element);
-        QObject::connect(element, SIGNAL(elementChanged()), signalMapper_, SLOT(map()));
-        signalMapper_->setMapping(element, hash);
+        QObject::connect(element, SIGNAL(elementChanged()), modifiedElementSignalMapper_, SLOT(map()));
+        QObject::connect(element, SIGNAL(elementDeleted()), deletedElementSignalMapper_, SLOT(map()));
+        modifiedElementSignalMapper_->setMapping(element, hash);
+        deletedElementSignalMapper_->setMapping(element, hash);
         // Si on trouve une liste ordonnée
         if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){
             if (dynamic_cast<SortedList *>(parent)){
@@ -246,6 +253,50 @@ void Controleur::removeElement(QTreeWidget * t)
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
 //    t->expandAll();
+}
+
+bool Controleur::isListOrSortedListFromItem(QTreeWidget *t, QTreeWidgetItem *item)
+{
+    bool res = false;
+    QModelIndex m = ((MyTreeWidget*) t)->getIndexFromItem(item);
+    std::vector<int> arbre = calculateArborescence(m);
+    std::vector<int>::reverse_iterator rit;
+    List * lts = root_;
+    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
+        lts = (List*) lts->getTabComponent_()[(*rit)+1];
+    }
+    Component * comp = lts->getTabComponent_()[m.row()+1];
+    if (dynamic_cast<SortedList *>(comp)){
+        res = true;
+    }
+    else if (dynamic_cast<List *>(comp)){
+        res = true;
+    }
+    return res;
+}
+
+void Controleur::removeElementFromItem(QTreeWidget *t, QTreeWidgetItem *item)
+{
+    QModelIndex m = ((MyTreeWidget*) t)->getIndexFromItem(item);
+    std::vector<int> arbre = calculateArborescence(m);
+    std::vector<int>::reverse_iterator rit;
+    List * lts = root_;
+    for (rit = arbre.rbegin(); rit != arbre.rend(); ++rit){
+        lts = (List*) lts->getTabComponent_()[(*rit)+1];
+    }
+    lts->removeComponent(m.row()+1);
+
+    fileModified_ = true;
+
+    // Suppression de l'IHM
+    QModelIndex current = t->currentIndex();
+    refreshVue(t);
+    //TODO: modifier la politique de sélection d'item lors de la suppression
+    QTreeWidgetItem* w = getCurrentItem(t, arbre, current);
+    t->setCurrentItem(w, 0);
+    t->expandAll();
+    t->setAnimated(true);
+
 }
 
 void Controleur::upElement(QTreeWidget * t)
@@ -470,7 +521,6 @@ QTreeWidgetItem* Controleur::getCurrentItem(QTreeWidget *t, std::vector<int> &ar
     if(!arbre.empty())
     {
         rit = arbre.rbegin();
-        //FIXME: voir pour le cas de premiere création de composant
         w = t->topLevelItem(*rit);
         ++rit;
         for (rit; rit != arbre.rend(); ++rit){
@@ -582,7 +632,7 @@ void Controleur::parcoursListApercu(QTreeWidget *t, QTreeWidgetItem *p, List *pa
         element = new ElementApercu();
         if(!component->getName_().empty())
         {
-            element->setValueName_(QString::fromStdString(component->getName_()));
+            element->setValueName_(QString::fromUtf8(component->getName_().c_str()));
             element->setValueDate_(QDateTime::fromTime_t(component->getDate_()).date());
             element->setValueCheck_(component->getState_());
         }
@@ -638,7 +688,7 @@ void Controleur::parcoursListApercuTemplate(QTreeWidget *t, QTreeWidgetItem *p, 
         element = new ElementApercuTemplate();
         if(!component->getName_().empty())
         {
-            element->setValueName_(QString::fromStdString(component->getName_()));
+            element->setValueName_(QString::fromUtf8(component->getName_().c_str()));
         }
         // Si on trouve une liste ordonnée
         if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){

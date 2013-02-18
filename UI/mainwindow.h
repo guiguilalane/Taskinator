@@ -28,6 +28,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     void askSaveFile();
+
+    void AfterCreatedWindow();
+
     ~MainWindow();
 
 private slots:
@@ -52,6 +55,8 @@ private slots:
     void on_toolButtonDown_clicked();
 
     void elementChanged(int key);
+
+    void elementDeleted(int key);
 
     void toolButtonParam_toList(bool);
 
@@ -85,7 +90,8 @@ private:
     Ui::MainWindow *ui;
     NewList * newList_;
     Controleur * cont_;
-    QSignalMapper* signalMapper_;
+    QSignalMapper* modifiedElementSignalMapper_;
+    QSignalMapper* deletedElementSignalMapper_;
 
     QMenu * menuParam_;
     QAction * liste_;
@@ -96,6 +102,8 @@ private:
     bool boutonAnnulerActif_;
 
     OptionsDialog* opDial_;
+
+    bool isModified;
 };
 
 #endif // MAINWINDOW_H
