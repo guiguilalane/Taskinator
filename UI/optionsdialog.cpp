@@ -13,12 +13,17 @@ OptionsDialog::OptionsDialog(QSettings *set, Controleur *cont, QWidget *parent) 
     if(settings_->value("templateDirectory") != QVariant())
     {
         ui->templatePathDisplayer->setText(settings_->value("templateDirectory").toString());
-        refreshTemplatesList();
     }
     else
     {
-        ui->TemplateContainer->setEnabled(false);
+        QDir current = QDir::current();
+        current.mkdir(current.absolutePath() + "/template");
+        current.cd("template");
+        settings_->setValue("templateDirectory", current.absolutePath());
+        ui->templatePathDisplayer->setText(settings_->value("templateDirectory").toString());
+        ui->TemplateContainer->setEnabled(true);
     }
+    refreshTemplatesList();
 }
 
 OptionsDialog::~OptionsDialog()
