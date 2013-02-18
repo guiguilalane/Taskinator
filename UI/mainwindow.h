@@ -14,6 +14,7 @@
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"
 #include "mytreewidget.h"
+#include "optionsdialog.h"
 
 
 namespace Ui {
@@ -78,6 +79,8 @@ private slots:
 
     void on_actionEnregistrer_template_triggered();
 
+    void on_actionOption_triggered();
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;
@@ -91,6 +94,8 @@ private:
     QSettings * settings_;
 
     bool boutonAnnulerActif_;
+
+    OptionsDialog* opDial_;
 };
 
 #endif // MAINWINDOW_H

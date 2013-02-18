@@ -8,6 +8,7 @@
 #include "../UI/element.h"
 #include "../UI/mytreewidget.h"
 #include "../UI/elementapercu.h"
+#include "../UI/elementapercutemplate.h"
 #include "xmloperation.h"
 #include "componentfactory.h"
 #include <QMainWindow>
@@ -62,10 +63,15 @@ public:
 
     void openFile(QString path);
     List * getRoot_();
+    void setRoot_(List* root);
     bool getFileModified_();
 
     void saveTemplate(QString nameFile);
-    void loadTemplate(const QString path);
+    List* loadTemplate(const QString path, List *root);
+
+    void parcoursListApercuTemplate(QTreeWidget *t, QTreeWidgetItem *p, List *parent, List *root);
+
+    void createVueApercuTemplate(QTreeWidget *t, List *root);
 private:
     List * root_;
     QSignalMapper* signalMapper_;

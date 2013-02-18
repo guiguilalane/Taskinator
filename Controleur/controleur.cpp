@@ -377,18 +377,18 @@ void Controleur::saveTemplate(QString nameFile)
     xmlOp_->createTemplate(path.toStdString(), root_);
 }
 
-void Controleur::loadTemplate(const QString path)
+List* Controleur::loadTemplate(const QString path, List* root)
 {
-    QString templatePath = templateDirectory_ + path;
-    if(root_ != NULL)
+    QString templatePath = templateDirectory_ + "/" + path;
+    if(root != NULL)
     {
-        delete root_;
-        fileModified_ = true;
+        fileModified_ = true && (root==root_);
+        delete root;
     }
     else {
         fileModified_ = false;
     }
-    root_ = xmlOp_->newFileFromTemplate(templatePath.toStdString());
+    return xmlOp_->newFileFromTemplate(templatePath.toStdString());
 }
 
 void Controleur::saveFileOn(QString path)
@@ -421,6 +421,11 @@ void Controleur::openFile(QString path)
 List *Controleur::getRoot_()
 {
     return root_;
+}
+
+void Controleur::setRoot_(List *root)
+{
+    root_ = root;
 }
 
 bool Controleur::getFileModified_()
@@ -616,10 +621,73 @@ void Controleur::parcoursListApercu(QTreeWidget *t, QTreeWidgetItem *p, List *pa
     }
 }
 
+void Controleur::parcoursListApercuTemplate(QTreeWidget *t, QTreeWidgetItem *p, List *parent, List* root)
+{
+    int taille = parent->getTabComponent_().size();
+    QTreeWidgetItem* elementItem = 0;
+    ElementApercuTemplate * element;
+    Component* component;
+    for (int i = 1; i <= taille; ++i){
+        if (parent == root){
+            elementItem = new QTreeWidgetItem(t);
+        }
+        else {
+            elementItem = new QTreeWidgetItem(p);
+        }
+        component = parent->getTabComponent_()[i];
+        element = new ElementApercuTemplate();
+        if(!component->getName_().empty())
+        {
+            element->setValueName_(QString::fromStdString(component->getName_()));
+        }
+        // Si on trouve une liste ordonnée
+        if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){
+            if (dynamic_cast<SortedList *>(parent)){
+                element->setValueType_(QString::number(i)+QString("-"));
+            }
+            else if (dynamic_cast<List *>(parent)){
+                element->setValueType_(QString("-"));
+            }
+            t->setItemWidget(elementItem,0,element);
+            parcoursListApercuTemplate(t, elementItem, (SortedList*) parent->getTabComponent_()[i], root);
+        }
+        // Si on trouve une liste
+        else if(dynamic_cast<List *>(parent->getTabComponent_()[i])) {
+            if (dynamic_cast<SortedList *>(parent)){
+                element->setValueType_(QString::number(i)+QString("-"));
+            }
+            else if (dynamic_cast<List *>(parent)){
+                element->setValueType_(QString("-"));
+            }
+            t->setItemWidget(elementItem,0,element);
+            parcoursListApercuTemplate(t, elementItem, (List*)parent->getTabComponent_()[i], root);
+        }
+        // Si on trouve une tâche
+        else {
+            if (dynamic_cast<SortedList *>(parent)){
+                element->setValueType_(QString::number(i)+QString("-"));
+            }
+            else if (dynamic_cast<List *>(parent)){
+                element->setValueType_(QString("-"));
+            }
+            t->setItemWidget(elementItem,0,element);
+        }
+    }
+}
+
 void Controleur::createVueApercu(QTreeWidget *t)
 {
+    //TODO: supprimer de la mémoire les élément de t
     t->clear();
     parcoursListApercu(t, 0, root_);
+    t->expandAll();
+}
+
+void Controleur::createVueApercuTemplate(QTreeWidget *t, List* root)
+{
+    //TODO: supprimer de la mémoire les élément de t
+    t->clear();
+    parcoursListApercuTemplate(t, 0, root, root);
     t->expandAll();
 }
 
