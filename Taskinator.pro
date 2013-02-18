@@ -29,7 +29,9 @@ SOURCES += main.cpp \
 		Controleur/controleur.cpp \
 		UI/mytreewidget.cpp \
     UI/elementapercu.cpp \
-    Controleur/componentfactory.cpp
+    Controleur/componentfactory.cpp \
+    UI/optionsdialog.cpp \
+    UI/elementapercutemplate.cpp
 
 HEADERS += UI/mainwindow.h \
 		UI/newlist.h \
@@ -45,11 +47,14 @@ HEADERS += UI/mainwindow.h \
 		Controleur/controleur.h \
     UI/mytreewidget.h \
     UI/elementapercu.h \
-    Controleur/componentfactory.h
+    Controleur/componentfactory.h \
+    UI/optionsdialog.h \
+    UI/elementapercutemplate.h
 
 FORMS += UI/mainwindow.ui \
     UI/newlist.ui \
-    UI/dateIncoherente.ui
+    UI/dateIncoherente.ui \
+    UI/optionsdialog.ui
 
 RESOURCES += \
     Resources.qrc

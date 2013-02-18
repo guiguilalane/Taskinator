@@ -10,10 +10,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     boutonAnnulerActif_ = true;
+    newList_ = NULL;
     ui->setupUi(this);
     settings_ = new QSettings("kiwiCorporation", "Taskinator");
     //TODO: faire une fenêtre d'option qui permettra de changer le répertoire des templates
-    settings_->setValue("templateDirectory", "/home/guillaume/Bureau/template/");
+//    settings_->setValue("templateDirectory", "/home/guillaume/Bureau/template/");
 
     signalMapper_ = new QSignalMapper(this);
     cont_ = new Controleur(this, signalMapper_);
@@ -68,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->radioButton_Y->blockSignals(false);
         ui->radioButton_N->blockSignals(false);
     }
-
+    opDial_ = new OptionsDialog(settings_, cont_, this);
 }
 
 void MainWindow::askSaveFile()
@@ -84,8 +85,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_actionNouveau_triggered()
 {
     if (cont_->getFileModified_()){
@@ -95,6 +94,10 @@ void MainWindow::on_actionNouveau_triggered()
     QStringList filters;
     filters << "*.ulk";
     templateDirectory.setNameFilters(filters);
+    if(NULL != newList_)
+    {
+        delete newList_;
+    }
     newList_ = new NewList(boutonAnnulerActif_, templateDirectory.entryList());
     newList_->show();
     QObject::connect(newList_,SIGNAL(createList(QString, bool, QString, QDateTime)),this,SLOT(createList(QString, bool, QString, QDateTime)));
@@ -348,7 +351,7 @@ void MainWindow::createList(QString templatePath, bool liste, QString name, QDat
     }
     else
     {
-        cont_->loadTemplate(templatePath);
+        cont_->setRoot_(cont_->loadTemplate(templatePath, cont_->getRoot_()));
     }
     ui->lineEdit->setText(name);
     on_lineEdit_editingFinished();
@@ -380,4 +383,9 @@ void MainWindow::on_radioButton_N_toggled(bool checked)
     if (checked){
         cont_->sortedListToList(ui->listTree);
     }
+}
+
+void MainWindow::on_actionOption_triggered()
+{
+    opDial_->show();
 }
