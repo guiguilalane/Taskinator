@@ -89,11 +89,11 @@ List* XMLOperation::newFileFromTemplate(const std::string &file)
     List* root = NULL;
     if(type.compare("sortedList")==0)
     {
-        root = ComponentFactory::getInstance()->createSortedList(std::string(rootElement.attribute("name").as_string()), QDateTime::fromString(QString(rootElement.attribute("date").as_string()), "dd/MM/yyyy").toTime_t());
+        root = ComponentFactory::getInstance()->createSortedList(std::string(rootElement.attribute("name").as_string()), QDateTime::currentDateTime().toTime_t());
     }
     else if(type.compare("list")==0)
     {
-        root = ComponentFactory::getInstance()->createList(std::string(rootElement.attribute("name").as_string()), QDateTime::fromString(QString(rootElement.attribute("date").as_string()), "dd/MM/yyyy").toTime_t());
+        root = ComponentFactory::getInstance()->createList(std::string(rootElement.attribute("name").as_string()), QDateTime::currentDateTime().toTime_t());
     }
     else
     {
@@ -153,19 +153,24 @@ void XMLOperation::parcoursFile(List *c, xml_node &element)
     for(xml_node component = element.child("component"); component; component = component.next_sibling("component"))
     {
         type = component.attribute("type").as_string();
+        QDateTime dateTime = QDateTime::fromString(QString(component.attribute("date").as_string()), "dd/MM/yyyy");
+        if(!dateTime.isValid())
+        {
+            dateTime = QDateTime::currentDateTime();
+        }
         if(type.compare("sortedList")==0)
         {
-            child = ComponentFactory::getInstance()->createSortedList(std::string(component.attribute("name").as_string()), QDateTime::fromString(QString(component.attribute("date").as_string()), "dd/MM/yyyy").toTime_t(), component.attribute("checked").as_bool());
+            child = ComponentFactory::getInstance()->createSortedList(std::string(component.attribute("name").as_string()), dateTime.toTime_t(), component.attribute("checked").as_bool());
             parcoursFile((List*) child, component);
         }
         else if(type.compare("list")==0)
         {
-            child = ComponentFactory::getInstance()->createList(std::string(component.attribute("name").as_string()), QDateTime::fromString(QString(component.attribute("date").as_string()), "dd/MM/yyyy").toTime_t(), component.attribute("checked").as_bool());
+            child = ComponentFactory::getInstance()->createList(std::string(component.attribute("name").as_string()), dateTime.toTime_t(), component.attribute("checked").as_bool());
             parcoursFile((List*) child, component);
         }
         else
         {
-            child = ComponentFactory::getInstance()->createTask(std::string(component.attribute("name").as_string()), QDateTime::fromString(QString(component.attribute("date").as_string()), "dd/MM/yyyy").toTime_t(), component.attribute("checked").as_bool());
+            child = ComponentFactory::getInstance()->createTask(std::string(component.attribute("name").as_string()), dateTime.toTime_t(), component.attribute("checked").as_bool());
         }
         c->addComponent(child);
     }
