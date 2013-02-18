@@ -19,8 +19,10 @@ Element::Element(QWidget *parent) : QWidget(parent)
 
     this->setLayout(layout_);
 
-    connect(name_, SIGNAL(editingFinished()), this, SLOT(onNameChange()));
-    connect(date_, SIGNAL(editingFinished()), this, SLOT(onDateChange()));
+//    connect(name_, SIGNAL(editingFinished()), this, SLOT(onNameChange()));
+//    connect(date_, SIGNAL(editingFinished()), this, SLOT(onDateChange()));
+    connect(name_, SIGNAL(textChanged(QString)), this, SLOT(onNameChange(QString)));
+    connect(date_, SIGNAL(dateChanged(QDate)), this, SLOT(onDateChange(QDate)));
     connect(check_, SIGNAL(stateChanged(int)), this, SLOT(onCheckChange(int)));
 
     connect(supp_, SIGNAL(clicked()), this, SLOT(onDeleteElement()));
@@ -35,7 +37,17 @@ void Element::onNameChange()
     emit elementChanged();
 }
 
+void Element::onNameChange(QString t)
+{
+    emit elementChanged();
+}
+
 void Element::onDateChange()
+{
+    emit elementChanged();
+}
+
+void Element::onDateChange(QDate d)
 {
     emit elementChanged();
 }

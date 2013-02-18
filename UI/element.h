@@ -33,10 +33,11 @@ signals:
 
 private slots:
     void onNameChange();
+    void onNameChange(QString t);
     void onDateChange();
+    void onDateChange(QDate d);
     void onCheckChange(int state);
     void onDeleteElement();
-
 
 private:
     QLabel * type_;
