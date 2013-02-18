@@ -30,8 +30,6 @@ private slots:
 
     void on_deleteTemplateButton_clicked();
 
-//    void on_listOfTemplates_itemSelectionChanged();
-
     void on_listOfTemplates_itemClicked(QListWidgetItem *item);
 
 private:

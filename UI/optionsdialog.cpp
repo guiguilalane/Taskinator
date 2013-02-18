@@ -122,17 +122,6 @@ void OptionsDialog::on_deleteTemplateButton_clicked()
     }
 }
 
-//void OptionsDialog::on_listOfTemplates_itemSelectionChanged()
-//{
-//    bool b = (NULL != ui->listOfTemplates->currentItem());
-//    ui->deleteTemplateButton->setEnabled(b);
-//    if(!b)
-//    {
-//        ui->templatePreview->clear();
-//        //TODO: supprimer les items de l'aperçu
-//    }
-//}
-
 void OptionsDialog::on_listOfTemplates_itemClicked(QListWidgetItem *item)
 {
     ui->deleteTemplateButton->setEnabled(true);
