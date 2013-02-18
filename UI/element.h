@@ -25,13 +25,18 @@ public:
     QDate getValueDate_();
     int getValueCheck_();
 
+    void setCheckable(const bool b);
+
 signals:
     void elementChanged();
+    void elementDeleted();
 
 private slots:
     void onNameChange();
     void onDateChange();
     void onCheckChange(int state);
+    void onDeleteElement();
+
 
 private:
     QLabel * type_;

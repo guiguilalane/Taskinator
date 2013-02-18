@@ -24,7 +24,7 @@
 class Controleur
 {
 public:
-    Controleur(QMainWindow *mainW, QSignalMapper *signalM);
+    Controleur(QMainWindow *mainW, QSignalMapper *signalM, QSignalMapper *signalD);
     void createList(const std::string &name, time_t date);
     void createSortedList(const std::string &name, time_t date);
     std::vector<int> calculateArborescence(QModelIndex m);
@@ -36,6 +36,7 @@ public:
     void parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent);
     void parcoursListModele(List * parent, List *nouvelle);
     void removeElement(QTreeWidget *t);
+    void removeElementFromItem(QTreeWidget *t, QTreeWidgetItem *item);
     void upElement(QTreeWidget * t);
     void downElement(QTreeWidget * t);
     void updateModel(QModelIndex* mIndex, const QString& name, const QDateTime &date, const bool state);
@@ -70,9 +71,12 @@ public:
     void parcoursListApercuTemplate(QTreeWidget *t, QTreeWidgetItem *p, List *parent, List *root);
 
     void createVueApercuTemplate(QTreeWidget *t, List *root);
+    bool isListOrSortedListFromItem(QTreeWidget *t, QTreeWidgetItem *item);
+
 private:
     List * root_;
-    QSignalMapper* signalMapper_;
+    QSignalMapper* modifiedElementSignalMapper_;
+    QSignalMapper* deletedElementSignalMapper_;
     QMainWindow * mainWindow_;
     QVector<Element*> asup_;
     QHash<int, QTreeWidgetItem*> *elements_;

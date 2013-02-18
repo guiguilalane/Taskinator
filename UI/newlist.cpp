@@ -12,7 +12,7 @@ NewList::NewList(bool boutonAnnulerActif, QStringList templates, QWidget *parent
         cancelButton->setEnabled(false);
     }
     ui->dateEdit->setDate(QDate::currentDate());
-    templates = QStringList() << tr("aucun") << templates;
+    templates = QStringList() << tr("Aucun") << templates;
     ui->comboBox->addItems(templates);
 }
 

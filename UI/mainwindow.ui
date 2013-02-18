@@ -310,6 +310,9 @@
            </item>
            <item>
             <widget class="MyTreeWidget" name="listTree">
+             <property name="uniformRowHeights">
+              <bool>true</bool>
+             </property>
              <attribute name="headerVisible">
               <bool>false</bool>
              </attribute>
