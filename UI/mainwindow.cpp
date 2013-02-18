@@ -50,8 +50,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButtonUp->setEnabled(false);
     ui->toolButtonDown->setEnabled(false);
     ui->toolButtonTrash->setEnabled(false);
-
-    opDial_ = new OptionsDialog(settings_, cont_, this);
 }
 
 void MainWindow::askSaveFile()
@@ -83,6 +81,7 @@ void MainWindow::AfterCreatedWindow()
         ui->radioButton_Y->blockSignals(false);
         ui->radioButton_N->blockSignals(false);
     }
+    opDial_ = new OptionsDialog(settings_, cont_, this);
 }
 
 MainWindow::~MainWindow()

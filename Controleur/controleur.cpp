@@ -252,7 +252,6 @@ void Controleur::removeElement(QTreeWidget * t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
-//    t->expandAll();
 }
 
 bool Controleur::isListOrSortedListFromItem(QTreeWidget *t, QTreeWidgetItem *item)
@@ -289,14 +288,11 @@ void Controleur::removeElementFromItem(QTreeWidget *t, QTreeWidgetItem *item)
     fileModified_ = true;
 
     // Suppression de l'IHM
-    QModelIndex current = t->currentIndex();
+    QModelIndex current = ((MyTreeWidget*)t)->getIndexFromItem(t->itemAbove(t->currentItem()));
+    deleteCurrentItem(t, arbre, m);
     refreshVue(t);
-    //TODO: modifier la politique de sélection d'item lors de la suppression
     QTreeWidgetItem* w = getCurrentItem(t, arbre, current);
     t->setCurrentItem(w, 0);
-    t->expandAll();
-    t->setAnimated(true);
-
 }
 
 void Controleur::upElement(QTreeWidget * t)
