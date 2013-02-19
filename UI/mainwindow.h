@@ -58,6 +58,8 @@ private slots:
 
     void elementDeleted(int key);
 
+    void checkboxStateChanged(int key);
+
     void toolButtonParam_toList(bool);
 
     void toolButtonParam_toSortedList(bool b);
@@ -92,6 +94,7 @@ private:
     Controleur * cont_;
     QSignalMapper* modifiedElementSignalMapper_;
     QSignalMapper* deletedElementSignalMapper_;
+    QSignalMapper* checkboxStateChangeSignalMapper_;
 
     QMenu * menuParam_;
     QAction * liste_;
@@ -104,6 +107,15 @@ private:
     OptionsDialog* opDial_;
 
     bool isModified;
+
+    QTreeWidgetItem *getNextItemCheckable(QTreeWidgetItem* checkedStatedChangedItem);
+
+    QTreeWidgetItem *getLastElement(QTreeWidgetItem* twi);
+
+    bool itemHasChild(QTreeWidgetItem* item);
+
+    QTreeWidgetItem *getChild(QTreeWidgetItem* parent, QTreeWidgetItem* lastElement);
+
 };
 
 #endif // MAINWINDOW_H

@@ -30,6 +30,7 @@ public:
 signals:
     void elementChanged();
     void elementDeleted();
+    void elementCheckChanged();
 
 private slots:
     void onNameChange();

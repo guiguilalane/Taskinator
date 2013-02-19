@@ -8,7 +8,7 @@ ElementApercu::ElementApercu(QWidget *parent) : QWidget(parent)
     name_->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     date_ = new QLabel();
     check_ = new QCheckBox();
-    check_->setCheckable(false);
+    check_->setEnabled(false);
 
     layout_ = new QHBoxLayout();
     layout_->addWidget(type_);

@@ -18,7 +18,7 @@ public:
     void onActivatedItem(QTreeWidgetItem* item, int column = 0);
 
     void onItemSelectionChanged();
-    void parcoursArbre(MyTreeWidget *t, MyTreeWidget * t);
+    void parcoursArbre(MyTreeWidget *p, MyTreeWidget * t);
     void parcoursArbreRecursif(QTreeWidgetItem *itemP, QTreeWidgetItem *elementItem, MyTreeWidget * t);
 
 signals:

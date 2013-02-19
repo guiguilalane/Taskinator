@@ -54,7 +54,7 @@ void Element::onDateChange(QDate d)
 
 void Element::onCheckChange(int state)
 {
-    emit elementChanged();
+    emit elementCheckChanged();
 }
 
 void Element::onDeleteElement()

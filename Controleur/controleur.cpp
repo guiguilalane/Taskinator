@@ -2,7 +2,10 @@
 
 #include <QDebug>
 
-Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM, QSignalMapper *signalD): mainWindow_(mainW), modifiedElementSignalMapper_(signalM), deletedElementSignalMapper_(signalD)
+Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM, QSignalMapper *signalD, QSignalMapper *signalC):
+    mainWindow_(mainW), modifiedElementSignalMapper_(signalM),
+    deletedElementSignalMapper_(signalD),
+    checkboxStateChangeSignalMapper_(signalC)
 {
     elements_ = new QHash<int, QTreeWidgetItem*>();
     xmlOp_ = new XMLOperation();
@@ -73,6 +76,7 @@ void Controleur::refreshVue(QTreeWidget * t)
     //FIXME: actuellement, execution du slot elementChanged nb_QTreeWidgetItem fois sur le même objet, même si un seul signal emit
     QObject::connect(modifiedElementSignalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
     QObject::connect(deletedElementSignalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementDeleted(int)));
+    QObject::connect(checkboxStateChangeSignalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(checkboxStateChanged(int)));
     // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée et éviter de mettre des expandAll() dans toutes les fonctionnalitées qui utilise la méthode refreshView()
 }
 
@@ -111,8 +115,10 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
         asup_.push_back(element);
         QObject::connect(element, SIGNAL(elementChanged()), modifiedElementSignalMapper_, SLOT(map()));
         QObject::connect(element, SIGNAL(elementDeleted()), deletedElementSignalMapper_, SLOT(map()));
+        QObject::connect(element, SIGNAL(elementCheckChanged()), checkboxStateChangeSignalMapper_, SLOT(map()));
         modifiedElementSignalMapper_->setMapping(element, hash);
         deletedElementSignalMapper_->setMapping(element, hash);
+        checkboxStateChangeSignalMapper_->setMapping(element, hash);
         // Si on trouve une liste ordonnée
         if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){
             if (dynamic_cast<SortedList *>(parent)){

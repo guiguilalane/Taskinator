@@ -24,7 +24,7 @@
 class Controleur
 {
 public:
-    Controleur(QMainWindow *mainW, QSignalMapper *signalM, QSignalMapper *signalD);
+    Controleur(QMainWindow *mainW, QSignalMapper *signalM, QSignalMapper *signalD, QSignalMapper *signalC);
     void createList(const std::string &name, time_t date);
     void createSortedList(const std::string &name, time_t date);
     std::vector<int> calculateArborescence(QModelIndex m);
@@ -79,6 +79,7 @@ private:
     List * root_;
     QSignalMapper* modifiedElementSignalMapper_;
     QSignalMapper* deletedElementSignalMapper_;
+    QSignalMapper* checkboxStateChangeSignalMapper_;
     QMainWindow * mainWindow_;
     QVector<Element*> asup_;
     QHash<int, QTreeWidgetItem*> *elements_;
