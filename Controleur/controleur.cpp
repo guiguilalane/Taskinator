@@ -99,9 +99,9 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
             element->setValueDate_(QDateTime::fromTime_t(component->getDate_()).date());
 
             //NOTE: sur une liste dépendra de la valeur des composents fils
-            element->setValueCheck_(component->getState_());
-        }
 
+        }
+    element->setValueCheck_(component->getState_());
 
         bool b = true;
         b = component->checkedPreviousTask();

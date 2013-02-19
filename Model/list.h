@@ -37,6 +37,8 @@ public:
 
     virtual bool checkedPreviousTask();
 
+    virtual void checkIfPossible();
+
 protected:
 
     int id_;

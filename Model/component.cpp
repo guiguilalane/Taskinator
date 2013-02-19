@@ -53,6 +53,10 @@ void Component::setDate_(time_t date)
 void Component::setState_(bool state)
 {
     state_ = state;
+    if(dynamic_cast<List*> (parent_))
+    {
+        parent_->checkIfPossible();
+    }
 }
 
 void Component::setParent_(List * p)

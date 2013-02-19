@@ -324,41 +324,45 @@ void MainWindow::elementDeleted(int key)
 
 void MainWindow::checkboxStateChanged(int key)
 {
-    ui->listTree->blockSignals(true);
-    ui->listTree->setAnimated(false);
-    QTreeWidgetItem* checkedStatedChangedItem = cont_->getElement(key);
-    Element* e = (Element*) ui->listTree->itemWidget(checkedStatedChangedItem, 0);
-    bool state = e->getValueCheck_();
-    QModelIndex checkedStateMIndex = ui->listTree->getIndexFromItem(checkedStatedChangedItem);
-    cont_->updateModel(&checkedStateMIndex, e->getValueName_(), QDateTime(e->getValueDate_()), e->getValueCheck_() > 0);
-    QTreeWidgetItem* parent = checkedStatedChangedItem->parent();
-    if(parent == 0)
+    if(NULL != cont_->getElement(key))
     {
-        if(ui->radioButton_Y->isChecked())
-        {//sortedList
-            std::cout << "modifier le state des task seulement" << std::endl;
-            //dans le cas d'une liste ordonnée, récupérer le prochain élément non checké qui ne soit pas une liste
-            //doit correspondre à un task
-            QTreeWidgetItem* nextItemCheckable = getNextItemCheckable(checkedStatedChangedItem);
-            Element* e = (Element*) ui->listTree->itemWidget(nextItemCheckable, 0);
-            e->setCheckable(state);
-        }
+        ui->listTree->blockSignals(true);
+        ui->listTree->setAnimated(false);
+        QTreeWidgetItem* checkedStatedChangedItem = cont_->getElement(key);
+        Element* e = (Element*) ui->listTree->itemWidget(checkedStatedChangedItem, 0);
+        //    bool state = e->getValueCheck_();
+        QModelIndex checkedStateMIndex = ui->listTree->getIndexFromItem(checkedStatedChangedItem);
+        cont_->updateModel(&checkedStateMIndex, e->getValueName_(), QDateTime(e->getValueDate_()), e->getValueCheck_() > 0);
+        cont_->refreshVue(ui->listTree);
+        //    QTreeWidgetItem* parent = checkedStatedChangedItem->parent();
+        //    if(parent == 0)
+        //    {
+        //        if(ui->radioButton_Y->isChecked())
+        //        {//sortedList
+        //            std::cout << "modifier le state des task seulement" << std::endl;
+        //            //dans le cas d'une liste ordonnée, récupérer le prochain élément non checké qui ne soit pas une liste
+        //            //doit correspondre à un task
+        //            QTreeWidgetItem* nextItemCheckable = getNextItemCheckable(checkedStatedChangedItem);
+        //            Element* e = (Element*) ui->listTree->itemWidget(nextItemCheckable, 0);
+        //            e->setCheckable(state);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        std::cout << "récupérer la liste complète des enfants" << std::endl;
+        //    }
+        //    /*idée d'algorithme pour changer la checkabilité des éléments :
+        //     *  - peut-être créer un signalMapper pour cet algorithme
+        //     *  - récupérer le QTreeWidgetItem "parent" de celui qu'on a modifié
+        //     *  - si c'est le root on ne fait rien
+        //     *  - sinon on récupère la liste complete des enfants de "parent"
+        //     *  - en fonction du type de liste qu'est "parent" on modifie l'état de la checkbox à changer
+        //     *  - si la checkbox cochée correspond à la dernière sous-(tâche/liste) cochée, cochée la checkbox de "parent"
+        //     *  - si la checkbox de "parent" à été modifier, rappeler cet algorithme sur le QTreeWidgetItem "parent"
+        //     */
+        ui->listTree->setAnimated(false);
+        ui->listTree->blockSignals(false);
     }
-    else
-    {
-        std::cout << "récupérer la liste complète des enfants" << std::endl;
-    }
-    /*idée d'algorithme pour changer la checkabilité des éléments :
-     *  - peut-être créer un signalMapper pour cet algorithme
-     *  - récupérer le QTreeWidgetItem "parent" de celui qu'on a modifié
-     *  - si c'est le root on ne fait rien
-     *  - sinon on récupère la liste complete des enfants de "parent"
-     *  - en fonction du type de liste qu'est "parent" on modifie l'état de la checkbox à changer
-     *  - si la checkbox cochée correspond à la dernière sous-(tâche/liste) cochée, cochée la checkbox de "parent"
-     *  - si la checkbox de "parent" à été modifier, rappeler cet algorithme sur le QTreeWidgetItem "parent"
-     */
-    ui->listTree->setAnimated(false);
-    ui->listTree->blockSignals(false);
 }
 
 QTreeWidgetItem *MainWindow::getNextItemCheckable(QTreeWidgetItem *checkedStatedChangedItem)

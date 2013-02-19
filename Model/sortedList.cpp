@@ -45,14 +45,12 @@ bool SortedList::checkedPreviousTask()
         bool check = false;
         if (cle > 1)
         {
-            check = parent_->getTabComponent_()[cle-1]->getState_();
+            if(id_ <= 1)
+            {
+                check = parent_->getTabComponent_()[cle-1]->getState_();
+            }
         }
         //NOTE: bug here
-//        bool b;
-//        if(id > 1)
-//        {
-
-//        }
         res = parent_->checkedPreviousTask() && check;
     }
     return res;

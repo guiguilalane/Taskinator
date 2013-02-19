@@ -82,11 +82,26 @@ bool List::checkedPreviousTask()
         bool check = false;
         if (cle > 1)
         {
-            check = parent_->getTabComponent_()[cle-1]->getState_();
+            if(id_ <= 1)
+            {
+                check = parent_->getTabComponent_()[cle-1]->getState_();
+            }
         }
         res = parent_->checkedPreviousTask() && check;
     }
     return res;
+}
+
+void List::checkIfPossible()
+{
+    bool check = true;
+    int i = 1;
+    int taille = tabComponent_.size();
+    for (i; i <= taille; ++i)
+    {
+        check = check && tabComponent_[i]->getState_();
+    }
+    state_ = check;
 }
 
 void List::removeComponent(const int cle)
