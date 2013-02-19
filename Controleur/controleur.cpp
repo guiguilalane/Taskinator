@@ -631,8 +631,8 @@ void Controleur::parcoursListApercu(QTreeWidget *t, QTreeWidgetItem *p, List *pa
         {
             element->setValueName_(QString::fromUtf8(component->getName_().c_str()));
             element->setValueDate_(QDateTime::fromTime_t(component->getDate_()).date());
-            element->setValueCheck_(component->getState_());
         }
+        element->setValueCheck_(component->getState_());
         // Si on trouve une liste ordonnée
         if (dynamic_cast<SortedList *>(parent->getTabComponent_()[i])){
             if (dynamic_cast<SortedList *>(parent)){
