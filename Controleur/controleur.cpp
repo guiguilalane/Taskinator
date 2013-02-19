@@ -1,7 +1,5 @@
 #include "controleur.h"
 
-#include <QDebug>
-
 Controleur::Controleur(QMainWindow *mainW, QSignalMapper *signalM, QSignalMapper *signalD, QSignalMapper *signalC):
     mainWindow_(mainW), modifiedElementSignalMapper_(signalM),
     deletedElementSignalMapper_(signalD),
@@ -80,7 +78,6 @@ void Controleur::refreshVue(QTreeWidget * t)
     // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée et éviter de mettre des expandAll() dans toutes les fonctionnalitées qui utilise la méthode refreshView()
 }
 
-// TODO: ajouter que lorsque le l'on créer les élément on doit passer en paramètre les valeurs déjà renseignées !!!
 void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent)
 {
     int taille = parent->getTabComponent_().size();
@@ -230,7 +227,6 @@ void Controleur::addTask(QTreeWidget * t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
-    //    t->expandAll();
 }
 
 void Controleur::refreshTitle(QLineEdit *lineEdit, QDateEdit *dateEdit, QRadioButton *RBY, QRadioButton *RBN)
@@ -322,7 +318,6 @@ void Controleur::upElement(QTreeWidget * t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(t->itemAbove(w), 0);
-//    t->expandAll();
 }
 
 void Controleur::downElement(QTreeWidget * t)
@@ -343,7 +338,6 @@ void Controleur::downElement(QTreeWidget * t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(t->itemBelow(w), 0);
-//    t->expandAll();
 }
 
 void Controleur::toList(QTreeWidget * t)
@@ -372,7 +366,6 @@ void Controleur::toList(QTreeWidget * t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
-//    t->expandAll();
 }
 
 void Controleur::toSortedList(QTreeWidget * t)
@@ -401,7 +394,6 @@ void Controleur::toSortedList(QTreeWidget * t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
-//    t->expandAll();
 }
 
 void Controleur::toTask(QTreeWidget * t)
@@ -424,7 +416,6 @@ void Controleur::toTask(QTreeWidget * t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
-//    t->expandAll();
 }
 
 void Controleur::saveTemplate(QString nameFile)
@@ -489,6 +480,11 @@ bool Controleur::getFileModified_()
     return fileModified_;
 }
 
+void Controleur::setFilePath(QString file)
+{
+    filePath_ = file;
+}
+
 void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDateTime &date, const bool state)
 {
     std::vector<int> arbre = calculateArborescence(*mIndex);
@@ -550,7 +546,6 @@ void Controleur::deleteCurrentItem(QTreeWidget *t, std::vector<int> &arbre, QMod
     if(!arbre.empty())
     {
         rit = arbre.rbegin();
-        //FIXME: voir pour le cas de premiere création de composant
         w = t->topLevelItem(*rit);
         ++rit;
         for (rit; rit != arbre.rend(); ++rit){
@@ -561,9 +556,6 @@ void Controleur::deleteCurrentItem(QTreeWidget *t, std::vector<int> &arbre, QMod
     else
     {
         w = t->takeTopLevelItem(m.row());
-//        for (rit= arbre.rbegin(); rit != arbre.rend(); ++rit){
-//            w = w->child((*rit));
-//        }
     }
 }
 
@@ -775,7 +767,6 @@ void Controleur::sortedListToList(QTreeWidget *t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
-//    t->expandAll();
 }
 
 void Controleur::listToSortedList(QTreeWidget *t)
@@ -798,5 +789,4 @@ void Controleur::listToSortedList(QTreeWidget *t)
     refreshVue(t);
     QTreeWidgetItem* w = getCurrentItem(t, arbre, m);
     t->setCurrentItem(w, 0);
-//    t->expandAll();
 }

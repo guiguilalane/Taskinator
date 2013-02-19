@@ -20,5 +20,6 @@
         <file>Pictures/bullet_add.png</file>
         <file>Pictures/bullet_delete.png</file>
         <file>Pictures/Copyright.png</file>
+        <file>Pictures/iron_kiwi.png</file>
     </qresource>
 </RCC>

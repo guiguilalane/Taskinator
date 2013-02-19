@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     newList_ = NULL;
     ui->setupUi(this);
     settings_ = new QSettings("kiwiCorporation", "Taskinator");
+    if(settings_->value("nbFileOpen","") == ""){
+        settings_->setValue("nbFileOpen", 1);
+    }
     //TODO: faire une fenêtre d'option qui permettra de changer le répertoire des templates
 //    settings_->setValue("templateDirectory", "/home/guillaume/Bureau/template/");
 
@@ -27,6 +30,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QLabel * vide = new QLabel(QString::fromUtf8("Sélectionner la ligne et créer une liste ou tâche"));
     QTreeWidgetItem* videItem = new QTreeWidgetItem(ui->listTree);
     ui->listTree->setItemWidget(videItem,0,vide);
+
+    // Menu pour Ouvrir Recent
+    ouvrirRecent_ = new QMenu("Ouvrir récent");
+    ui->menuFichier->insertMenu(ui->actionEnregistrer,ouvrirRecent_);
+    ui->menuFichier->insertSeparator(ui->actionEnregistrer);
+    createMenuRecentFile();
 
     // Menu pour le bouton changement de type
     menuParam_ = new QMenu();
@@ -58,7 +67,8 @@ void MainWindow::askSaveFile()
 {
     int r = QMessageBox::warning(this, "Enregistrement", tr(" <center> Attention </center> <br/>" "Cette action remplacera la liste en cours <br/><br/>" "Voulez-vous enregistrer votre liste ?"), QMessageBox::Yes | QMessageBox::Default, QMessageBox::No);
     if (r == QMessageBox::Yes){
-        ui->actionEnregistrer->trigger();
+        on_actionEnregistrer_sous_triggered();
+//        ui->actionEnregistrer->trigger();
     }
 }
 
@@ -86,6 +96,32 @@ void MainWindow::AfterCreatedWindow()
     opDial_ = new OptionsDialog(settings_, cont_, this);
 }
 
+QList<QAction *> MainWindow::loadingrecentFile()
+{
+    QList<QAction *> listRecentFile_;
+    int t = settings_->value("nbFileOpen").toInt();
+    std::stringstream ss;//create a stringstream
+    for (int i=1; i<t;i++){
+        ss << "file" << i;
+        QAction * action = new QAction(settings_->value(QString::fromStdString(ss.str())).toString(), ouvrirRecent_);
+        // TODO Passer en paramètre le nom de l'action
+        connect(action,SIGNAL(triggered()),this,SLOT(openFile()));
+        listRecentFile_.append(action);
+        ss.str("");
+    }
+    return listRecentFile_;
+}
+
+void MainWindow::createMenuRecentFile()
+{
+    ouvrirRecent_->clear();
+    ouvrirRecent_->addActions(loadingrecentFile());
+    QAction * sep1 = ouvrirRecent_->addSeparator();
+    clear_ = new QAction("Effacer les éléments récents",ouvrirRecent_);
+    connect(clear_,SIGNAL(triggered()),this,SLOT(clearMenuRecentFile()));
+    ouvrirRecent_->addAction(clear_);
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -93,6 +129,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNouveau_triggered()
 {
+    cont_->setFilePath("");
     if (cont_->getFileModified_()){
         askSaveFile();
     }
@@ -115,11 +152,33 @@ void MainWindow::on_actionOuvrir_triggered()
     if (cont_->getFileModified_()){
         askSaveFile();
     }
-    QString file = QFileDialog::getOpenFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
+    QString file = QFileDialog::getOpenFileName(this, "Ouvrir ...", QString(), "Taskinator (*.tor)");
     if (file != ""){
+        cont_->setFilePath(file);
         cont_->openFile(file);
         cont_->refreshVue(ui->listTree);
         cont_->refreshTitle(ui->lineEdit, ui->dateEdit, ui->radioButton_Y, ui->radioButton_N);
+        // Pour le chargement d'ouvrir récent
+        bool pres = false;
+        int t = settings_->value("nbFileOpen").toInt();
+        std::stringstream ss;//create a stringstream
+        for (int i=1; i<t;i++){
+            ss << "file" << i;
+            if (settings_->value(QString::fromStdString(ss.str())).toString() == file){
+                    pres = true;
+            }
+            ss.str("");
+        }
+        if(!pres){
+            settings_->setValue("file"+settings_->value("nbFileOpen").toString(),file);
+            if (settings_->value("nbFileOpen")==5){
+                settings_->setValue("nbFileOpen",1);
+            }
+            else {
+                settings_->setValue("nbFileOpen",settings_->value("nbFileOpen").toInt()+1);
+            }
+        }
+        createMenuRecentFile();
     }
 }
 
@@ -128,6 +187,27 @@ void MainWindow::on_actionEnregistrer_sous_triggered()
     QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer sous ...", QString(), "Taskinator (*.tor)");
     cont_->saveFileOn(fichier);
     settings_->setValue("lastFile",fichier);
+    // Pour le chargement d'ouvrir récent
+    bool pres = false;
+    int t = settings_->value("nbFileOpen").toInt();
+    std::stringstream ss;//create a stringstream
+    for (int i=1; i<t;i++){
+        ss << "file" << i;
+        if (settings_->value(QString::fromStdString(ss.str())).toString() == fichier){
+                pres = true;
+        }
+        ss.str("");
+    }
+    if(!pres){
+        settings_->setValue("file"+settings_->value("nbFileOpen").toString(),fichier);
+        if (settings_->value("nbFileOpen")==5){
+            settings_->setValue("nbFileOpen",1);
+        }
+        else {
+            settings_->setValue("nbFileOpen",settings_->value("nbFileOpen").toInt()+1);
+        }
+    }
+    createMenuRecentFile();
 }
 
 void MainWindow::on_actionEnregistrer_triggered()
@@ -437,7 +517,7 @@ void MainWindow::on_listTree_itemSelectionChanged()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this,"About Taskinator",QString::fromUtf8(tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER. <br/><br/> <img src=\"://Pictures/Copyright.png\"> Copyright KiwiCorporation ").toStdString().c_str()));
+    QMessageBox::about(this,"About Taskinator",QString::fromUtf8(tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER. <br/><br/> KiwiCorporation &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src=\"://Pictures/iron_kiwi.png\"> ").toStdString().c_str()));
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index)
@@ -518,4 +598,28 @@ void MainWindow::on_radioButton_N_toggled(bool checked)
 void MainWindow::on_actionOption_triggered()
 {
     opDial_->show();
+}
+
+void MainWindow::openFile()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (action)
+    {
+        cont_->openFile(action->text());
+        cont_->refreshVue(ui->listTree);
+        cont_->refreshTitle(ui->lineEdit, ui->dateEdit, ui->radioButton_Y, ui->radioButton_N);
+    }
+}
+
+void MainWindow::clearMenuRecentFile()
+{
+    int t = settings_->value("nbFileOpen").toInt();
+    std::stringstream ss;//create a stringstream
+    for (int i=1; i<t;i++){
+        ss << "file" << i;
+        settings_->remove(QString::fromStdString(ss.str()));
+        ss.str("");
+    }
+    settings_->setValue("nbFileOpen", 1);
+    createMenuRecentFile();
 }

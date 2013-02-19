@@ -67,6 +67,8 @@ public:
     void setRoot_(List* root);
     bool getFileModified_();
 
+    void setFilePath(QString file);
+
     void saveTemplate(QString nameFile);
     List* loadTemplate(const QString path, List *root);
 

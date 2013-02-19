@@ -12,7 +12,6 @@ class MyTreeWidget : public QTreeWidget
 public:
     MyTreeWidget(QWidget *parent = 0);
     MyTreeWidget(MyTreeWidget * t);
-
     QModelIndex getIndexFromItem(QTreeWidgetItem* item, const int column = 0);
     
     void onActivatedItem(QTreeWidgetItem* item, int column = 0);
