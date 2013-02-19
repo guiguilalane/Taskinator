@@ -45,7 +45,6 @@ bool SortedList::checkedPreviousTask()
         bool check = false;
         if (cle > 1)
         {
-            Component* tmp = getTabComponent_()[cle-1];
             check = parent_->getTabComponent_()[cle-1]->getState_();
         }
         res = parent_->checkedPreviousTask() && check;
@@ -61,7 +60,16 @@ bool SortedList::isPreviousTaskChecked(const int cle)
         isChecked = isChecked && tabComponent_[i]->getState_();
         ++i;
     }
-    return isChecked && parent_->isPreviousTaskChecked(getIdFromMap());
+    bool b;
+    if(parent_ == 0)
+    {
+        b = true;
+    }
+    else
+    {
+        b = parent_->isPreviousTaskChecked(getIdFromMap());
+    }
+    return isChecked && b;
 }
 
 void SortedList::addComponent(Component *c)
@@ -69,7 +77,7 @@ void SortedList::addComponent(Component *c)
     c->setParent_(this);
     tabComponent_.insert(std::pair<int,Component*>(id_,c));
     ++id_;
-    //mettre la date de la liste à la dernière date de la sous-tâche
+    //TODO: mettre la date de la liste à la dernière date de la sous-tâche
 }
 
 std::ostream& SortedList::affichage(std::ostream& os)

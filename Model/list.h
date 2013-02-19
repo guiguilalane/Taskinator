@@ -35,6 +35,8 @@ public:
 
     virtual bool isPreviousTaskChecked(const int cle);
 
+    virtual bool checkedPreviousTask();
+
 protected:
 
     int id_;

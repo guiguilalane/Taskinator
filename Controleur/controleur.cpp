@@ -80,9 +80,12 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
             //NOTE: sur une liste dépendra de la valeur des composents fils
             element->setValueCheck_(component->getState_());
         }
-//        bool b = true;
-//        b = component->checkedPreviousTask();
-//        element->setCheckable(b);
+
+
+        bool b = true;
+        b = component->checkedPreviousTask();
+        element->setCheckable(b);
+
         int hash = qHash(element);
         elements_->insert(hash, elementItem);
         asup_.push_back(element);

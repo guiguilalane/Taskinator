@@ -84,7 +84,6 @@ int Component::getIdFromMap()
     int size = parent_->getTabComponent_().size();
     while(i <= size && !res)
     {
-        Component* component = parent_->getTabComponent_()[i];
         if(this == parent_->getTabComponent_()[i])
         {
             res = true;

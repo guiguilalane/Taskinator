@@ -56,7 +56,37 @@ void List::addComponent(Component * c)
 
 bool List::isPreviousTaskChecked(const int cle)
 {
-    return this->checkedPreviousTask();
+//    return this->checkedPreviousTask();
+    bool b;
+    if(parent_ == 0)
+    {
+        b = true;
+    }
+    else
+    {
+        b = parent_->isPreviousTaskChecked(getIdFromMap());
+    }
+    return b;
+}
+
+bool List::checkedPreviousTask()
+{
+    bool res;
+    if (parent_ == 0)
+    {
+        res = true;
+    }
+    else
+    {
+        int cle = getIdFromMap();
+        bool check = false;
+        if (cle > 1)
+        {
+            check = parent_->getTabComponent_()[cle-1]->getState_();
+        }
+        res = parent_->checkedPreviousTask() && check;
+    }
+    return res;
 }
 
 void List::removeComponent(const int cle)
