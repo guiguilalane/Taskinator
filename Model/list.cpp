@@ -50,7 +50,7 @@ void List::addComponent(Component * c)
     c->setParent_(this);
     tabComponent_.insert(std::pair<int,Component*>(id_,c));
     id_++;
-
+    checkIfPossible();
     //Vérification que la date de la liste correspond à la date le plus "vieille" des sous-tâches
 }
 
@@ -74,7 +74,7 @@ bool List::checkedPreviousTask()
     bool res;
     if (parent_ == 0)
     {
-        res = true;
+        res = false;
     }
     else
     {

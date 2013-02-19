@@ -37,7 +37,7 @@ bool SortedList::checkedPreviousTask()
     bool res;
     if (parent_ == 0)
     {
-       res = true;
+       res = false;
     }
     else
     {
@@ -81,6 +81,7 @@ void SortedList::addComponent(Component *c)
     c->setParent_(this);
     tabComponent_.insert(std::pair<int,Component*>(id_,c));
     ++id_;
+    checkIfPossible();
     //TODO: mettre la date de la liste à la dernière date de la sous-tâche
 }
 
