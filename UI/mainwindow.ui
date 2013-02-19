@@ -544,6 +544,9 @@
    </property>
   </action>
   <action name="actionAnnuler">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../Resources.qrc">
      <normaloff>:/Pictures/arrow_undo.png</normaloff>:/Pictures/arrow_undo.png</iconset>
@@ -553,6 +556,9 @@
    </property>
   </action>
   <action name="actionRetablir">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../Resources.qrc">
      <normaloff>:/Pictures/arrow_redo.png</normaloff>:/Pictures/arrow_redo.png</iconset>

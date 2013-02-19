@@ -480,6 +480,11 @@ bool Controleur::getFileModified_()
     return fileModified_;
 }
 
+void Controleur::setFilePath(QString file)
+{
+    filePath_ = file;
+}
+
 void Controleur::updateModel(QModelIndex *mIndex, const QString &name, const QDateTime &date, const bool state)
 {
     std::vector<int> arbre = calculateArborescence(*mIndex);
