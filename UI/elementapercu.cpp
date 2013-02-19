@@ -5,6 +5,7 @@ ElementApercu::ElementApercu(QWidget *parent) : QWidget(parent)
 {
     type_ = new QLabel();
     name_ = new QLabel();
+    name_->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     date_ = new QLabel();
     check_ = new QCheckBox();
     check_->setCheckable(false);

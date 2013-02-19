@@ -50,8 +50,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolButtonUp->setEnabled(false);
     ui->toolButtonDown->setEnabled(false);
     ui->toolButtonTrash->setEnabled(false);
-
-    opDial_ = new OptionsDialog(settings_, cont_, this);
 }
 
 void MainWindow::askSaveFile()
@@ -83,6 +81,7 @@ void MainWindow::AfterCreatedWindow()
         ui->radioButton_Y->blockSignals(false);
         ui->radioButton_N->blockSignals(false);
     }
+    opDial_ = new OptionsDialog(settings_, cont_, this);
 }
 
 MainWindow::~MainWindow()
@@ -335,7 +334,7 @@ void MainWindow::on_listTree_itemSelectionChanged()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this,"About Taskinator",QString::fromUtf8(tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER").toStdString().c_str()));
+    QMessageBox::about(this,"About Taskinator",QString::fromUtf8(tr("<center> <b> Taskinator </b> </center> <br/><br/> " "Créer par Guillaume COUTABLE et Noémie RULLIER. <br/><br/> <img src=\"://Pictures/Copyright.png\"> Copyright KiwiCorporation ").toStdString().c_str()));
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index)

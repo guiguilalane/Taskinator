@@ -50,7 +50,9 @@ public:
     bool rootIsSortedList();
     void sortedListToList(QTreeWidget * t);
     void listToSortedList(QTreeWidget * t);
-
+    void parcoursArbreRecursif(QTreeWidgetItem *itemP, QTreeWidgetItem *item);
+    void parcoursArbre(QTreeWidget *p, QTreeWidget *tw);
+    void deleteCurrentItem(QTreeWidget *t, std::vector<int> &arbre, QModelIndex m);
 
     QTreeWidgetItem* getElement(const int key);
     void toList(QTreeWidget *t);
