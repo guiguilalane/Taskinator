@@ -19,8 +19,6 @@ Element::Element(QWidget *parent) : QWidget(parent)
 
     this->setLayout(layout_);
 
-//    connect(name_, SIGNAL(editingFinished()), this, SLOT(onNameChange()));
-//    connect(date_, SIGNAL(editingFinished()), this, SLOT(onDateChange()));
     connect(name_, SIGNAL(textChanged(QString)), this, SLOT(onNameChange(QString)));
     connect(date_, SIGNAL(dateChanged(QDate)), this, SLOT(onDateChange(QDate)));
     connect(check_, SIGNAL(stateChanged(int)), this, SLOT(onCheckChange(int)));
@@ -84,7 +82,6 @@ QString Element::getValueName_()
 
 QDate Element::getValueDate_()
 {
-    // TODO : est-ce que ca devrait pas retourner un time_t ?
     return date_->date();
 }
 

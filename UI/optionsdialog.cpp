@@ -1,8 +1,6 @@
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 
-#include <QDebug>
-
 OptionsDialog::OptionsDialog(QSettings *set, Controleur *cont, QWidget *parent) :
     settings_(set),
     cont_(cont),
@@ -89,7 +87,6 @@ QString OptionsDialog::getCurrentPath()
 void OptionsDialog::on_listOfTemplates_itemDoubleClicked(QListWidgetItem *item)
 {
     ui->listOfTemplates->editItem(item);
-    //TODO: changer le nom du fichier template
 }
 
 void OptionsDialog::on_addTemplateButton_clicked()
@@ -120,7 +117,6 @@ void OptionsDialog::on_deleteTemplateButton_clicked()
             QString baseName = currentItem->text();
             baseName += ".ulk";
             baseName = getCurrentPath() + "/" + baseName;
-            qDebug() << baseName;
             QDir(baseName).remove(baseName);
             refreshTemplatesList();
         }

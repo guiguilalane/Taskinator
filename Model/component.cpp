@@ -126,11 +126,9 @@ void Component::check(bool newState)
 {
     if(newState && checkedPreviousTask())
     {
-//        std::cout << "checké" << std::endl;
         state_ = true;
-        //lorsque toutes les tâches soeurs sont checkées, checker la liste parent
+        //Lorsque toutes les tâches soeurs sont checkées, checker la liste parent
     } else {
-//        std::cout << "impossible de checker" << std::endl;
         state_ = false;
     }
 }

@@ -29,7 +29,6 @@ void MyTreeWidget::parcoursArbreRecursif(QTreeWidgetItem *itemP, QTreeWidgetItem
     }
     elementItem->setExpanded(itemP->isExpanded());
     QWidget * wid = new QWidget(t->itemWidget(itemP,0));
-//            = t->itemWidget(itemP,0);
     this->setItemWidget(elementItem,0,wid);
     for (int i = 0; i < itemP->childCount(); i++)
     {

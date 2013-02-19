@@ -2,9 +2,6 @@
 #include "ui_mainwindow.h"
 #include "element.h"
 
-#include <QStandardItem>
-#include <QDebug>
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -16,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     if(settings_->value("nbFileOpen","") == ""){
         settings_->setValue("nbFileOpen", 1);
     }
-    //TODO: faire une fenêtre d'option qui permettra de changer le répertoire des templates
-//    settings_->setValue("templateDirectory", "/home/guillaume/Bureau/template/");
 
     modifiedElementSignalMapper_ = new QSignalMapper(this);
     deletedElementSignalMapper_ = new QSignalMapper(this);
@@ -68,7 +63,6 @@ void MainWindow::askSaveFile()
     int r = QMessageBox::warning(this, "Enregistrement", tr(" <center> Attention </center> <br/>" "Cette action remplacera la liste en cours <br/><br/>" "Voulez-vous enregistrer votre liste ?"), QMessageBox::Yes | QMessageBox::Default, QMessageBox::No);
     if (r == QMessageBox::Yes){
         on_actionEnregistrer_sous_triggered();
-//        ui->actionEnregistrer->trigger();
     }
 }
 
@@ -78,7 +72,6 @@ void MainWindow::AfterCreatedWindow()
     QFile * f = new QFile(settings_->value("lastFile").toString());
     if(!f->exists()){
         boutonAnnulerActif_ = false;
-        //TODO: enlever la croix qui permet de fermer la fenetre de dialogue (au moins pour la première ouverture) sous Ubuntu
         ui->actionNouveau->trigger();
     }
     // Sinon ajouter le chargement automatique du fichiers
@@ -104,7 +97,6 @@ QList<QAction *> MainWindow::loadingrecentFile()
     for (int i=1; i<t;i++){
         ss << "file" << i;
         QAction * action = new QAction(settings_->value(QString::fromStdString(ss.str())).toString(), ouvrirRecent_);
-        // TODO Passer en paramètre le nom de l'action
         connect(action,SIGNAL(triggered()),this,SLOT(openFile()));
         listRecentFile_.append(action);
         ss.str("");
@@ -116,7 +108,7 @@ void MainWindow::createMenuRecentFile()
 {
     ouvrirRecent_->clear();
     ouvrirRecent_->addActions(loadingrecentFile());
-    QAction * sep1 = ouvrirRecent_->addSeparator();
+    ouvrirRecent_->addSeparator();
     clear_ = new QAction("Effacer les éléments récents",ouvrirRecent_);
     connect(clear_,SIGNAL(triggered()),this,SLOT(clearMenuRecentFile()));
     ouvrirRecent_->addAction(clear_);
@@ -241,23 +233,17 @@ void MainWindow::on_actionQuitter_triggered()
 
 void MainWindow::on_toolButtonList_clicked()
 {
-//    ui->listTree->blockSignals(true);
     cont_->addList(ui->listTree);
-//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonListOrdered_clicked()
 {
-//    ui->listTree->blockSignals(true);
     cont_->addSortedList(ui->listTree);
-//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonTask_clicked()
 {
-//    ui->listTree->blockSignals(true);
     cont_->addTask(ui->listTree);
-//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonTrash_clicked()
@@ -280,16 +266,12 @@ void MainWindow::on_toolButtonTrash_clicked()
 
 void MainWindow::on_toolButtonUp_clicked()
 {
-//    ui->listTree->blockSignals(true);
     cont_->upElement(ui->listTree);
-//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::on_toolButtonDown_clicked()
 {
-//    ui->listTree->blockSignals(true);
     cont_->downElement(ui->listTree);
-//    ui->listTree->blockSignals(false);
 }
 
 void MainWindow::elementChanged(int key)
@@ -330,103 +312,12 @@ void MainWindow::checkboxStateChanged(int key)
         ui->listTree->setAnimated(false);
         QTreeWidgetItem* checkedStatedChangedItem = cont_->getElement(key);
         Element* e = (Element*) ui->listTree->itemWidget(checkedStatedChangedItem, 0);
-        //    bool state = e->getValueCheck_();
         QModelIndex checkedStateMIndex = ui->listTree->getIndexFromItem(checkedStatedChangedItem);
         cont_->updateModel(&checkedStateMIndex, e->getValueName_(), QDateTime(e->getValueDate_()), e->getValueCheck_() > 0);
         cont_->refreshVue(ui->listTree);
-        //    QTreeWidgetItem* parent = checkedStatedChangedItem->parent();
-        //    if(parent == 0)
-        //    {
-        //        if(ui->radioButton_Y->isChecked())
-        //        {//sortedList
-        //            std::cout << "modifier le state des task seulement" << std::endl;
-        //            //dans le cas d'une liste ordonnée, récupérer le prochain élément non checké qui ne soit pas une liste
-        //            //doit correspondre à un task
-        //            QTreeWidgetItem* nextItemCheckable = getNextItemCheckable(checkedStatedChangedItem);
-        //            Element* e = (Element*) ui->listTree->itemWidget(nextItemCheckable, 0);
-        //            e->setCheckable(state);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        std::cout << "récupérer la liste complète des enfants" << std::endl;
-        //    }
-        //    /*idée d'algorithme pour changer la checkabilité des éléments :
-        //     *  - peut-être créer un signalMapper pour cet algorithme
-        //     *  - récupérer le QTreeWidgetItem "parent" de celui qu'on a modifié
-        //     *  - si c'est le root on ne fait rien
-        //     *  - sinon on récupère la liste complete des enfants de "parent"
-        //     *  - en fonction du type de liste qu'est "parent" on modifie l'état de la checkbox à changer
-        //     *  - si la checkbox cochée correspond à la dernière sous-(tâche/liste) cochée, cochée la checkbox de "parent"
-        //     *  - si la checkbox de "parent" à été modifier, rappeler cet algorithme sur le QTreeWidgetItem "parent"
-        //     */
         ui->listTree->setAnimated(false);
         ui->listTree->blockSignals(false);
     }
-}
-
-QTreeWidgetItem *MainWindow::getNextItemCheckable(QTreeWidgetItem *checkedStatedChangedItem)
-{
-    bool b = false;
-    QTreeWidgetItem* current = checkedStatedChangedItem;
-    QTreeWidgetItem* toReturn = current;
-    QTreeWidgetItem* lastElement = getLastElement(checkedStatedChangedItem);
-    while(current != lastElement)
-    {
-        if(itemHasChild(current))
-        {
-            toReturn = current;
-            b = true;
-        }
-        current = ui->listTree->itemBelow(current);
-    }
-    return current;
-}
-
-QTreeWidgetItem *MainWindow::getChild(QTreeWidgetItem *parent, QTreeWidgetItem *lastElement)
-{
-    bool b = false;
-    QTreeWidgetItem* current = parent;
-    while(current != lastElement && !b)
-    {
-        if(itemHasChild(current))
-        {
-            current = getChild(current, lastElement);
-            b = true;
-        }
-        if(!b){
-            current = ui->listTree->itemBelow(current);
-        }
-    }
-    return current;
-}
-
-bool MainWindow::itemHasChild(QTreeWidgetItem *item)
-{
-    bool b = false;
-    if(item->childCount() > 0)
-    {
-        if(dynamic_cast<Element*>(ui->listTree->itemWidget(item->child(0), 0)))
-        {
-            b = true;
-        }
-    }
-    return b;
-}
-
-QTreeWidgetItem *MainWindow::getLastElement(QTreeWidgetItem *twi)
-{
-    QTreeWidgetItem* item = twi;
-    QTreeWidgetItem* nextItem = ui->listTree->itemBelow(item);
-    while(nextItem != 0)
-    {
-        if(dynamic_cast<Element*>(ui->listTree->itemWidget(nextItem, 0)))
-        {
-            item = nextItem;
-        }
-        nextItem = ui->listTree->itemBelow(nextItem);
-    }
-    return item;
 }
 
 void MainWindow::toolButtonParam_toList(bool b)

@@ -71,11 +71,9 @@ void Controleur::refreshVue(QTreeWidget * t)
     parcoursArbre(old, t);
     delete old;
     t->blockSignals(false);
-    //FIXME: actuellement, execution du slot elementChanged nb_QTreeWidgetItem fois sur le même objet, même si un seul signal emit
     QObject::connect(modifiedElementSignalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementChanged(int)));
     QObject::connect(deletedElementSignalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(elementDeleted(int)));
     QObject::connect(checkboxStateChangeSignalMapper_, SIGNAL(mapped(int)), mainWindow_, SLOT(checkboxStateChanged(int)));
-    // TODO A revoir pour garder l'état dans lequel les listes étaient déroulée et éviter de mettre des expandAll() dans toutes les fonctionnalitées qui utilise la méthode refreshView()
 }
 
 void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent)
@@ -97,9 +95,6 @@ void Controleur::parcoursList(QTreeWidget * t, QTreeWidgetItem * p, List* parent
         {
             element->setValueName_(QString::fromUtf8(component->getName_().c_str()));
             element->setValueDate_(QDateTime::fromTime_t(component->getDate_()).date());
-
-            //NOTE: sur une liste dépendra de la valeur des composents fils
-
         }
     element->setValueCheck_(component->getState_());
 
@@ -724,7 +719,6 @@ void Controleur::parcoursListApercuTemplate(QTreeWidget *t, QTreeWidgetItem *p, 
 
 void Controleur::createVueApercu(QTreeWidget *t)
 {
-    //TODO: supprimer de la mémoire les élément de t
     t->clear();
     parcoursListApercu(t, 0, root_);
     t->expandAll();
@@ -732,7 +726,6 @@ void Controleur::createVueApercu(QTreeWidget *t)
 
 void Controleur::createVueApercuTemplate(QTreeWidget *t, List* root)
 {
-    //TODO: supprimer de la mémoire les élément de t
     t->clear();
     parcoursListApercuTemplate(t, 0, root, root);
     t->expandAll();

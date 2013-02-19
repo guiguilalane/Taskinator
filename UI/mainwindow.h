@@ -118,14 +118,6 @@ private:
 
     bool isModified;
 
-    QTreeWidgetItem *getNextItemCheckable(QTreeWidgetItem* checkedStatedChangedItem);
-
-    QTreeWidgetItem *getLastElement(QTreeWidgetItem* twi);
-
-    bool itemHasChild(QTreeWidgetItem* item);
-
-    QTreeWidgetItem *getChild(QTreeWidgetItem* parent, QTreeWidgetItem* lastElement);
-
 };
 
 #endif // MAINWINDOW_H

@@ -20,7 +20,6 @@
 #include <vector>
 
 
-//TODO: remplacer les création de composant par un appel à la factory
 class Controleur
 {
 public:
