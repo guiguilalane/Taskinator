@@ -10,6 +10,8 @@
 #include <QSettings>
 #include <QTextCodec>
 #include <QInputDialog>
+#include <sstream>
+
 
 #include <UI/newlist.h>
 #include "../Controleur/controleur.h"
@@ -30,6 +32,8 @@ public:
     void askSaveFile();
 
     void AfterCreatedWindow();
+    QList<QAction *> loadingrecentFile();
+    void createMenuRecentFile();
 
     ~MainWindow();
 
@@ -86,6 +90,10 @@ private slots:
 
     void on_actionOption_triggered();
 
+    void openFile();
+
+    void clearMenuRecentFile();
+
 private:
     Ui::MainWindow *ui;
     NewList * newList_;
@@ -97,6 +105,8 @@ private:
     QAction * liste_;
     QAction * listeO_;
     QAction * tache_;
+    QMenu * ouvrirRecent_;
+    QAction * clear_;
     QSettings * settings_;
 
     bool boutonAnnulerActif_;
