@@ -400,7 +400,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -492,6 +492,9 @@
    <property name="text">
     <string>&amp;Nouveau</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionOuvrir">
    <property name="icon">
@@ -500,6 +503,9 @@
    </property>
    <property name="text">
     <string>&amp;Ouvrir ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionOuvrir_r_cent">
@@ -521,12 +527,15 @@
     <string>Enregistrer</string>
    </property>
    <property name="shortcut">
-    <string>Meta+S</string>
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionEnregistrer_sous">
    <property name="text">
     <string>Enregistrer sous ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="actionExporter">
@@ -545,6 +554,9 @@
    <property name="text">
     <string>&amp;Quitter</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="actionAnnuler">
    <property name="enabled">
@@ -557,6 +569,9 @@
    <property name="text">
     <string>Annuler</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
   </action>
   <action name="actionRetablir">
    <property name="enabled">
@@ -568,6 +583,9 @@
    </property>
    <property name="text">
     <string>Rétablir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z, Ctrl+S</string>
    </property>
   </action>
   <action name="actionEnregistrer_template">
