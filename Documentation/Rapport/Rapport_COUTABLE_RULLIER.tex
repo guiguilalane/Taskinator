@@ -148,7 +148,7 @@ COUTABLE Guillaume, RULLIER Noémie \\
 \section{Introduction}
 L'objectif de ce projet fut de développer un gestionnaire avancé de tâches. Celui-ci devait permettre de créer des listes de tâches et de suivre l'avancement de celles-ci.
 
-Afin de créer cette application que nous avons appelé \textit{Taskinator}, nous avons du établir plusieurs étapes d'avancement du projet. Ce rapport présentera ces étapes les unes après les autres (même si lors de ce projet certaines étapes se sont croisées).
+Afin de créer cette application que nous avons appelé \textit{Taskinator}, nous avons dû établir plusieurs étapes d'avancement du projet. Ce rapport présentera ces étapes les unes après les autres (même si lors de ce projet certaines étapes se sont croisées).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 1
@@ -160,20 +160,20 @@ La première étape fut d'analyser l'ensemble des fonctionnalités que notre app
 \subsection{Fonctionnalités principales}
 Voici dans un premier temps les fonctionnalités principales:
 \paragraph{Créer une liste:} cette fonctionnalité permet à l'utilisateur de créer une liste non ordonnée vide.
-\paragraph{Créer une liste ordonnée:} cette fonctionnalité permet à l'utilisateur de créer une liste ordonnée vide. L'ensemble des éléments de cette liste doivent être effectué dans un ordre précis.
+\paragraph{Créer une liste ordonnée:} cette fonctionnalité permet à l'utilisateur de créer une liste ordonnée vide. L'ensemble des éléments de cette liste doivent être effectués dans un ordre précis.
 \paragraph{Créer une tâche:} cette fonctionnalité permet à l'utilisateur de créer une tâche.
 \paragraph{Supprimer un élément:} cette fonctionnalité permet de supprimer une tâche ou une liste (ordonnée ou non). Cette fonctionnalité est à manipuler avec précaution, en effet dans le cas d'une liste, la suppression de celle-ci implique aussi la suppression de tous ses éléments (listes ou tâches).
 \paragraph{Enregistrer:} cette fonctionnalité permet à l'utilisateur d'enregistrer sa liste dans un fichier sur son disque dur.
 \paragraph{Enregistrer un template:} cette fonctionnalité permet à l'utilisateur d'enregistrer la liste qu'il vient de créer comme un template afin que la structure de celle-ci soit réutilisable.
-\paragraph{Ouvrir un template:} cette fonctionnalité permet à l'utilisateur de créer une liste à partir d'un template enregistré. Il devra cependant renseigné le nom de cette liste ainsi que toutes les dates de tous les éléments. Il peut ensuite continuer à modifier cette liste.
+\paragraph{Ouvrir un template:} cette fonctionnalité permet à l'utilisateur de créer une liste à partir d'un template enregistré. Il devra cependant renseigner le nom de cette liste ainsi que toutes les dates de tous les éléments. Il peut ensuite continuer à modifier cette liste.
 
 \subsection{Fonctionnalités secondaires}
 Voici les fonctionnalités secondaires:
 \paragraph{Paramètre:} cette fonctionnalité permet à l'utilisateur de modifier le type de l'élément sélectionné. Il pourra par exemple choisir de modifier une liste en liste ordonnée ou en une tâche. Cette fonctionnalité est à manipuler avec précaution, en effet si l'utilisateur décide de transformer une liste en tâche l'ensemble des éléments de la liste seront supprimés.
-\paragraph{Monter / Descendre:} cette fonctionnalité permet de monter ou descendre un élément dans l'arborescence de la liste. Dans le cas d'une liste, tous ces éléments sont aussi monté/descendu d'un rang. Si le changement se fait au sein d'une liste ordonnée l'ordre des éléments est aussi changé.
-\paragraph{Historique:} cette fonctionnalité permet d'annuler ou rétablir des actions faites par l'utilisateur.
+\paragraph{Monter / Descendre:} cette fonctionnalité permet de monter ou descendre un élément dans l'arborescence de la liste. Dans le cas d'une liste, tous ces éléments sont aussi montés/descendus d'un rang. Si le changement se fait au sein d'une liste ordonnée l'ordre des éléments est aussi changé.
+\paragraph{Historique:} cette fonctionnalité permet d'annuler ou de rétablir des actions faites par l'utilisateur.
 \paragraph{Aperçu:} cette fonctionnalité permet à l'utilisateur de voir sa liste.
-\paragraph{Gérer ses templates:} cette fonctionnalité permet à l'utilisateur d'ajouter et supprimer des templates.
+\paragraph{Gérer ses templates:} cette fonctionnalité permet à l'utilisateur d'ajouter et de supprimer des templates.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 2
@@ -182,7 +182,7 @@ Voici les fonctionnalités secondaires:
 \section{Storyboard, Paper Prototype et Scénarios}
 
 \subsection{Storyboard}
-Le storyboard permet de montrer à quoi sert l'application. Il utilise les star people de Bill VerPlank. A la fin su storyboard, le personnage atteint son but et est satisfait. Nous avons donc ici créer notre storyboard pour notre application:
+Le storyboard permet de montrer à quoi sert l'application. Il utilise les star people de Bill VerPlank. A la fin su storyboard, le personnage atteint son but et est satisfait. Nous avons donc ici créé notre storyboard pour notre application:
 \begin{figure}[H]
     \center
     \includegraphics[width=13.9cm]{Images/storyboard.png}
@@ -193,7 +193,7 @@ Le storyboard permet de montrer à quoi sert l'application. Il utilise les star 
 \subsection{Paper Prototype}
 
 \subsubsection{Les maquettes}
-Voici quelques unes des maquettes réalisée pour le paper prototype. Nous expliquons dans la section suivante quels ont été les choix effectués. Les maquettes ici présentent sont celles qui ont été utilisées pour la réalisation de la vidéo du scénario 1 présenté ci-dessous.
+Voici quelques unes des maquettes réalisées pour le paper prototype. Nous expliquons dans la section suivante quels ont été les choix effectués. Les maquettes ici présentent sont celles qui ont été utilisées pour la réalisation de la vidéo du scénario 1 présenté ci-dessous.
 \begin{figure}[H]
     \center
     \includegraphics[width=6.8cm]{Images/maquette1.jpeg}
@@ -208,23 +208,23 @@ Voici quelques unes des maquettes réalisée pour le paper prototype. Nous expli
 \end{figure}
 
 \subsubsection{Choix réalisés}
-Nous avons du faire quelques choix pour la conception de l'interface. Nous vous les présentons ici et surtout nous expliquons pourquoi nous avons choisi telle solution:
+Nous avons dû faire quelques choix pour la conception de l'interface. Nous vous les présentons ici et surtout nous expliquons pourquoi nous avons choisi telle solution:
 \begin{itemize}
-\item \textbf{Fonctionnalité de création (liste ordonnée ou non et tâche):} nous avons décider d'adopter un système de sélection de l'élément "fils". Expliquons ce système. Lorsque l'utilisateur créer une liste, un élément vide de cette liste apparait. L'utilisateur doit alors sélectionner cet élément et définir de quel type il sera. Lorsque cet élément à un type, un nouvel élément vide apparait; l'utilisateur peut alors définir un autre élément ... Si l'utilisateur ne souhaite pas continuer à remplir cette liste, il ne tient plus compte des éléments vides.
-\item \textbf{Fonctionnalité \textit{Monter} et \textit{Descendre}:} nous avons décider de placer ces fonctionnalités dans la boîte à outils plutôt que sur l'élément à déplacer pour un gain de temps au niveau de l'utilisation. En effet, si nous avions fait le choix de mettre les boutons monter et descendre sur l'élément, lorsque l'utilisateur souhaite déplacer l'élément de plusieurs place, il va perdre le focus de la souris sur ces boutons. Attention, lors de l'utilisation de cette fonctionnalité dans une liste ordonnée; si on monte ou descend un élément de tel façon que un élément coché se trouve être en dessous d'un élément non coché dans la liste, alors le déplacement ne sera pas activé. (Cette dernière précaution n'a pas été implémentée)
-\item \textbf{Fonctionnalité \textit{Supprimer}:} nous avons choisi d'ajouter cette possibilité de suppression sur chaque élément pour que l'utilisateur puisse supprimer plus rapidement. Nous avons de plus décider de faire apparaître une fenêtre d'avertissement car la suppression d'une liste sélectionnée peut entrainer la suppression d'éléments. Pour plus de sécurité, le focus de la validation de la suppression est par défaut sur \textit{Non}.
-\item \textbf{Fonctionnalité \textit{Paramètre}:} nous avons décider pour cette fonctionnalité (qui peut entraîner la suppression de différents éléments) de faire apparaître ici aussi une fenêtre d'avertissement. Dans cette fenêtre le focus de la validation du changement est mise à \textit{Non}. On perd cependant un peu de vitesse d'exécution (si l'utilisateur souhaite effectivement bien effectuer ce changement) au profit de plus de sécurité.
+\item \textbf{Fonctionnalité de création (liste ordonnée ou non et tâche):} nous avons décidé d'adopter un système de sélection de l'élément "fils". Expliquons ce système. Lorsque l'utilisateur crée une liste, un élément vide de cette liste apparait. L'utilisateur doit alors sélectionner cet élément et définir de quel type il sera. Lorsque cet élément à un type, un nouvel élément vide apparait; l'utilisateur peut alors définir un autre élément ... Si l'utilisateur ne souhaite pas continuer à remplir cette liste, il ne tient plus compte des éléments vides.
+\item \textbf{Fonctionnalité \textit{Monter} et \textit{Descendre}:} nous avons décidé de placer ces fonctionnalités dans la boîte à outils plutôt que sur l'élément à déplacer pour un gain de temps au niveau de l'utilisation. En effet, si nous avions fait le choix de mettre les boutons monter et descendre sur l'élément, lorsque l'utilisateur souhaite déplacer l'élément de plusieurs place, il va perdre le focus de la souris sur ces boutons. Attention, lors de l'utilisation de cette fonctionnalité dans une liste ordonnée; si on monte ou descend un élément de tel façon que un élément coché se trouve être en dessous d'un élément non coché dans la liste, alors le déplacement ne sera pas activé. (Cette dernière précaution n'a pas été implémentée)
+\item \textbf{Fonctionnalité \textit{Supprimer}:} nous avons choisi d'ajouter cette possibilité de suppression sur chaque élément pour que l'utilisateur puisse supprimer plus rapidement. Nous avons de plus décidé de faire apparaître une fenêtre d'avertissement car la suppression d'une liste sélectionnée peut entrainer la suppression d'éléments. Pour plus de sécurité, le focus de la validation de la suppression est par défaut sur \textit{Non}.
+\item \textbf{Fonctionnalité \textit{Paramètre}:} nous avons décidé pour cette fonctionnalité (qui peut entraîner la suppression de différents éléments) de faire apparaître ici aussi une fenêtre d'avertissement. Dans cette fenêtre le focus de la validation du changement est mise à \textit{Non}. On perd cependant un peu de vitesse d'exécution (si l'utilisateur souhaite effectivement bien effectuer ce changement) au profit de plus de sécurité.
 \item \textbf{Widget désactivé :} nous avons décidé de griser tout menu, bouton inutilisable à un état de l'application afin que l'utilisateur n'exécute pas d'actions impossibles. Cela évitera qu'il se pose des questions s'il voit aucun changement effectué.
 \end{itemize}
 
 \subsection{Scénarios}
-Afin de tester notre PaperPrototype, nous avons créer plusieurs scénarios.
+Afin de tester notre PaperPrototype, nous avons créé plusieurs scénarios.
 \subsubsection{Scénario 1 - Création/Utilisation/Suppression de liste}
 Ce premier scénario a été utilisé pour tester le paper prototype. Il permet de créer une liste non ordonnée et d'y ajouter une liste ordonnée avec ses propres tâches et des tâches.
 \begin{enumerate}
 \item{L'utilisateur choisit quel type de liste il souhaite créer, il choisit ici une liste non ordonnée. Il lui donne un nom et une date de fin. (Pour notre scénario cette liste sera appelée la liste mère)}
-\item{Il créé ensuite une liste ordonnée (qui est le premier élément de la liste mère). Il lui donne un nom et une date. (Pour notre scénario cette liste sera appelée la liste 1)}
-\item{Il créer ensuite une tâche qui sera le premier élément de la liste 1. Il lui donne un nom et une date. (Pour notre scénario cette tâche sera appelée la tâche 1.1)}
+\item{Il crée ensuite une liste ordonnée (qui est le premier élément de la liste mère). Il lui donne un nom et une date. (Pour notre scénario cette liste sera appelée la liste 1)}
+\item{Il crée ensuite une tâche qui sera le premier élément de la liste 1. Il lui donne un nom et une date. (Pour notre scénario cette tâche sera appelée la tâche 1.1)}
 \item{Il créer ensuite une tâche qui sera le deuxième élément de la liste 1. Il lui donne un nom et une date. (Pour notre scénario cette tâche sera appelée la tâche 1.2)}
 \item{Il souhaite maintenant échanger les tâches 1.1 et 1.2, il sélectionne donc la tâche 1.1 et la place au dessous de la tâche 1.2}
 \item{Une popup peut apparaître et informe l'utilisateur que l'action qu'il vient d'effectuer provoque un conflit de date. Le champs date concerné par le conflit prend une couleur orange d'avertissement.}
@@ -308,7 +308,7 @@ On retrouvera les fonctionnalités suivantes:
 \end{itemize}
 
 \subsection{Boite à outils}
-Cette boite à outils permet de rassembler toutes les fonctionnalités que l'utilisateur sera amené à utiliser fréquemment. Nous avons décidé de mettre cette boite à outils à gauche, puisque dans notre culture le sens de lecture est de gauche à droite. Toutes les fonctionnalités présentent dans cette boîte à outils seront appliquée sur l'élément sélectionné dans la zone d'affichage de la liste. Cette boite à outils contient les fonctionnalités suivantes:
+Cette boite à outils permet de rassembler toutes les fonctionnalités que l'utilisateur sera amené à utiliser fréquemment. Nous avons décidé de mettre cette boite à outils à gauche, puisque dans notre culture le sens de lecture est de gauche à droite. Toutes les fonctionnalités présentent dans cette boîte à outils seront appliquées sur l'élément sélectionné dans la zone d'affichage de la liste. Cette boite à outils contient les fonctionnalités suivantes:
 \begin{itemize}
 \item \textbf{Créer une liste non ordonnée (\includegraphics[width=0.25cm]{Images/list.png}) :} elle permet à l'utilisateur de créer une nouvelle liste non ordonnée.
 \item \textbf{Créer une liste ordonnée (\includegraphics[width=0.25cm]{Images/list_ordered.png}) :} elle permet à l'utilisateur de créer une nouvelle liste ordonnée.
@@ -318,13 +318,13 @@ Cette boite à outils permet de rassembler toutes les fonctionnalités que l'uti
 \item \textbf{Descendre  (\includegraphics[width=0.25cm]{Images/arrow_down.png}) :} elle permet à l'utilisateur de descendre un élément.
 \item \textbf{Supprimer  (\includegraphics[width=0.25cm]{Images/trash_empty.png}) :}  elle permet à l'utilisateur de supprimer un élément.
 \end{itemize}
-Toutes les boutons permettant de réalisé ces fonctionnalités ont été implémentée grâce à des \textit{QToolButton}. Nous avons ensuite utilisé des signaux et des slots afin de connecter l'action à réaliser au bouton.
+Tous les boutons permettant de réaliser ces fonctionnalités ont été implémentés grâce à des \textit{QToolButton}. Nous avons ensuite utilisé des signaux et des slots afin de connecter l'action à réaliser aux boutons.
 
 \subsection{Zone d'affichage de la liste}
-Cette zone est comme indiquée réservée à l'affichage de la liste en cours de création. On pourra donc voir l'arborescence de la liste, avec toutes ses informations.
+Cette zone est comme indiqué réservée à l'affichage de la liste en cours de création. On pourra donc voir l'arborescence de la liste, avec toutes ses informations.
 Cette zone sera organisée en une arborescence d'éléments. Pour cela, nous avons utilisé un \textit{QTreeWidget}. Celui-ci sera composé d'éléments.
 
-Nous avons créer notre propre élément (héritant de \textit{QWidget}) composé d'un \textit{QLineEdit} permettant de taper le nom de l'élément, d'un \textit{QDateEdit} permettant de rentrer la date, d'un \textit{QToolButton} permettant d'ajouter la fonctionnalité de suppression sur l'élément et d'une \textit{QCheckBox} permettant de valider la réalisation de la tâche.
+Nous avons créé notre propre élément (héritant de \textit{QWidget}) composé d'un \textit{QLineEdit} permettant de taper le nom de l'élément, d'un \textit{QDateEdit} permettant de rentrer la date, d'un \textit{QToolButton} permettant d'ajouter la fonctionnalité de suppression sur l'élément et d'une \textit{QCheckBox} permettant de valider la réalisation de la tâche.
 Plusieurs cas sont possible pour l'état de la checkbox:
 \begin{itemize}
 \item Dans le cas d'un élément d'une liste ordonnée, cette checkbox sera grisée si la tâche antérieure n'est pas cochée.
@@ -337,14 +337,14 @@ Plusieurs cas sont possible pour l'état de la checkbox:
     \includegraphics[width=7.4cm]{Images/checkboxListe.png}
     \caption{Fonctionnement de l'activation/désactivation des cases à cocher}
 \end{figure}
-Nous aurons une information supplémentaire au début de chaque élément. Dans le cas d'une liste non ordonnées, ses éléments sont représentés avec un tiret devant les informations de la liste, tandis que les éléments des listes ordonnées sont représenté à l'aide de numéro.
+Nous aurons une information supplémentaire au début de chaque élément. Dans le cas d'une liste non ordonnées, ses éléments sont représentés avec un tiret devant les informations de la liste, tandis que les éléments des listes ordonnées sont représentés à l'aide de numéro.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%  Etape 4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Le modèle}
-Afin de réaliser cette application nous avons du créer un modèle pour celle-ci. Voici le diagramme de classe de celui-ci:
+Afin de réaliser cette application nous avons dû créer un modèle pour celle-ci. Voici le diagramme de classe de celui-ci:
 %TODO Mettre diagramme
 Le modèle de cette application est composé d'un pattern composite permettant d'implémenter une structure d'arbre et de composer les différents objets ensemble. Nous avons donc ici un \textit{Component} qui est soit une \textit{Task} (une tâche) ou une \textit{List} (une liste) qui elle-même peut ensuite être une \textit{ListOrdered} (une liste ordonnée), celle-ci hérite de la class \textit{List}. Ce modèle permet donc comme expliqué ci-dessus de composer ces éléments et d'obtenir par exemple des listes de listes de tâches \dots 
 Au sein de ce modèle nous pouvons donc gérer tous ces composants, ajouter un composant dans une liste, le supprimer, le déplacer d'un rang (dans les deux sens). Nous avons aussi toutes les fonctions permettant de déterminer si un composant est cochable ou non.
@@ -356,7 +356,7 @@ Au sein de ce modèle nous pouvons donc gérer tous ces composants, ajouter un c
 \section{Limite de l'application}
 Notre application à ses propres limites. Elle ne permet pas d'éditer différentes listes en même temps (l'utilisateur peut créer/modifier une liste à la fois).
 
-Elle ne gère pas non plus la cohérence des dates des composants. Effectivemet dans le cas d'une liste ordonnée, il faudrait vérifier que la date d'une tâche soit inférieur à la date de la tâche suivante. Cette vérification devra se faire lors de la création mais aussi à chaque action effectuée.
+Elle ne gère pas non plus la cohérence des dates des composants. Effectivemet dans le cas d'une liste ordonnée, il faudrait vérifier que la date d'une tâche soit inférieure à la date de la tâche suivante. Cette vérification devra se faire lors de la création mais aussi à chaque action effectuée.
 %TODO A compléter si des idées
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -364,8 +364,7 @@ Elle ne gère pas non plus la cohérence des dates des composants. Effectivemet 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Conclusion générale}
-Ce projet nous a permis de réléchir à la structure de l'IHM, afin que celle-ci soit la plus "instinctive %TODO trouver synpnyme
-possible pour l'utilisateur. Réfléchir à la position des boutons, le nom ou l'icône les représentant. Comment l'ajout des composants se fera au sein de la liste ...
+Ce projet nous a permis de réléchir à la structure de l'IHM, afin que celle-ci soit la plus intuitive possible pour l'utilisateur. Réfléchir à la position des boutons, le nom ou l'icône les représentant. Comment l'ajout des composants se fera au sein de la liste ...
 %TODO A compléter
 
 \end{document}
