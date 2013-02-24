@@ -6,14 +6,19 @@
 
 class List;
 
+
 class History
 {
 public:
+
     History();
+
     History(List * l);
+
     ~History();
 
     // This fonction make a copy of l and insert it in a vector
+
     void autoSave(List * l);
 
 private:

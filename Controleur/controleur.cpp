@@ -53,10 +53,10 @@ void Controleur::parcoursArbreRecursif(QTreeWidgetItem *itemP, QTreeWidgetItem *
 {
     if (item != 0){
         item->setExpanded(itemP->isExpanded());
-    for (int i = 0; i < itemP->childCount(); i++)
-    {
-        parcoursArbreRecursif(itemP->child(i), item->child(i));
-    }
+        for (int i = 0; i < itemP->childCount(); i++)
+        {
+            parcoursArbreRecursif(itemP->child(i), item->child(i));
+        }
     }
 }
 

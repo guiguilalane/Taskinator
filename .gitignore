@@ -29,3 +29,6 @@ Makefile
 
 *MocFile/*
 *UIHeaderFile*
+
+#doxygen documentation
+Documentation/code Documentation/
