@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.11)  24 FEB 2013 22:41
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.11)  26 FEB 2013 00:43
 entering extended mode
  %&-line parsing enabled.
 **Rapport_COUTABLE_RULLIER.tex
@@ -559,7 +559,7 @@ Package pdftricks Warning: ****************************************
 (pdftricks)                [psTricks support in PDF (CVR, ACL)]
 (pdftricks)                ****************************************.
 
-runsystem(touch /tmp/w18-test-20132241361)...disabled.
+runsystem(touch /tmp/w18-test-201322643)...disabled.
 
 
 Package pdftricks Warning: ****************************************
@@ -1106,23 +1106,23 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 61.
  (./Rapport_COUTABLE_RULLIER.aux)
 \openout1 = `Rapport_COUTABLE_RULLIER.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Info: Redefining \degres on input line 101.
-LaTeX Info: Redefining \dots on input line 101.
-LaTeX Info: Redefining \up on input line 101.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Info: Redefining \degres on input line 103.
+LaTeX Info: Redefining \dots on input line 103.
+LaTeX Info: Redefining \up on input line 103.
 
 *geometry auto-detecting driver*
 *geometry detected driver: pdftex*
@@ -1178,7 +1178,7 @@ driver: pdftex
 \MPnumerator=\count186
 \everyMPtoPDFconversion=\toks60
 )
-Package hyperref Info: Link coloring ON on input line 101.
+Package hyperref Info: Link coloring ON on input line 103.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -1187,8 +1187,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count187
 )
-LaTeX Info: Redefining \ref on input line 101.
-LaTeX Info: Redefining \pageref on input line 101.
+LaTeX Info: Redefining \ref on input line 103.
+LaTeX Info: Redefining \pageref on input line 103.
 
 (./Rapport_COUTABLE_RULLIER.out) (./Rapport_COUTABLE_RULLIER.out)
 \@outlinefile=\write5
@@ -1200,7 +1200,7 @@ Preview: Fontsize 10pt
 Preview: PDFoutput 1
 Package caption Info: Begin \AtBeginDocument code.
 Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
-LaTeX Info: Redefining \subref on input line 101.
+LaTeX Info: Redefining \subref on input line 103.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1208,27 +1208,7 @@ Package caption Info: End \AtBeginDocument code.
 ABD: EveryShipout initializing macros
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 104.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 104.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 104.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 105.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 105.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 105.
+less on input line 106.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
@@ -1236,15 +1216,35 @@ less on input line 106.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
+less on input line 106.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less on input line 107.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 108.
+less on input line 107.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 107.
+
+
+Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
+less on input line 108.
+
+
+Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
 less on input line 109.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 110.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 111.
 
 <Images/Taskinator.png, id=82, 128.48pt x 128.48pt>
 File: Images/Taskinator.png Graphic file (type png)
@@ -1275,7 +1275,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.142 \newpage
+l.144 \newpage
                [1] [2] [3]
 <Images/storyboard.png, id=146, 575.2692pt x 814.242pt>
 File: Images/storyboard.png Graphic file (type png)
@@ -1366,28 +1366,33 @@ File: Images/caseDesactive.png Graphic file (type png)
 File: Images/checkboxListe.png Graphic file (type png)
 
 <use Images/checkboxListe.png> [10 <./Images/caseDesactive.png> <./Images/check
-boxListe.png>] [11] [12] AED: lastpage setting LastPage [13]
-(./Rapport_COUTABLE_RULLIER.aux) ) 
+boxListe.png>] <Images/dia_classe.png, id=238, 614.295pt x 633.36626pt>
+File: Images/dia_classe.png Graphic file (type png)
+
+<use Images/dia_classe.png> [11 <./Images/dia_classe.png (PNG copy)>] [12]
+AED: lastpage setting LastPage [13] (./Rapport_COUTABLE_RULLIER.aux) ) 
 Here is how much of TeX's memory you used:
- 22714 strings out of 495028
- 392080 string characters out of 1181229
- 534129 words of memory out of 3000000
- 25320 multiletter control sequences out of 15000+50000
- 13777 words of font info for 34 fonts, out of 3000000 for 9000
+ 22723 strings out of 495028
+ 392257 string characters out of 1181229
+ 533149 words of memory out of 3000000
+ 25327 multiletter control sequences out of 15000+50000
+ 14478 words of font info for 35 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 56i,11n,65p,834b,499s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/guillaume/.texmf-var/fonts/pk/ljfour/
-jknappen/ec/ecbi1000.600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour/jknappe
-n/ec/ecbx1200.600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/ec
-cc1000.600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.
-600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> 
-</home/guillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/
-guillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/guillau
-me/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/guillaume/.tex
-mf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk>
-Output written on Rapport_COUTABLE_RULLIER.pdf (14 pages, 5918248 bytes).
+ 56i,11n,65p,830b,489s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/g
+uillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1440.600pk> </home/guillaum
+e/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/guillaume/.texm
+f-var/fonts/pk/ljfour/jknappen/ec/eccc1000.600pk> </home/guillaume/.texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/guillaume/.texmf-var/fonts/pk
+/ljfour/jknappen/ec/ecbi1000.600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour
+/jknappen/ec/ecbx1440.600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour/jknapp
+en/ec/ecrm1000.600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/e
+cbx1000.600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728
+.600pk> </home/guillaume/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk>
+
+Output written on Rapport_COUTABLE_RULLIER.pdf (14 pages, 5957343 bytes).
 PDF statistics:
- 596 PDF objects out of 1000 (max. 8388607)
+ 612 PDF objects out of 1000 (max. 8388607)
  66 named destinations out of 1000 (max. 500000)
- 285 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 290 words of extra memory for PDF output out of 10000 (max. 10000000)
 
